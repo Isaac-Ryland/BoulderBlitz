@@ -1,0 +1,88 @@
+[gd_scene load_steps=13 format=3 uid="uid://d1puv3ejjkocr"]
+
+[ext_resource type="Script" path="res://Scripts/player_2.gd" id="1_661my"]
+[ext_resource type="Texture2D" uid="uid://bt5rr483ckwaf" path="res://Assets/Sprites/pixilart-sprite (1).png" id="2_yk1rr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3a7x7"]
+radius = 61.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqo0w"]
+atlas = ExtResource("2_yk1rr")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_esv81"]
+atlas = ExtResource("2_yk1rr")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpgdb"]
+atlas = ExtResource("2_yk1rr")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhpb0"]
+atlas = ExtResource("2_yk1rr")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xld7"]
+atlas = ExtResource("2_yk1rr")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4vyr"]
+atlas = ExtResource("2_yk1rr")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1k0w"]
+atlas = ExtResource("2_yk1rr")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j3im1"]
+atlas = ExtResource("2_yk1rr")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_52mas"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqo0w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_esv81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rpgdb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhpb0")
+}],
+"loop": true,
+"name": &"RollFast",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7xld7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p4vyr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n1k0w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j3im1")
+}],
+"loop": true,
+"name": &"RollSlow",
+"speed": 5.0
+}]
+
+[node name="Player2" type="CharacterBody2D"]
+script = ExtResource("1_661my")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -64)
+shape = SubResource("CircleShape2D_3a7x7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -64)
+sprite_frames = SubResource("SpriteFrames_52mas")
+animation = &"RollSlow"

@@ -1,0 +1,190 @@
+[gd_scene load_steps=22 format=3 uid="uid://dll1hghj3kqku"]
+
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_o3ut0"]
+[ext_resource type="Texture2D" uid="uid://dwkvyj674h8i8" path="res://Assets/MainMenuArt/MainMenuBG.png" id="2_oftkg"]
+[ext_resource type="Texture2D" uid="uid://bpnsp8jx4psqr" path="res://Assets/MainMenuArt/BBLogo.png" id="3_40n20"]
+[ext_resource type="Texture2D" uid="uid://bxhm5q11rp113" path="res://Assets/MainMenuArt/TitleText.png" id="4_q0l0j"]
+[ext_resource type="Texture2D" uid="uid://dkbef001e5i44" path="res://Assets/MainMenuArt/PlayDefault.png" id="5_x0hua"]
+[ext_resource type="Texture2D" uid="uid://bvw3j1dk2kj5i" path="res://Assets/MainMenuArt/CreditsDefault.png" id="6_v4xum"]
+[ext_resource type="Texture2D" uid="uid://68kip2r7r8th" path="res://Assets/MainMenuArt/PlayPress.png" id="6_xkauh"]
+[ext_resource type="Texture2D" uid="uid://bm33anru3jn75" path="res://Assets/MainMenuArt/PlayHover.png" id="7_fxv22"]
+[ext_resource type="Texture2D" uid="uid://cm43ooilo1khv" path="res://Assets/MainMenuArt/CreditsPress.png" id="7_oo75h"]
+[ext_resource type="Texture2D" uid="uid://uakiud2pt6ci" path="res://Assets/MainMenuArt/QuitPress.png" id="7_v4i70"]
+[ext_resource type="Texture2D" uid="uid://cil2psu5wpjtx" path="res://Assets/MainMenuArt/QuitDefault.png" id="8_drviu"]
+[ext_resource type="Texture2D" uid="uid://w5qb5ewyu655" path="res://Assets/MainMenuArt/CreditsHover.png" id="8_tm42m"]
+[ext_resource type="Texture2D" uid="uid://csxw1vneror1v" path="res://Assets/MainMenuArt/QuitHover.png" id="8_wb2l6"]
+[ext_resource type="Texture2D" uid="uid://bc7ls65kuh3nb" path="res://Assets/MainMenuArt/SettingsDefault.png" id="12_2645o"]
+[ext_resource type="Texture2D" uid="uid://ciipiijoleop4" path="res://Assets/MainMenuArt/SettingsPress.png" id="13_1p4ox"]
+[ext_resource type="Texture2D" uid="uid://c8h5f68v3nivw" path="res://Assets/MainMenuArt/SettingsHover.png" id="14_rhauc"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_ufjoy"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="InputEventKey" id="InputEventKey_cya8t"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_0054t"]
+events = [SubResource("InputEventKey_ufjoy"), SubResource("InputEventKey_cya8t")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_u5hv7"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_ohhe7"]
+events = [SubResource("InputEventKey_u5hv7")]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_o3ut0")
+
+[node name="BG" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1200.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -600.0
+offset_right = 960.0
+offset_bottom = 600.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_oftkg")
+
+[node name="Icon" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 758.0
+offset_top = 84.0
+offset_right = 1138.0
+offset_bottom = 464.0
+
+[node name="TextureRect" type="TextureRect" parent="Icon"]
+layout_mode = 1
+offset_right = 380.0
+offset_bottom = 388.0
+texture = ExtResource("3_40n20")
+
+[node name="TitleText" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1200.0
+
+[node name="TextureRect" type="TextureRect" parent="TitleText"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -620.0
+offset_top = -110.0
+offset_right = 620.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_q0l0j")
+
+[node name="PlayButton" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 340.0
+offset_top = 750.0
+offset_right = 1580.0
+offset_bottom = 860.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureButton" type="TextureButton" parent="PlayButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+shortcut = SubResource("Shortcut_0054t")
+texture_normal = ExtResource("5_x0hua")
+texture_pressed = ExtResource("6_xkauh")
+texture_hover = ExtResource("7_fxv22")
+ignore_texture_size = true
+metadata/_edit_use_anchors_ = true
+
+[node name="CreditButton" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 340.0
+offset_top = 898.0
+offset_right = 732.0
+offset_bottom = 1008.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureButton" type="TextureButton" parent="CreditButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("6_v4xum")
+texture_pressed = ExtResource("7_oo75h")
+texture_hover = ExtResource("8_tm42m")
+ignore_texture_size = true
+metadata/_edit_use_anchors_ = true
+
+[node name="QuitButton" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 764.0
+offset_top = 898.0
+offset_right = 1156.0
+offset_bottom = 1008.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureButton" type="TextureButton" parent="QuitButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+shortcut = SubResource("Shortcut_ohhe7")
+texture_normal = ExtResource("8_drviu")
+texture_pressed = ExtResource("7_v4i70")
+texture_hover = ExtResource("8_wb2l6")
+ignore_texture_size = true
+
+[node name="SettingsButton" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1188.0
+offset_top = 898.0
+offset_right = 1580.0
+offset_bottom = 1007.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureButton" type="TextureButton" parent="SettingsButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("12_2645o")
+texture_pressed = ExtResource("13_1p4ox")
+texture_hover = ExtResource("14_rhauc")
+ignore_texture_size = true
+
+[connection signal="pressed" from="PlayButton/TextureButton" to="." method="on_play_button_pressed"]
+[connection signal="pressed" from="CreditButton/TextureButton" to="." method="on_credit_button_pressed"]
+[connection signal="pressed" from="QuitButton/TextureButton" to="." method="on_quit_button_pressed"]
+[connection signal="pressed" from="SettingsButton/TextureButton" to="." method="on_settings_button_pressed"]
