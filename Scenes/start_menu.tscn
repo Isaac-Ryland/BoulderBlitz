@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://tlkvxk0efmv7"]
 
-[ext_resource type="Script" path="res://Scripts/start_menu.gd" id="1_fljge"]
+[ext_resource type="Script" uid="uid://djpx42dkqolut" path="res://Scripts/start_menu.gd" id="1_fljge"]
 [ext_resource type="PhysicsMaterial" uid="uid://bvkabrx6nujub" path="res://Assets/PhysicsMaterials/ground-material.tres" id="2_kgltr"]
 [ext_resource type="PackedScene" uid="uid://ne7hphg2o5hd" path="res://Scenes/player_1.tscn" id="2_yi1nt"]
 [ext_resource type="PackedScene" uid="uid://d1puv3ejjkocr" path="res://Scenes/player_2.tscn" id="3_i0l11"]
