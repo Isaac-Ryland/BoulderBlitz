@@ -108,7 +108,6 @@ physics_material_override = ExtResource("2_kgltr")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="temp_BG/temp_platforms/Node4/StaticBody2D"]
 position = Vector2(785, 632)
 rotation = -0.698132
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_k22ty")
 
 [node name="ColorRect" type="ColorRect" parent="temp_BG/temp_platforms/Node4/StaticBody2D/CollisionShape2D"]
