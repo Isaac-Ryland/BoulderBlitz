@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dll1hghj3kqku"]
+[gd_scene load_steps=23 format=3 uid="uid://dll1hghj3kqku"]
 
 [ext_resource type="Script" uid="uid://13q5ja6jlwc8" path="res://Scripts/main_menu.gd" id="1_o3ut0"]
 [ext_resource type="Texture2D" uid="uid://dwkvyj674h8i8" path="res://Assets/MainMenuArt/MainMenuBG.png" id="2_oftkg"]
@@ -16,6 +16,9 @@
 [ext_resource type="Texture2D" uid="uid://bc7ls65kuh3nb" path="res://Assets/MainMenuArt/SettingsDefault.png" id="12_2645o"]
 [ext_resource type="Texture2D" uid="uid://ciipiijoleop4" path="res://Assets/MainMenuArt/SettingsPress.png" id="13_1p4ox"]
 [ext_resource type="Texture2D" uid="uid://c8h5f68v3nivw" path="res://Assets/MainMenuArt/SettingsHover.png" id="14_rhauc"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m3bi6"]
+texture = ExtResource("3_40n20")
 
 [sub_resource type="InputEventKey" id="InputEventKey_ufjoy"]
 device = -1
@@ -69,7 +72,18 @@ offset_top = 84.0
 offset_right = 1138.0
 offset_bottom = 464.0
 
+[node name="Panel" type="Panel" parent="Icon"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_m3bi6")
+
 [node name="TextureRect" type="TextureRect" parent="Icon"]
+visible = false
 layout_mode = 1
 offset_right = 380.0
 offset_bottom = 388.0
@@ -184,7 +198,25 @@ texture_pressed = ExtResource("13_1p4ox")
 texture_hover = ExtResource("14_rhauc")
 ignore_texture_size = true
 
+[node name="SecretButton" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 183.0
+offset_top = 183.0
+offset_right = 193.0
+offset_bottom = 193.0
+
+[node name="TextureButton" type="TextureButton" parent="SecretButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+button_mask = 2
+
 [connection signal="pressed" from="PlayButton/TextureButton" to="." method="on_play_button_pressed"]
 [connection signal="pressed" from="CreditButton/TextureButton" to="." method="on_credit_button_pressed"]
 [connection signal="pressed" from="QuitButton/TextureButton" to="." method="on_quit_button_pressed"]
 [connection signal="pressed" from="SettingsButton/TextureButton" to="." method="on_settings_button_pressed"]
+[connection signal="pressed" from="SecretButton/TextureButton" to="." method="on_secret_button_pressed"]

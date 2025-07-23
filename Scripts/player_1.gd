@@ -21,10 +21,10 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("player_1_left", "player_1_right")
 	
 	# Sprite flipping
-	if velocity.x < MOVING_THRESHOLD:
-		animated_sprite.flip_h = true
-	elif velocity.x > MOVING_THRESHOLD:
-		animated_sprite.flip_h = false
+	#if velocity.x < MOVING_THRESHOLD:
+	#	animated_sprite.flip_h = true
+	#elif velocity.x > MOVING_THRESHOLD:
+	#	animated_sprite.flip_h = false
 	
 	# Sprite Animations 
 	#if abs(velocity.x) > (SPEED/2):
@@ -36,10 +36,10 @@ func _physics_process(delta: float) -> void:
 	
 	if abs(velocity.x) > MOVING_THRESHOLD:
 		animated_sprite.play("Anim1")
-		animated_sprite.speed_scale = abs(velocity.x/BOULDER_RADIUS_IN_PIXELS)
+		animated_sprite.speed_scale = velocity.x/BOULDER_RADIUS_IN_PIXELS
 	else:
 		animated_sprite.stop()
-	
+		
 	# Movement and deceleration
 	if direction != 0:
 		velocity.x += direction * SPEED * delta
