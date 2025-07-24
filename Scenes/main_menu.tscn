@@ -1,9 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://dll1hghj3kqku"]
+[gd_scene load_steps=26 format=3 uid="uid://dll1hghj3kqku"]
 
 [ext_resource type="Script" uid="uid://13q5ja6jlwc8" path="res://Scripts/main_menu.gd" id="1_o3ut0"]
 [ext_resource type="Texture2D" uid="uid://dwkvyj674h8i8" path="res://Assets/MainMenuArt/MainMenuBG.png" id="2_oftkg"]
 [ext_resource type="Texture2D" uid="uid://bpnsp8jx4psqr" path="res://Assets/MainMenuArt/BBLogo.png" id="3_40n20"]
 [ext_resource type="Texture2D" uid="uid://bxhm5q11rp113" path="res://Assets/MainMenuArt/TitleText.png" id="4_q0l0j"]
+[ext_resource type="Texture2D" uid="uid://dfcpr2mrp3bph" path="res://icon.svg" id="4_wyh8j"]
 [ext_resource type="Texture2D" uid="uid://dkbef001e5i44" path="res://Assets/MainMenuArt/PlayDefault.png" id="5_x0hua"]
 [ext_resource type="Texture2D" uid="uid://bvw3j1dk2kj5i" path="res://Assets/MainMenuArt/CreditsDefault.png" id="6_v4xum"]
 [ext_resource type="Texture2D" uid="uid://68kip2r7r8th" path="res://Assets/MainMenuArt/PlayPress.png" id="6_xkauh"]
@@ -17,13 +18,20 @@
 [ext_resource type="Texture2D" uid="uid://ciipiijoleop4" path="res://Assets/MainMenuArt/SettingsPress.png" id="13_1p4ox"]
 [ext_resource type="Texture2D" uid="uid://c8h5f68v3nivw" path="res://Assets/MainMenuArt/SettingsHover.png" id="14_rhauc"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujyyl"]
+atlas = ExtResource("4_wyh8j")
+region = Rect2(0, 0, 128, 128)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_m3bi6"]
 atlas = ExtResource("3_40n20")
 region = Rect2(0, 0, 380, 388)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wyh8j"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujyyl")
+}],
 "loop": false,
 "name": &"Kaboom",
 "speed": 5.0
@@ -98,7 +106,7 @@ texture = ExtResource("3_40n20")
 
 [node name="LogoSprite" type="AnimatedSprite2D" parent="Icon"]
 sprite_frames = SubResource("SpriteFrames_wyh8j")
-animation = &"Kaboom"
+animation = &"Logo"
 centered = false
 
 [node name="TitleText" type="Control" parent="."]
@@ -213,10 +221,10 @@ ignore_texture_size = true
 [node name="SecretButton" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 183.0
-offset_top = 183.0
-offset_right = 193.0
-offset_bottom = 193.0
+offset_left = 182.0
+offset_top = 182.0
+offset_right = 194.0
+offset_bottom = 194.0
 
 [node name="TextureButton" type="TextureButton" parent="SecretButton"]
 layout_mode = 1

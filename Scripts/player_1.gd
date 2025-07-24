@@ -38,7 +38,7 @@ func _physics_process(delta: float) -> void:
 	#	animated_sprite.speed_scale = abs(velocity.x/SPEED)
 	
 	if abs(velocity.x) > MOVING_THRESHOLD:
-		animated_sprite.play(Main.player_1_colour)
+		animated_sprite.play(GameData.player_1_colour)
 		animated_sprite.speed_scale = velocity.x/BOULDER_RADIUS_IN_PIXELS
 	else:
 		animated_sprite.stop()

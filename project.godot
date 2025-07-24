@@ -18,7 +18,7 @@ config/icon="res://Assets/BB-logo256.png"
 
 [autoload]
 
-Main="*res://Scripts/Main.gd"
+GameData="*res://Scripts/GameData.gd"
 
 [display]
 
