@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var animated_sprite: AnimatedSprite2D = $LogoSprite
+@onready var animated_sprite: AnimatedSprite2D = $Icon/LogoSprite
 
 func on_quit_button_pressed() -> void:
 	get_tree().quit()

@@ -98,7 +98,7 @@ texture = ExtResource("3_40n20")
 
 [node name="LogoSprite" type="AnimatedSprite2D" parent="Icon"]
 sprite_frames = SubResource("SpriteFrames_wyh8j")
-animation = &"Kaboom"
+animation = &"Logo"
 centered = false
 
 [node name="TitleText" type="Control" parent="."]
@@ -213,10 +213,10 @@ ignore_texture_size = true
 [node name="SecretButton" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 183.0
-offset_top = 183.0
-offset_right = 193.0
-offset_bottom = 193.0
+offset_left = 182.0
+offset_top = 182.0
+offset_right = 194.0
+offset_bottom = 194.0
 
 [node name="TextureButton" type="TextureButton" parent="SecretButton"]
 layout_mode = 1
