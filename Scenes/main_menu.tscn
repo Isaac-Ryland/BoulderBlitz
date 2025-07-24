@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dll1hghj3kqku"]
+[gd_scene load_steps=24 format=3 uid="uid://dll1hghj3kqku"]
 
 [ext_resource type="Script" uid="uid://13q5ja6jlwc8" path="res://Scripts/main_menu.gd" id="1_o3ut0"]
 [ext_resource type="Texture2D" uid="uid://dwkvyj674h8i8" path="res://Assets/MainMenuArt/MainMenuBG.png" id="2_oftkg"]
@@ -17,8 +17,25 @@
 [ext_resource type="Texture2D" uid="uid://ciipiijoleop4" path="res://Assets/MainMenuArt/SettingsPress.png" id="13_1p4ox"]
 [ext_resource type="Texture2D" uid="uid://c8h5f68v3nivw" path="res://Assets/MainMenuArt/SettingsHover.png" id="14_rhauc"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m3bi6"]
-texture = ExtResource("3_40n20")
+[sub_resource type="AtlasTexture" id="AtlasTexture_m3bi6"]
+atlas = ExtResource("3_40n20")
+region = Rect2(0, 0, 380, 388)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wyh8j"]
+animations = [{
+"frames": [],
+"loop": false,
+"name": &"Kaboom",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m3bi6")
+}],
+"loop": false,
+"name": &"Logo",
+"speed": 0.0
+}]
 
 [sub_resource type="InputEventKey" id="InputEventKey_ufjoy"]
 device = -1
@@ -72,22 +89,17 @@ offset_top = 84.0
 offset_right = 1138.0
 offset_bottom = 464.0
 
-[node name="Panel" type="Panel" parent="Icon"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = 8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_m3bi6")
-
 [node name="TextureRect" type="TextureRect" parent="Icon"]
 visible = false
 layout_mode = 1
 offset_right = 380.0
 offset_bottom = 388.0
 texture = ExtResource("3_40n20")
+
+[node name="LogoSprite" type="AnimatedSprite2D" parent="Icon"]
+sprite_frames = SubResource("SpriteFrames_wyh8j")
+animation = &"Kaboom"
+centered = false
 
 [node name="TitleText" type="Control" parent="."]
 layout_mode = 3
