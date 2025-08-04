@@ -1,148 +1,23 @@
-[gd_scene load_steps=10 format=3 uid="uid://tlkvxk0efmv7"]
+[gd_scene load_steps=2 format=3 uid="uid://tlkvxk0efmv7"]
 
 [ext_resource type="Script" uid="uid://djpx42dkqolut" path="res://Scripts/start_menu.gd" id="1_fljge"]
-[ext_resource type="PhysicsMaterial" uid="uid://bvkabrx6nujub" path="res://Assets/PhysicsMaterials/ground-material.tres" id="2_kgltr"]
-[ext_resource type="PackedScene" uid="uid://ne7hphg2o5hd" path="res://Scenes/player_1.tscn" id="2_yi1nt"]
-[ext_resource type="PackedScene" uid="uid://d1puv3ejjkocr" path="res://Scenes/player_2.tscn" id="3_i0l11"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3r1m8"]
-size = Vector2(1046, 121)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_k22ty"]
-size = Vector2(40, 329)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_e633n"]
-radius = 98.0204
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2aj8r"]
-size = Vector2(1114.5, 28)
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e4eni"]
 
 [node name="StartMenu" type="Node2D"]
 script = ExtResource("1_fljge")
 
-[node name="temp_BG" type="Control" parent="."]
+[node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1200.0
 
-[node name="ColorRect" type="ColorRect" parent="temp_BG"]
+[node name="TempButton" type="TextureButton" parent="Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.68432, 0.000352606, 0.684315, 1)
+button_mask = 2
 
-[node name="temp_platforms" type="Control" parent="temp_BG"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -522.0
-offset_top = -119.0
-offset_right = 524.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="Node" type="Node" parent="temp_BG/temp_platforms"]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="temp_BG/temp_platforms/Node"]
-position = Vector2(409, 1065)
-physics_material_override = ExtResource("2_kgltr")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="temp_BG/temp_platforms/Node/StaticBody2D"]
-position = Vector2(552, 74.5)
-shape = SubResource("RectangleShape2D_3r1m8")
-
-[node name="ColorRect" type="ColorRect" parent="temp_BG/temp_platforms/Node/StaticBody2D/CollisionShape2D"]
-offset_left = -523.0
-offset_top = -61.0
-offset_right = 523.0
-offset_bottom = 60.0
-
-[node name="Node2" type="Node" parent="temp_BG/temp_platforms"]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="temp_BG/temp_platforms/Node2"]
-physics_material_override = ExtResource("2_kgltr")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="temp_BG/temp_platforms/Node2/StaticBody2D"]
-position = Vector2(787, 632)
-rotation = 1.0472
-shape = SubResource("RectangleShape2D_k22ty")
-
-[node name="ColorRect" type="ColorRect" parent="temp_BG/temp_platforms/Node2/StaticBody2D/CollisionShape2D"]
-offset_left = -20.0
-offset_top = -165.0
-offset_right = 20.0
-offset_bottom = 165.0
-
-[node name="Node3" type="Node" parent="temp_BG/temp_platforms"]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="temp_BG/temp_platforms/Node3"]
-physics_material_override = ExtResource("2_kgltr")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="temp_BG/temp_platforms/Node3/StaticBody2D"]
-position = Vector2(1283, 753)
-shape = SubResource("CircleShape2D_e633n")
-debug_color = Color(0, 0.6, 0.701961, 0.6)
-
-[node name="Polygon2D" type="Polygon2D" parent="temp_BG/temp_platforms/Node3/StaticBody2D/CollisionShape2D"]
-position = Vector2(0.257692, 0.254563)
-scale = Vector2(1.00765, 1.0026)
-polygon = PackedVector2Array(1, -98, 24, -95, 49, -85, 69, -70, 84, -50, 94, -26, 97, -3, 94, 25, 84, 49, 69, 69, 50, 84, 29, 94, 0, 97.4922, -25, 95, -48, 85, -69, 70, -85, 48, -94, 26, -98, 0, -95, -24, -85, -48, -69, -69, -50, -84, -26, -95)
-
-[node name="Node4" type="Node" parent="temp_BG/temp_platforms"]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="temp_BG/temp_platforms/Node4"]
-position = Vector2(-659, -158)
-rotation = -6.28319
-physics_material_override = ExtResource("2_kgltr")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="temp_BG/temp_platforms/Node4/StaticBody2D"]
-position = Vector2(785, 632)
-rotation = -0.698132
-shape = SubResource("RectangleShape2D_k22ty")
-
-[node name="ColorRect" type="ColorRect" parent="temp_BG/temp_platforms/Node4/StaticBody2D/CollisionShape2D"]
-offset_left = -20.0
-offset_top = -165.0
-offset_right = 20.0
-offset_bottom = 165.0
-rotation = -6.28319
-metadata/_edit_use_anchors_ = true
-
-[node name="Node5" type="Node" parent="temp_BG/temp_platforms"]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="temp_BG/temp_platforms/Node5"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="temp_BG/temp_platforms/Node5/StaticBody2D"]
-position = Vector2(1409, 277)
-rotation = -0.523599
-shape = SubResource("RectangleShape2D_2aj8r")
-
-[node name="ColorRect" type="ColorRect" parent="temp_BG/temp_platforms/Node5/StaticBody2D/CollisionShape2D"]
-offset_left = -557.0
-offset_top = -14.0
-offset_right = 557.0
-offset_bottom = 14.0
-
-[node name="temp_ground" type="Node" parent="."]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="temp_ground"]
-physics_material_override = ExtResource("2_kgltr")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="temp_ground/StaticBody2D"]
-position = Vector2(0, 1200)
-shape = SubResource("WorldBoundaryShape2D_e4eni")
-
-[node name="Player1" parent="." instance=ExtResource("2_yi1nt")]
-position = Vector2(184, 1109)
-
-[node name="Player2" parent="." instance=ExtResource("3_i0l11")]
-position = Vector2(1734, 1121)
+[connection signal="pressed" from="Control/TempButton" to="." method="on_temp_button_pressed"]

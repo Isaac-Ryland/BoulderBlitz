@@ -15,3 +15,7 @@ func load_map(map_name: String):
 # Some func here that handles the map selection, this will be just a func to set the
 # var "map_selected". Once start is pressed then "map_selected" variable will be
 # passed into the "load_map" func and that will start it
+
+
+func on_temp_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/Map1.tscn")

@@ -169,6 +169,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+tooltip_text = "Credits Menu"
 texture_normal = ExtResource("6_v4xum")
 texture_pressed = ExtResource("7_oo75h")
 texture_hover = ExtResource("8_tm42m")
@@ -213,6 +214,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+tooltip_text = "Settings Menu"
 texture_normal = ExtResource("12_2645o")
 texture_pressed = ExtResource("13_1p4ox")
 texture_hover = ExtResource("14_rhauc")
@@ -233,6 +235,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+tooltip_text = "..."
 button_mask = 2
 
 [connection signal="pressed" from="PlayButton/TextureButton" to="." method="on_play_button_pressed"]
