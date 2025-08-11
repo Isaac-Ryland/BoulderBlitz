@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://6awfwk5vym2m" path="res://Scripts/credits.gd" id="1_38tdi"]
 [ext_resource type="Texture2D" uid="uid://cxj1c5y0xetq3" path="res://Assets/MainMenuArt/CreditsBG.png" id="1_gm5y0"]
-[ext_resource type="Texture2D" uid="uid://kfps87gt2b65" path="res://Assets/MainMenuArt/BackDefault.png" id="2_rim2v"]
-[ext_resource type="Texture2D" uid="uid://gf3nn8ojaftw" path="res://Assets/MainMenuArt/BackPress.png" id="3_ywckn"]
-[ext_resource type="Texture2D" uid="uid://bch6kx63ly1to" path="res://Assets/MainMenuArt/BackHover.png" id="4_acjnm"]
+[ext_resource type="Texture2D" uid="uid://kfps87gt2b65" path="res://Assets/MainMenuArt/Buttons/BackDefault.png" id="3_xelri"]
+[ext_resource type="Texture2D" uid="uid://gf3nn8ojaftw" path="res://Assets/MainMenuArt/Buttons/BackPress.png" id="4_uah1q"]
+[ext_resource type="Texture2D" uid="uid://bch6kx63ly1to" path="res://Assets/MainMenuArt/Buttons/BackHover.png" id="5_7emq5"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_14f40"]
 device = -1
@@ -53,9 +53,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 shortcut = SubResource("Shortcut_x7hac")
-texture_normal = ExtResource("2_rim2v")
-texture_pressed = ExtResource("3_ywckn")
-texture_hover = ExtResource("4_acjnm")
+texture_normal = ExtResource("3_xelri")
+texture_pressed = ExtResource("4_uah1q")
+texture_hover = ExtResource("5_7emq5")
 ignore_texture_size = true
 
 [connection signal="pressed" from="Control/BackButton/TextureButton" to="." method="on_back_button_pressed"]
