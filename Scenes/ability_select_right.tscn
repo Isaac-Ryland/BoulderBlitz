@@ -2,19 +2,19 @@
 
 [ext_resource type="Script" uid="uid://t4bfyssmkqx2" path="res://Scripts/ability_select_right.gd" id="1_kwluk"]
 [ext_resource type="Texture2D" uid="uid://bhetiiieh1ov2" path="res://Assets/StartMenuArt/AbilityMenuLeft/AbilityMenuLeftSlot1.png" id="2_wt2ys"]
-[ext_resource type="Texture2D" uid="uid://v4mtw47wddbw" path="res://Assets/StartMenuArt/AbilityButtonLeft1/AbilityButtonDefaultLeft1.png" id="3_aqki3"]
-[ext_resource type="Texture2D" uid="uid://b42dwum7i3vjc" path="res://Assets/StartMenuArt/AbilityButtonLeft1/AbilityButtonHoverLeft1.png" id="4_8cb0e"]
-[ext_resource type="Texture2D" uid="uid://ds26d7h72vk4b" path="res://Assets/StartMenuArt/AbilityButtonLeft2/AbilityButtonDefaultLeft2.png" id="5_lvs8g"]
-[ext_resource type="Texture2D" uid="uid://dc38g4225mt5g" path="res://Assets/StartMenuArt/AbilityButtonLeft2/AbilityButtonHoverLeft2.png" id="6_rf0wp"]
-[ext_resource type="Texture2D" uid="uid://d16rk51vosrki" path="res://Assets/StartMenuArt/AbilityButtonLeft3/AbilityButtonDefaultLeft3.png" id="7_swt44"]
-[ext_resource type="Texture2D" uid="uid://bo5loxi66ktu2" path="res://Assets/StartMenuArt/AbilityButtonLeft3/AbilityButtonHoverLeft3.png" id="8_m1mkn"]
-[ext_resource type="Texture2D" uid="uid://jyktit5rq7si" path="res://Assets/StartMenuArt/AbilityButtonLeft4/AbilityButtonDefaultLeft4.png" id="9_436rt"]
-[ext_resource type="Texture2D" uid="uid://dpxndpups6277" path="res://Assets/StartMenuArt/AbilityButtonLeft4/AbilityButtonHoverLeft4.png" id="10_aoy85"]
-[ext_resource type="Texture2D" uid="uid://eoxwqcbc3lw" path="res://Assets/StartMenuArt/AbilityButtonLeft5/AbilityButtonDefaultLeft5.png" id="11_1rcev"]
-[ext_resource type="Texture2D" uid="uid://dvlaqjmvrgaok" path="res://Assets/StartMenuArt/AbilityButtonLeft5/AbilityButtonHoverLeft5.png" id="12_76115"]
-[ext_resource type="Texture2D" uid="uid://jtnkvs083o87" path="res://Assets/StartMenuArt/AbilityButtonLeft6/AbilityButtonDefaultLeft6.png" id="13_v3mnb"]
-[ext_resource type="Texture2D" uid="uid://qhmhv2vp075n" path="res://Assets/StartMenuArt/AbilityButtonLeft6/AbilityButtonHoverLeft6.png" id="14_jir6o"]
-[ext_resource type="Texture2D" uid="uid://dlacpdkwy1708" path="res://Assets/StartMenuArt/LockLeft.png" id="15_e3n2q"]
+[ext_resource type="Texture2D" uid="uid://yxbt311kkcc1" path="res://Assets/StartMenuArt/AbilityButtonRight1/AbilityButtonDefaultRight1.png" id="3_kwluk"]
+[ext_resource type="Texture2D" uid="uid://nl4e76mhm5fb" path="res://Assets/StartMenuArt/AbilityButtonRight1/AbilityButtonHoverRight1.png" id="4_wt2ys"]
+[ext_resource type="Texture2D" uid="uid://dbf5fktpv4fyf" path="res://Assets/StartMenuArt/AbilityButtonRight2/AbilityButtonDefaultRight2.png" id="5_aqki3"]
+[ext_resource type="Texture2D" uid="uid://bf8pr1et6ldco" path="res://Assets/StartMenuArt/AbilityButtonRight2/AbilityButtonHoverRight2.png" id="6_8cb0e"]
+[ext_resource type="Texture2D" uid="uid://cb5flij2eq883" path="res://Assets/StartMenuArt/AbilityButtonRight3/AbilityButtonDefaultRight3.png" id="7_lvs8g"]
+[ext_resource type="Texture2D" uid="uid://dne7uvm5p0hpa" path="res://Assets/StartMenuArt/AbilityButtonRight3/AbilityButtonHoverRight3.png" id="8_rf0wp"]
+[ext_resource type="Texture2D" uid="uid://c4sauk88yaqei" path="res://Assets/StartMenuArt/AbilityButtonRight4/AbilityButtonDefaultRight4.png" id="9_swt44"]
+[ext_resource type="Texture2D" uid="uid://dt4u7skbm46do" path="res://Assets/StartMenuArt/AbilityButtonRight4/AbilityButtonHoverRight4.png" id="10_m1mkn"]
+[ext_resource type="Texture2D" uid="uid://yoe5b6cu62pn" path="res://Assets/StartMenuArt/AbilityButtonRight5/AbilityButtonDefault5.png" id="11_436rt"]
+[ext_resource type="Texture2D" uid="uid://dfcix3bgelc8w" path="res://Assets/StartMenuArt/AbilityButtonRight5/AbilityButtonHoverRight5.png" id="12_aoy85"]
+[ext_resource type="Texture2D" uid="uid://cpntyv3fnmal6" path="res://Assets/StartMenuArt/AbilityButtonRight6/AbilityButtonDefaultRight6.png" id="13_1rcev"]
+[ext_resource type="Texture2D" uid="uid://dkaypw132k7y0" path="res://Assets/StartMenuArt/AbilityButtonRight6/AbilityButtonHoverRight6.png" id="14_76115"]
+[ext_resource type="Texture2D" uid="uid://cfs26uddq4tae" path="res://Assets/StartMenuArt/LockRight.png" id="15_v3mnb"]
 
 [node name="ability_select_right" type="Control"]
 layout_mode = 3
@@ -34,9 +34,9 @@ texture = ExtResource("2_wt2ys")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="AbilityMenuRight"]
 layout_mode = 0
-offset_left = 44.0
+offset_left = 48.0
 offset_top = 66.0
-offset_right = 660.0
+offset_right = 664.0
 offset_bottom = 537.0
 
 [node name="AbilityRow1" type="HBoxContainer" parent="AbilityMenuRight/VBoxContainer"]
@@ -47,31 +47,31 @@ size_flags_vertical = 2
 custom_minimum_size = Vector2(142, 0)
 layout_mode = 2
 size_flags_horizontal = 2
-texture_normal = ExtResource("3_aqki3")
-texture_hover = ExtResource("4_8cb0e")
+texture_normal = ExtResource("3_kwluk")
+texture_hover = ExtResource("4_wt2ys")
 ignore_texture_size = true
 
 [node name="Ability2" type="TextureButton" parent="AbilityMenuRight/VBoxContainer/AbilityRow1"]
 custom_minimum_size = Vector2(142, 0)
 layout_mode = 2
 size_flags_horizontal = 2
-texture_normal = ExtResource("5_lvs8g")
-texture_hover = ExtResource("6_rf0wp")
+texture_normal = ExtResource("5_aqki3")
+texture_hover = ExtResource("6_8cb0e")
 ignore_texture_size = true
 
 [node name="Ability3" type="TextureButton" parent="AbilityMenuRight/VBoxContainer/AbilityRow1"]
 custom_minimum_size = Vector2(142, 0)
 layout_mode = 2
 size_flags_horizontal = 2
-texture_normal = ExtResource("7_swt44")
-texture_hover = ExtResource("8_m1mkn")
+texture_normal = ExtResource("7_lvs8g")
+texture_hover = ExtResource("8_rf0wp")
 ignore_texture_size = true
 
 [node name="Ability4" type="TextureButton" parent="AbilityMenuRight/VBoxContainer/AbilityRow1"]
 custom_minimum_size = Vector2(142, 0)
 layout_mode = 2
-texture_normal = ExtResource("9_436rt")
-texture_hover = ExtResource("10_aoy85")
+texture_normal = ExtResource("9_swt44")
+texture_hover = ExtResource("10_m1mkn")
 ignore_texture_size = true
 
 [node name="AbilityRow2" type="HBoxContainer" parent="AbilityMenuRight/VBoxContainer"]
@@ -82,29 +82,29 @@ size_flags_vertical = 2
 custom_minimum_size = Vector2(142, 0)
 layout_mode = 2
 size_flags_horizontal = 2
-texture_normal = ExtResource("11_1rcev")
-texture_hover = ExtResource("12_76115")
+texture_normal = ExtResource("11_436rt")
+texture_hover = ExtResource("12_aoy85")
 ignore_texture_size = true
 
 [node name="Ability6" type="TextureButton" parent="AbilityMenuRight/VBoxContainer/AbilityRow2"]
 custom_minimum_size = Vector2(142, 0)
 layout_mode = 2
 size_flags_horizontal = 2
-texture_normal = ExtResource("13_v3mnb")
-texture_hover = ExtResource("14_jir6o")
+texture_normal = ExtResource("13_1rcev")
+texture_hover = ExtResource("14_76115")
 ignore_texture_size = true
 
 [node name="Ability7" type="TextureButton" parent="AbilityMenuRight/VBoxContainer/AbilityRow2"]
 custom_minimum_size = Vector2(142, 0)
 layout_mode = 2
 size_flags_horizontal = 2
-texture_normal = ExtResource("15_e3n2q")
+texture_normal = ExtResource("15_v3mnb")
 ignore_texture_size = true
 
 [node name="Ability8" type="TextureButton" parent="AbilityMenuRight/VBoxContainer/AbilityRow2"]
 custom_minimum_size = Vector2(142, 0)
 layout_mode = 2
-texture_normal = ExtResource("15_e3n2q")
+texture_normal = ExtResource("15_v3mnb")
 ignore_texture_size = true
 
 [node name="AbilityRow3" type="HBoxContainer" parent="AbilityMenuRight/VBoxContainer"]
@@ -115,27 +115,27 @@ size_flags_vertical = 2
 custom_minimum_size = Vector2(142, 0)
 layout_mode = 2
 size_flags_horizontal = 2
-texture_normal = ExtResource("15_e3n2q")
+texture_normal = ExtResource("15_v3mnb")
 ignore_texture_size = true
 
 [node name="Ability10" type="TextureButton" parent="AbilityMenuRight/VBoxContainer/AbilityRow3"]
 custom_minimum_size = Vector2(142, 0)
 layout_mode = 2
 size_flags_horizontal = 2
-texture_normal = ExtResource("15_e3n2q")
+texture_normal = ExtResource("15_v3mnb")
 ignore_texture_size = true
 
 [node name="Ability11" type="TextureButton" parent="AbilityMenuRight/VBoxContainer/AbilityRow3"]
 custom_minimum_size = Vector2(142, 0)
 layout_mode = 2
 size_flags_horizontal = 2
-texture_normal = ExtResource("15_e3n2q")
+texture_normal = ExtResource("15_v3mnb")
 ignore_texture_size = true
 
 [node name="Ability12" type="TextureButton" parent="AbilityMenuRight/VBoxContainer/AbilityRow3"]
 custom_minimum_size = Vector2(142, 0)
 layout_mode = 2
-texture_normal = ExtResource("15_e3n2q")
+texture_normal = ExtResource("15_v3mnb")
 ignore_texture_size = true
 
 [connection signal="ready" from="." to="." method="_on_ready"]

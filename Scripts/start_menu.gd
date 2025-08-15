@@ -21,6 +21,8 @@ signal change_left_visibility()
 signal change_right_visibility()
 var current_left_slot = 0
 var current_right_slot = 0
+var p1_ready = false
+var p2_ready = false
 
 # Ability slots for player 1 (left side of the menu)
 func _on_slot_1_left_pressed() -> void:
@@ -82,12 +84,21 @@ func _on_slot_3_right_pressed() -> void:
 func on_temp_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Map1.tscn")
 
-
 func load_map(map_name: String):
 	var path = maps.get(map_name, "")
 	if path != "":
 		get_tree().change_scene_to_file(path)
 
-# Some func here that handles the map selection, this will be just a func to set the
+# Some func here (map_start) that handles the map selection, this will be just a func to set the
 # var "map_selected". Once start is pressed then "map_selected" variable will be
 # passed into the "load_map" func and that will start it
+
+func _on_ready_left_pressed() -> void:
+	p1_ready = !p1_ready
+	if p1_ready and p2_ready:
+		pass # START THE MAP MENU!! (Run the "map_start" func)
+
+func _on_ready_right_pressed() -> void:
+	p2_ready = !p2_ready
+	if p1_ready and p2_ready:
+		pass # START THE MAP MENU!! (Run the "map_start" func)
