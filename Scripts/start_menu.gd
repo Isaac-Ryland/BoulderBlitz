@@ -2,11 +2,14 @@ extends Node2D
 
 @onready var ability_select_left: Control = $ability_select_left
 @onready var ability_select_right: Control = $ability_select_right
+@onready var map_select: Control = $map_select
+@onready var ReadyLeft: TextureButton = $ReadyLeft/TextureButton
+@onready var ReadyRight: TextureButton = $ReadyRight/TextureButton
 
-var maps = {
-	"Map1": "res://Scenes/Map1.tscn",
-	"Map2": "res://Scenes/Map2.tscn"
-}
+signal change_left_visibility()
+signal change_right_visibility()
+signal change_map_visibilty()
+
 var left_textures = [
 	preload("res://Assets/StartMenuArt/AbilityMenuLeft/AbilityMenuLeftSlot1.png"),
 	preload("res://Assets/StartMenuArt/AbilityMenuLeft/AbilityMenuLeftSlot2.png"),
@@ -17,12 +20,21 @@ var right_textures = [
 	preload("res://Assets/StartMenuArt/AbilityMenuRight/AbilityMenuRightSlot2.png"),
 	preload("res://Assets/StartMenuArt/AbilityMenuRight/AbilityMenuRightSlot3.png")
 ]
-signal change_left_visibility()
-signal change_right_visibility()
 var current_left_slot = 0
 var current_right_slot = 0
 var p1_ready = false
 var p2_ready = false
+
+# Menu Navigation buttons
+func on_back_button_pressed() -> void:
+	if map_select.visible:
+		change_map_visibilty.emit()
+	else:
+		get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+
+func on_settings_button_pressed() -> void:
+	GameData.settings_prev_menu = "res://Scenes/start_menu.tscn"
+	get_tree().change_scene_to_file("res://Scenes/settings.tscn")
 
 # Ability slots for player 1 (left side of the menu)
 func _on_slot_1_left_pressed() -> void:
@@ -80,25 +92,18 @@ func _on_slot_3_right_pressed() -> void:
 		current_right_slot = 0
 	current_right_slot = 3
 
+# Player colour switch logic. Will not allow matching colours
 
-func on_temp_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/Map1.tscn")
+#needs a var (GameData.player_#_colour) to choose arrow colour
 
-func load_map(map_name: String):
-	var path = maps.get(map_name, "")
-	if path != "":
-		get_tree().change_scene_to_file(path)
 
-# Some func here (map_start) that handles the map selection, this will be just a func to set the
-# var "map_selected". Once start is pressed then "map_selected" variable will be
-# passed into the "load_map" func and that will start it
-
+# Starting the game once both players are ready
 func _on_ready_left_pressed() -> void:
 	p1_ready = !p1_ready
 	if p1_ready and p2_ready:
-		pass # START THE MAP MENU!! (Run the "map_start" func)
+		change_map_visibilty.emit()
 
 func _on_ready_right_pressed() -> void:
 	p2_ready = !p2_ready
 	if p1_ready and p2_ready:
-		pass # START THE MAP MENU!! (Run the "map_start" func)
+		change_map_visibilty.emit()

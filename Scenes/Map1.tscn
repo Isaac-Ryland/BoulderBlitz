@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://d1puv3ejjkocr" path="res://Scenes/player_2.tscn" id="3_f6pk4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_es4yc"]
-size = Vector2(1046, 121)
+size = Vector2(1046, 120)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hrdr6"]
 size = Vector2(40, 329)
@@ -51,66 +51,66 @@ offset_right = 524.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Node" type="Node" parent="temp_BG/temp_platforms"]
+[node name="bottom_middle_rect" type="Node" parent="temp_BG/temp_platforms"]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="temp_BG/temp_platforms/Node"]
-position = Vector2(409, 1065)
+[node name="StaticBody2D" type="StaticBody2D" parent="temp_BG/temp_platforms/bottom_middle_rect"]
+position = Vector2(409, 1109)
 physics_material_override = ExtResource("1_4ov7l")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="temp_BG/temp_platforms/Node/StaticBody2D"]
-position = Vector2(552, 74.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="temp_BG/temp_platforms/bottom_middle_rect/StaticBody2D"]
+position = Vector2(552, 78)
 shape = SubResource("RectangleShape2D_es4yc")
 
-[node name="ColorRect" type="ColorRect" parent="temp_BG/temp_platforms/Node/StaticBody2D/CollisionShape2D"]
+[node name="ColorRect" type="ColorRect" parent="temp_BG/temp_platforms/bottom_middle_rect/StaticBody2D/CollisionShape2D"]
 offset_left = -523.0
-offset_top = -61.0
+offset_top = -60.0
 offset_right = 523.0
 offset_bottom = 60.0
 
-[node name="Node2" type="Node" parent="temp_BG/temp_platforms"]
+[node name="centre_slope_small" type="Node" parent="temp_BG/temp_platforms"]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="temp_BG/temp_platforms/Node2"]
+[node name="StaticBody2D" type="StaticBody2D" parent="temp_BG/temp_platforms/centre_slope_small"]
 physics_material_override = ExtResource("1_4ov7l")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="temp_BG/temp_platforms/Node2/StaticBody2D"]
-position = Vector2(787, 632)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="temp_BG/temp_platforms/centre_slope_small/StaticBody2D"]
+position = Vector2(787, 643)
 rotation = 1.0472
 shape = SubResource("RectangleShape2D_hrdr6")
 
-[node name="ColorRect" type="ColorRect" parent="temp_BG/temp_platforms/Node2/StaticBody2D/CollisionShape2D"]
+[node name="ColorRect" type="ColorRect" parent="temp_BG/temp_platforms/centre_slope_small/StaticBody2D/CollisionShape2D"]
 offset_left = -20.0
 offset_top = -165.0
 offset_right = 20.0
 offset_bottom = 165.0
 
-[node name="Node3" type="Node" parent="temp_BG/temp_platforms"]
+[node name="ball" type="Node" parent="temp_BG/temp_platforms"]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="temp_BG/temp_platforms/Node3"]
+[node name="StaticBody2D" type="StaticBody2D" parent="temp_BG/temp_platforms/ball"]
 physics_material_override = ExtResource("1_4ov7l")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="temp_BG/temp_platforms/Node3/StaticBody2D"]
-position = Vector2(1283, 753)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="temp_BG/temp_platforms/ball/StaticBody2D"]
+position = Vector2(510, 271)
 shape = SubResource("CircleShape2D_uifhc")
 debug_color = Color(0, 0.6, 0.701961, 0.6)
 
-[node name="Polygon2D" type="Polygon2D" parent="temp_BG/temp_platforms/Node3/StaticBody2D/CollisionShape2D"]
+[node name="Polygon2D" type="Polygon2D" parent="temp_BG/temp_platforms/ball/StaticBody2D/CollisionShape2D"]
 position = Vector2(0.257692, 0.254563)
 scale = Vector2(1.00765, 1.0026)
 polygon = PackedVector2Array(1, -98, 24, -95, 49, -85, 69, -70, 84, -50, 94, -26, 97, -3, 94, 25, 84, 49, 69, 69, 50, 84, 29, 94, 0, 97.4922, -25, 95, -48, 85, -69, 70, -85, 48, -94, 26, -98, 0, -95, -24, -85, -48, -69, -69, -50, -84, -26, -95)
 
-[node name="Node4" type="Node" parent="temp_BG/temp_platforms"]
+[node name="left_slope" type="Node" parent="temp_BG/temp_platforms"]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="temp_BG/temp_platforms/Node4"]
+[node name="StaticBody2D" type="StaticBody2D" parent="temp_BG/temp_platforms/left_slope"]
 position = Vector2(-659, -158)
 rotation = -6.28319
 physics_material_override = ExtResource("1_4ov7l")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="temp_BG/temp_platforms/Node4/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="temp_BG/temp_platforms/left_slope/StaticBody2D"]
 position = Vector2(785, 632)
 rotation = -0.698132
 shape = SubResource("RectangleShape2D_hrdr6")
 
-[node name="ColorRect" type="ColorRect" parent="temp_BG/temp_platforms/Node4/StaticBody2D/CollisionShape2D"]
+[node name="ColorRect" type="ColorRect" parent="temp_BG/temp_platforms/left_slope/StaticBody2D/CollisionShape2D"]
 offset_left = -20.0
 offset_top = -165.0
 offset_right = 20.0
@@ -118,46 +118,60 @@ offset_bottom = 165.0
 rotation = -6.28319
 metadata/_edit_use_anchors_ = true
 
-[node name="Node5" type="Node" parent="temp_BG/temp_platforms"]
+[node name="centre_slope_large" type="Node" parent="temp_BG/temp_platforms"]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="temp_BG/temp_platforms/Node5"]
+[node name="StaticBody2D" type="StaticBody2D" parent="temp_BG/temp_platforms/centre_slope_large"]
+physics_material_override = ExtResource("1_4ov7l")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="temp_BG/temp_platforms/Node5/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="temp_BG/temp_platforms/centre_slope_large/StaticBody2D"]
 position = Vector2(1409, 277)
 rotation = -0.523599
 shape = SubResource("RectangleShape2D_j2fs2")
 
-[node name="ColorRect" type="ColorRect" parent="temp_BG/temp_platforms/Node5/StaticBody2D/CollisionShape2D"]
+[node name="ColorRect" type="ColorRect" parent="temp_BG/temp_platforms/centre_slope_large/StaticBody2D/CollisionShape2D"]
 offset_left = -557.0
 offset_top = -14.0
 offset_right = 557.0
 offset_bottom = 14.0
 
-[node name="Node6" type="Node" parent="temp_BG/temp_platforms"]
+[node name="right_wall" type="Node" parent="temp_BG/temp_platforms"]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="temp_BG/temp_platforms/Node6"]
+[node name="StaticBody2D" type="StaticBody2D" parent="temp_BG/temp_platforms/right_wall"]
+physics_material_override = ExtResource("1_4ov7l")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="temp_BG/temp_platforms/Node6/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="temp_BG/temp_platforms/right_wall/StaticBody2D"]
 position = Vector2(1905.5, 600)
 shape = SubResource("RectangleShape2D_4ov7l")
 
-[node name="ColorRect" type="ColorRect" parent="temp_BG/temp_platforms/Node6/StaticBody2D/CollisionShape2D"]
+[node name="ColorRect" type="ColorRect" parent="temp_BG/temp_platforms/right_wall/StaticBody2D/CollisionShape2D"]
 offset_left = -15.0
 offset_top = -600.0
 offset_right = 14.0
 offset_bottom = 600.0
 
-[node name="Node7" type="Node" parent="temp_BG/temp_platforms"]
+[node name="curve" type="Node" parent="temp_BG/temp_platforms"]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="temp_BG/temp_platforms/Node7"]
+[node name="StaticBody2D" type="StaticBody2D" parent="temp_BG/temp_platforms/curve"]
+physics_material_override = ExtResource("1_4ov7l")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="temp_BG/temp_platforms/Node7/StaticBody2D"]
-position = Vector2(395.668, -9795.56)
-scale = Vector2(58.3444, 94.7127)
-polygon = PackedVector2Array(18.6536, 114.816, 18.6707, 114.869, 18.705, 114.954, 18.7564, 115.049, 18.8078, 115.144, 18.8935, 115.228, 19.0306, 115.323, 19.2363, 115.439, 19.5448, 115.545, 19.8876, 115.608, 20.299, 115.64, 20.6589, 115.65, 21.0531, 115.661, 21.5844, 115.672, 22.1843, 115.672, 22.8528, 115.619, 23.3327, 115.513, 23.6583, 115.397, 23.7954, 115.323, 23.9326, 115.239, 24.0354, 115.144, 24.1382, 115.006, 24.2411, 114.837, 24.4125, 114.552, 24.5667, 114.236, 24.7381, 113.898, 24.9609, 113.454, 25.0638, 113.233, 25.1838, 112.969, 25.2866, 112.757, 25.3894, 112.525, 25.5265, 112.23, 25.6294, 112.008, 26.1264, 111.966, 26.1264, 116.094, 18.6536, 116.094)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="temp_BG/temp_platforms/curve/StaticBody2D"]
+position = Vector2(1590.98, 1118.87)
+polygon = PackedVector2Array(-106.982, 8.13477, -10.9819, 8.13477, 31.0181, 6.13477, 77.0181, 3.13477, 115.018, -10.8652, 178.018, -35.8652, 221.018, -66.8652, 256.018, -111.865, 272.018, -161.865, 287.018, -221.865, 290.018, -260.865, 298.018, -415.865, 302.018, -497.865, 378.018, -496.865, 379.018, 135.135, -106.982, 129.135)
 
-[node name="Polygon2D" type="Polygon2D" parent="temp_BG/temp_platforms/Node7/StaticBody2D/CollisionPolygon2D"]
-polygon = PackedVector2Array(18.6536, 114.816, 18.6707, 114.869, 18.705, 114.954, 18.8078, 115.144, 18.8935, 115.228, 19.0306, 115.323, 19.2363, 115.439, 19.5448, 115.545, 19.8876, 115.608, 20.299, 115.64, 20.6589, 115.65, 21.0531, 115.661, 21.5844, 115.672, 22.1843, 115.672, 22.8528, 115.619, 23.3327, 115.513, 23.6583, 115.397, 23.7954, 115.323, 23.9326, 115.239, 24.0354, 115.144, 24.1382, 115.006, 24.2411, 114.837, 24.4125, 114.552, 24.7381, 113.898, 24.9609, 113.454, 25.0638, 113.233, 25.2866, 112.757, 25.5265, 112.23, 25.6294, 112.008, 26.1264, 111.966, 26.1264, 116.094, 18.6536, 116.094)
+[node name="Polygon2D" type="Polygon2D" parent="temp_BG/temp_platforms/curve/StaticBody2D/CollisionPolygon2D"]
+color = Color(0, 0, 1, 1)
+polygon = PackedVector2Array(-106.982, 8.13477, -10.9819, 8.13477, 31.0181, 6.13477, 77.0181, 3.13477, 115.018, -10.8652, 178.018, -35.8652, 221.018, -66.8652, 256.018, -111.865, 272.018, -161.865, 287.018, -221.865, 290.018, -260.865, 298.018, -415.865, 299.02, -497.87, 378.018, -496.865, 379.018, 135.135, -106.982, 129.135)
+
+[node name="Node8" type="Node" parent="temp_BG/temp_platforms"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="temp_BG/temp_platforms/Node8"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="temp_BG/temp_platforms/Node8/StaticBody2D"]
+polygon = PackedVector2Array(35, 335, 22, 315, 13, 287, 9, 262, 7, 228, 5, 165, 6, 128, 10, 101, 15, 79, 24, 59, 38, 42, 60, 28, 83, 19, 106, 13, 135, 7, 167, 2, 194, -1, 217, -4, 413, -190, 1882, -353, 1884, -13, 1925, -15, 1924, -449, -113, -413, -90, 351, 5, 361)
+
+[node name="Polygon2D" type="Polygon2D" parent="temp_BG/temp_platforms/Node8/StaticBody2D/CollisionPolygon2D"]
+color = Color(0, 0, 1, 1)
+polygon = PackedVector2Array(35, 335, 22, 315, 13, 287, 9, 262, 7, 228, 5, 164, 6, 128, 10, 101, 15, 79, 24, 59, 38, 42, 60, 28, 83, 19, 106, 13, 135, 7, 167, 2, 217, -4, 413, -190, 1882, -353, 1884, -13, 1925, -15, 1924, -449, -113, -413, -90, 351, 5, 361)
 
 [node name="temp_ground" type="Node" parent="."]
 

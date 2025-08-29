@@ -1,0 +1,99 @@
+[gd_scene load_steps=13 format=3 uid="uid://b04qg2381bh2c"]
+
+[ext_resource type="Script" uid="uid://baa4xki53dv3u" path="res://Scripts/map_select.gd" id="1_h1fkq"]
+[ext_resource type="Texture2D" uid="uid://dy1oofchhylby" path="res://Assets/StartMenuArt/MapSelectBG.png" id="2_cjhho"]
+[ext_resource type="Texture2D" uid="uid://bqalrfv6u7062" path="res://Assets/StartMenuArt/MapButtons1/Map1Default.png" id="3_2tox4"]
+[ext_resource type="Texture2D" uid="uid://yb1q1m81vi6r" path="res://Assets/StartMenuArt/MapButtons1/Map1Press.png" id="4_g7p84"]
+[ext_resource type="Texture2D" uid="uid://cdgfa7none4c8" path="res://Assets/StartMenuArt/MapButtons1/Map1Hover.png" id="5_djfsx"]
+[ext_resource type="Texture2D" uid="uid://cu55wd18bf5hb" path="res://Assets/StartMenuArt/MapButtons2/Map2Default.png" id="6_5y6st"]
+[ext_resource type="Texture2D" uid="uid://c6tv8dj71cyp4" path="res://Assets/StartMenuArt/MapButtons2/Map2Press.png" id="7_y1vxj"]
+[ext_resource type="Texture2D" uid="uid://cy335eilr0x0l" path="res://Assets/StartMenuArt/MapButtons2/Map2Hover.png" id="8_ssy43"]
+[ext_resource type="Texture2D" uid="uid://d8gfw2xaio7v" path="res://Assets/StartMenuArt/MapButtons3/Map3Default.png" id="9_qq0n5"]
+[ext_resource type="Texture2D" uid="uid://cq8u27blej8fk" path="res://Assets/StartMenuArt/MapButtons3/Map3Press.png" id="10_fevfw"]
+[ext_resource type="Texture2D" uid="uid://cr734huinry5w" path="res://Assets/StartMenuArt/MapButtons3/Map3Hover.png" id="11_u8t74"]
+[ext_resource type="Texture2D" uid="uid://d17gak7nsfif1" path="res://Assets/StartMenuArt/MapButtonLock.png" id="12_g7p84"]
+
+[node name="map_select" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h1fkq")
+
+[node name="map_menu_bg" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_cjhho")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="map_menu_bg"]
+layout_mode = 0
+offset_left = 202.0
+offset_top = 250.0
+offset_right = 1718.0
+offset_bottom = 950.0
+theme_override_constants/separation = 24
+
+[node name="MapRow1" type="HBoxContainer" parent="map_menu_bg/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Map1" type="TextureButton" parent="map_menu_bg/VBoxContainer/MapRow1"]
+layout_mode = 2
+texture_normal = ExtResource("3_2tox4")
+texture_pressed = ExtResource("4_g7p84")
+texture_hover = ExtResource("5_djfsx")
+
+[node name="Map2" type="TextureButton" parent="map_menu_bg/VBoxContainer/MapRow1"]
+layout_mode = 2
+texture_normal = ExtResource("6_5y6st")
+texture_pressed = ExtResource("7_y1vxj")
+texture_hover = ExtResource("8_ssy43")
+
+[node name="Map3" type="TextureButton" parent="map_menu_bg/VBoxContainer/MapRow1"]
+layout_mode = 2
+texture_normal = ExtResource("9_qq0n5")
+texture_pressed = ExtResource("10_fevfw")
+texture_hover = ExtResource("11_u8t74")
+
+[node name="MapRow2" type="HBoxContainer" parent="map_menu_bg/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="TextureButton" type="TextureButton" parent="map_menu_bg/VBoxContainer/MapRow2"]
+layout_mode = 2
+texture_normal = ExtResource("12_g7p84")
+
+[node name="TextureButton2" type="TextureButton" parent="map_menu_bg/VBoxContainer/MapRow2"]
+layout_mode = 2
+texture_normal = ExtResource("12_g7p84")
+
+[node name="TextureButton3" type="TextureButton" parent="map_menu_bg/VBoxContainer/MapRow2"]
+layout_mode = 2
+texture_normal = ExtResource("12_g7p84")
+
+[node name="MapRow3" type="HBoxContainer" parent="map_menu_bg/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="TextureButton" type="TextureButton" parent="map_menu_bg/VBoxContainer/MapRow3"]
+layout_mode = 2
+texture_normal = ExtResource("12_g7p84")
+
+[node name="TextureButton2" type="TextureButton" parent="map_menu_bg/VBoxContainer/MapRow3"]
+layout_mode = 2
+texture_normal = ExtResource("12_g7p84")
+
+[node name="TextureButton3" type="TextureButton" parent="map_menu_bg/VBoxContainer/MapRow3"]
+layout_mode = 2
+texture_normal = ExtResource("12_g7p84")
+
+[connection signal="ready" from="." to="." method="_on_ready"]
+[connection signal="pressed" from="map_menu_bg/VBoxContainer/MapRow1/Map1" to="." method="_on_map_1_pressed"]
+[connection signal="pressed" from="map_menu_bg/VBoxContainer/MapRow1/Map2" to="." method="_on_map_2_pressed"]
+[connection signal="pressed" from="map_menu_bg/VBoxContainer/MapRow1/Map3" to="." method="_on_map_3_pressed"]
