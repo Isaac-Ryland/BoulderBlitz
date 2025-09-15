@@ -15,5 +15,6 @@ func on_settings_button_pressed() -> void:
 func on_credit_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/credits.tscn")
 
+# Can never go wrong with an easter egg
 func on_secret_button_pressed() -> void:
 	animated_sprite.play("Kaboom")

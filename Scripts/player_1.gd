@@ -23,32 +23,32 @@ var jump_cooldown_timer = 0.0
 var abilities = []
 var ability_selected = 0
 
-
+# Once the player enters the scene, iterates through the player's abilities and instantiates them so they can be used
 func _enter_tree() -> void:
 	for ab in GameData.player_1_abilities:
 		if ab is PackedScene:
-			add_child(ab.instantiate())
-			abilities.append(ab.instantiate())
+			var inst = ab.instantiate()
+			add_child(inst)
+			abilities.append(inst)
 		elif ab is String:
 			abilities.append(ab)
 
-
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
-	is_grounded = false
+	is_grounded = false # Assume player is not grounded or walled unless told otherwise
 	is_walled = false
-	var contact_count = state.get_contact_count()
+	var contact_count = state.get_contact_count() # Get all the points of contact between the player and other surfaces
 
-	for i in range(contact_count):
+	for i in range(contact_count): # Iterates through each contact to see if it's a ground / wall. Updates is_grounded/walled accordingly
 		var normal = state.get_contact_local_normal(i)
 		if normal.dot(Vector2.UP) > 0.6: # 1 = horizontal
 			is_grounded = true
 			ground_normal = normal
-			break  # quits loop once there is a contact with the "ground"
+			break  # Quits loop once there is a contact with the "ground"
 
 		if abs(normal.dot(Vector2.RIGHT)) > 0.6 and abs(normal.dot(Vector2.RIGHT)) != 0: # 0 = vertical
 			is_walled = true
 			wall_normal = normal
-			break # quits loop once there is a contact with a "wall"
+			break # Quits loop once there is a contact with a "wall"
 
 func _physics_process(delta: float) -> void:
 	var direction = 0
@@ -63,16 +63,16 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("player_1_right"):
 		direction = 1
 
+	# Cylces between which ability is currently selected
 	if Input.is_action_just_pressed("player_1_ability_cycle"):
 		ability_selected += 1
 		if ability_selected > 2:
 			ability_selected = 0
-		print("Player 1 Ability Cycle key just pressed")
 
+	# Activates the selected ability
 	if Input.is_action_just_pressed("player_1_ability_use"):
 		if abilities[ability_selected] is not String:
 			abilities[ability_selected].activate(self, 1)
-		print("Player 1 Ability Use key just pressed")
 
 	# Resets the wall jump once the player has returned to the ground
 	if is_grounded:
@@ -100,20 +100,20 @@ func _physics_process(delta: float) -> void:
 		if !is_grounded:
 			apply_central_force(Vector2(0, quick_fall_speed))
 		
+		# Checks on a certain collision layer for platforms that the player can fall through
 		if ray.is_colliding():
 			var collider = ray.get_collider()
-			if collider is StaticBody2D:
+			if collider is StaticBody2D: # Ensures the collsion detected is a platform
 				add_collision_exception_with(collider)
-			
-				await get_tree().create_timer(3).timeout
+				await get_tree().create_timer(3).timeout # Removes the collsion for 3s before replacing it
 				remove_collision_exception_with(collider)
 
-	# Caps the player's horizontal velocity as to let me increase the acceleration of the player without breaking the balance
+	# Caps the player's horizontal velocity
 	if abs(linear_velocity.x) > vel_cap:
 		linear_velocity.x = sign(linear_velocity.x) * vel_cap
 
 	# Animation systems:
-	# Handles the direction of the head, by flipping the the sprite based off of the velocity.
+	# Handles the direction of the head, by flipping the the sprite based on the velocity.
 	if linear_velocity.x > 1:
 		head_sprite.flip_h = false
 	elif linear_velocity.x < -1:

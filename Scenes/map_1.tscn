@@ -255,6 +255,7 @@ shape = SubResource("CapsuleShape2D_k5iew")
 polygon = PackedVector2Array(47.6042, 207.417, 48.5642, 203.407, 48.1754, 199.823, 46.4379, 196.664, 43.3516, 193.929, 10.5322, 176.845, 10.1069, 175.496, 10.1245, -181.875, 29.5179, -219.129, 30.4779, -223.139, 30.0891, -226.724, 28.3516, -229.883, 25.2653, -232.617, 21.2555, -233.577, 17.671, -233.188, 14.5117, -231.451, 11.7777, -228.364, -8.53928, -189.336, -9.9975, -182.203, -10.088, 179.639, -9.73569, 185.46, -7.99817, 188.619, -5.79886, 190.891, 34.1166, 211.67, 38.1264, 212.63, 41.711, 212.241, 44.8702, 210.503)
 
 [node name="LeftBottom" type="CollisionShape2D" parent="PlatformsStatic/StaticBody2D/RoofSlopes"]
+visible = false
 position = Vector2(202, 416)
 shape = SubResource("CapsuleShape2D_lmd5f")
 
@@ -272,6 +273,7 @@ shape = SubResource("CapsuleShape2D_k5iew")
 polygon = PackedVector2Array(-47.6042, 207.417, -48.5643, 203.407, -48.1755, 199.823, -46.438, 196.663, -43.3517, 193.929, -10.5322, 176.845, -10.107, 175.496, -10.1245, -181.875, -29.5179, -219.13, -30.478, -223.139, -30.0891, -226.724, -28.3516, -229.883, -25.2653, -232.617, -21.2556, -233.577, -17.671, -233.188, -14.5118, -231.451, -11.7777, -228.364, 9.00098, -188.449, 9.99741, -182.203, 9.73566, 185.459, 7.99808, 188.619, 4.91183, 191.353, -34.1167, 211.67, -38.1265, 212.63, -41.711, 212.241, -44.8703, 210.503)
 
 [node name="RightBottom" type="CollisionShape2D" parent="PlatformsStatic/StaticBody2D/RoofSlopes"]
+visible = false
 position = Vector2(1718, 416)
 shape = SubResource("CapsuleShape2D_lmd5f")
 
@@ -279,16 +281,6 @@ shape = SubResource("CapsuleShape2D_lmd5f")
 position = Vector2(1370, 225)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_lmd5f")
-
-[node name="BoosterTemp" parent="." instance=ExtResource("4_k5iew")]
-position = Vector2(1654, 1004)
-rotation = 1.09083
-scale = Vector2(0.8, 0.8)
-
-[node name="BoosterTemp2" parent="." instance=ExtResource("4_k5iew")]
-position = Vector2(269, 1005)
-rotation = -1.09083
-scale = Vector2(0.8, 0.8)
 
 [node name="Booster" parent="." instance=ExtResource("4_k5iew")]
 position = Vector2(960, 118)

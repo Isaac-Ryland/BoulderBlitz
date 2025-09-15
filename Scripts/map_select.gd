@@ -11,9 +11,11 @@ var maps = {
 }
 var is_visible = false
 
+# Sets the menu to invisible on game start-up
 func _on_ready() -> void:
 	self.visible = is_visible
 
+# Toggles the visibility of the menu
 func _on_start_menu_change_map_visibilty() -> void:
 	is_visible = !is_visible
 	self.visible = is_visible

@@ -1,10 +1,29 @@
 extends Node2D
 
+# Dash ability
+# Used to apply a force in the held direction, excluding upwards
+
 var dash_impulse: float = 600
+var cooldown: float = 3.0
+var can_activate: bool = true
+
+# When the cooldown timer runs out, this is called which allows the activation of abilities again
+func _on_timer_timeout() -> void:
+	can_activate = true
 
 func activate(player, player_id):
+	# Cuts the ability activation short to prevent ability use while on cooldown
+	if not can_activate:
+		return
+
+	can_activate = false
+	# creates and starts a timer with length (cooldown) that will stop the player using the ability until finished
+	var t = get_tree().create_timer(cooldown)
+	t.timeout.connect(_on_timer_timeout)
+
 	var dir = Vector2.ZERO
 
+	# Gets the inputs of the player that is using the ability
 	var right = "player_%d_right" % player_id
 	var left = "player_%d_left" % player_id
 	var up = "player_%d_jump" % player_id
@@ -19,7 +38,7 @@ func activate(player, player_id):
 	if Input.is_action_pressed(down):
 		dir.y = 0#1
 
-	# If no input, dash in direction of player's velocity
+	# If no input, dash in direction of player's horizontal velocity
 	if dir == Vector2.ZERO or dir.x == 0:
 		if player.linear_velocity.x > 0:
 			dir.x = 1
@@ -29,12 +48,12 @@ func activate(player, player_id):
 			dir.x = 1  # default to right
 
 	# clamp to allowed dash angles
-	var final_dir = _map_to_dash_angle(dir, player)
+	var final_dir = map_to_dash_angle(dir, player)
 
 	player.apply_central_impulse(dir * dash_impulse)
 
-
-func _map_to_dash_angle(input_dir: Vector2, player: RigidBody2D) -> Vector2:
+# Takes the input direction, normalizes it, and then maps it to 30 degrees above or below horizontal
+func map_to_dash_angle(input_dir: Vector2, player: RigidBody2D) -> Vector2:
 	input_dir = input_dir.normalized()
 
 	var cos30 = 0.8660254
@@ -53,7 +72,7 @@ func _map_to_dash_angle(input_dir: Vector2, player: RigidBody2D) -> Vector2:
 	elif input_dir.x < 0:
 		if input_dir.y < 0:
 			return Vector2(-cos30, -sin30)  # up-left
-	else:
+		else:
 			return Vector2(-cos30, sin30)   # down-left
 
 	# if input_dir.x == 0 (pure vertical), fall back to velocity / default

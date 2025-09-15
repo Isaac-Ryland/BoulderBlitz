@@ -16,6 +16,7 @@ extends Node2D
 	6: $AbilitySlot6
 }
 
+# Signals for changing the visibility of the pop-up menus
 signal change_left_visibility()
 signal change_right_visibility()
 signal change_map_visibilty()
@@ -108,7 +109,7 @@ func _on_slot_3_right_pressed() -> void:
 	current_right_slot = 3
 	ability_select_right.set_texture(right_textures[2], current_right_slot)
 
-# Func for displaying the selected ability
+# Displays the selected ability in its according slot
 func update_selected_ability(player: int, slot: int, ab: int):
 	if player == 1:
 		ability_slot_textures[slot].texture = ability_selected_textures[ab - 1]
@@ -121,8 +122,7 @@ func update_selected_ability(player: int, slot: int, ab: int):
 # Player colour switch logic. Will not allow matching colours
 #needs a var (GameData.player_#_colour) to choose arrow colour
 
-
-# Starting the game once both players are ready
+# Toggling the map select menu once both players are ready
 func _on_ready_left_pressed() -> void:
 	p1_ready = !p1_ready
 	if p1_ready and p2_ready:
