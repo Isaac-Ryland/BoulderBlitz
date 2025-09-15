@@ -2,27 +2,39 @@ extends RigidBody2D
 
 @onready var ball_sprite: AnimatedSprite2D = $BallSprite
 @onready var head_sprite: AnimatedSprite2D = $HeadSprite
+@onready var ray: RayCast2D = $CollisionShape2D/RayCast2D
 
-@onready var left_cast: RayCast2D = $CollisionShape2D/LeftCast
-@onready var right_cast: RayCast2D = $CollisionShape2D/RightCast
-
-const move_force: float = 800.0
+const move_force: float = 1000.0
+const vel_cap: float = 1500.0
 const jump_impulse: float = 650.0
 const quick_fall_speed: float = 1000.0
-const wall_jump_impulse: Vector2 = Vector2(500, jump_impulse)
+const wall_jump_impulse: Vector2 = Vector2(500, 0)
 const boulder_radius_in_pixels: int = 100
 const moving_threshold: float = 0.01
 
 var is_grounded = false
+var is_walled = false
 var ground_normal = Vector2.UP
+var wall_normal = Vector2.ZERO
 var can_wall_jump = false
 var is_falling = false
 var jump_cooldown = 0.08
 var jump_cooldown_timer = 0.0
+var abilities = []
+var ability_selected = 0
 
+
+func _enter_tree() -> void:
+	for ab in GameData.player_2_abilities:
+		if ab is PackedScene:
+			add_child(ab.instantiate())
+			abilities.append(ab.instantiate())
+		elif ab is String:
+			abilities.append(ab)
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	is_grounded = false
+	is_walled = false
 	var contact_count = state.get_contact_count()
 
 	for i in range(contact_count):
@@ -32,16 +44,10 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 			ground_normal = normal
 			break  # quits loop once there is a contact with the "ground"
 
-# WIP
-func get_wall_normal(state: PhysicsDirectBodyState2D) -> Vector2:
-	var contact_count = state.get_contact_count()
-
-	for i in range(contact_count):
-		var normal = state.get_contact_local_normal(i)
-		if abs(normal.dot(Vector2.RIGHT)) < 0.6: # 0 = vertical
-			return normal
-	return Vector2.ZERO
-# End WIP
+		if abs(normal.dot(Vector2.RIGHT)) > 0.6 and abs(normal.dot(Vector2.RIGHT)) != 0: # 0 = vertical
+			is_walled = true
+			wall_normal = normal
+			break # quits loop once there is a contact with a "wall"
 
 func _physics_process(delta: float) -> void:
 	var direction = 0
@@ -55,6 +61,17 @@ func _physics_process(delta: float) -> void:
 		direction = -1
 	if Input.is_action_pressed("player_2_right"):
 		direction = 1
+
+	if Input.is_action_just_pressed("player_2_ability_cycle"):
+		ability_selected += 1
+		if ability_selected > 2:
+			ability_selected = 0
+		print("Player 2 Ability Cycle key just pressed")
+
+	if Input.is_action_just_pressed("player_2_ability_use"):
+		if abilities[ability_selected] is not String:
+			abilities[ability_selected].activate(self, 2)
+		print("Player 2 Ability Use key just pressed")
 
 	# Resets the wall jump once the player has returned to the ground
 	if is_grounded:
@@ -71,16 +88,28 @@ func _physics_process(delta: float) -> void:
 			apply_central_impulse(jump_vec)
 
 		# Wall jump
-		if can_wall_jump and (left_cast.is_colliding() or right_cast.is_colliding()):
-			can_wall_jump = false
-			var wall_side = 1 if left_cast.is_colliding() else -1
-			apply_central_impulse(Vector2(wall_side * wall_jump_impulse.x, -wall_jump_impulse.y))
+		if can_wall_jump and is_walled:
+			var jump_vec = wall_normal.normalized() * wall_jump_impulse
+			apply_central_impulse(jump_vec)
+
 		jump_cooldown_timer = jump_cooldown
 
 	# Quick fall
-	if Input.is_action_pressed("player_2_fall") and !is_grounded:
-		apply_central_force(Vector2(0, quick_fall_speed))
+	if Input.is_action_pressed("player_2_fall"):
+		if !is_grounded:
+			apply_central_force(Vector2(0, quick_fall_speed))
+		
+		if ray.is_colliding():
+			var collider = ray.get_collider()
+			if collider is StaticBody2D:
+				add_collision_exception_with(collider)
+			
+				await get_tree().create_timer(3).timeout
+				remove_collision_exception_with(collider)
 
+	# Caps the player's horizontal velocity as to let me increase the acceleration of the player without breaking the balance
+	if abs(linear_velocity.x) > vel_cap:
+		linear_velocity.x = sign(linear_velocity.x) * vel_cap
 
 	# Animation systems:
 	# Handles the direction of the head, by flipping the the sprite based off of the velocity.
@@ -88,7 +117,7 @@ func _physics_process(delta: float) -> void:
 		head_sprite.flip_h = false
 	elif linear_velocity.x < -1:
 		head_sprite.flip_h = true
-	
+
 	# Plays the boulder's rolling animation based off of the characters veloctiy for the animation speed
 	# Also plays the head animation. Refers to the "player_2_colour" global var for the colour choice.
 	if (round(100*(abs(linear_velocity.x)))/100) > moving_threshold:

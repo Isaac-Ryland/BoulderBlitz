@@ -1,48 +1,130 @@
-extends CharacterBody2D
+extends RigidBody2D
 
 @onready var ball_sprite: AnimatedSprite2D = $BallSprite
 @onready var head_sprite: AnimatedSprite2D = $HeadSprite
+@onready var ray: RayCast2D = $CollisionShape2D/RayCast2D
 
-const SPEED = 800.0
-const JUMP_VELOCITY = -1000.0
-const DRAG = 2
-const BOULDER_RADIUS_IN_PIXELS = 100
-const MOVING_THRESHOLD = 0.01
+const move_force: float = 1000.0
+const vel_cap: float = 1500.0
+const jump_impulse: float = 650.0
+const quick_fall_speed: float = 1000.0
+const wall_jump_impulse: Vector2 = Vector2(500, 0)
+const boulder_radius_in_pixels: int = 100
+const moving_threshold: float = 0.01
+
+var is_grounded = false
+var is_walled = false
+var ground_normal = Vector2.UP
+var wall_normal = Vector2.ZERO
+var can_wall_jump = false
+var is_falling = false
+var jump_cooldown = 0.08
+var jump_cooldown_timer = 0.0
+var abilities = []
+var ability_selected = 0
+
+
+func _enter_tree() -> void:
+	for ab in GameData.player_1_abilities:
+		if ab is PackedScene:
+			add_child(ab.instantiate())
+			abilities.append(ab.instantiate())
+		elif ab is String:
+			abilities.append(ab)
+
+
+func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	is_grounded = false
+	is_walled = false
+	var contact_count = state.get_contact_count()
+
+	for i in range(contact_count):
+		var normal = state.get_contact_local_normal(i)
+		if normal.dot(Vector2.UP) > 0.6: # 1 = horizontal
+			is_grounded = true
+			ground_normal = normal
+			break  # quits loop once there is a contact with the "ground"
+
+		if abs(normal.dot(Vector2.RIGHT)) > 0.6 and abs(normal.dot(Vector2.RIGHT)) != 0: # 0 = vertical
+			is_walled = true
+			wall_normal = normal
+			break # quits loop once there is a contact with a "wall"
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+	var direction = 0
 
-	# Handle jump.
-	if Input.is_action_just_pressed("player_1_jump") and is_on_floor(): # or Input.is_action_just_pressed("player_1_jump") and is_on_wall():
-		velocity.y = JUMP_VELOCITY
+	# cooldown to prevent multiple jumps in a single frame
+	if jump_cooldown_timer > 0:
+		jump_cooldown_timer -= delta
 
-	# Get the input direction and handle the movement/deceleration.
-	var direction := Input.get_axis("player_1_left", "player_1_right")
+	# Left/right input
+	if Input.is_action_pressed("player_1_left"):
+		direction = -1
+	if Input.is_action_pressed("player_1_right"):
+		direction = 1
 
+	if Input.is_action_just_pressed("player_1_ability_cycle"):
+		ability_selected += 1
+		if ability_selected > 2:
+			ability_selected = 0
+		print("Player 1 Ability Cycle key just pressed")
+
+	if Input.is_action_just_pressed("player_1_ability_use"):
+		if abilities[ability_selected] is not String:
+			abilities[ability_selected].activate(self, 1)
+		print("Player 1 Ability Use key just pressed")
+
+	# Resets the wall jump once the player has returned to the ground
+	if is_grounded:
+		can_wall_jump = true
+
+	# Apply force for moving
+	if direction != 0.0:
+		apply_central_force(Vector2(direction * move_force, 0))
+
+	# Jump
+	if Input.is_action_pressed("player_1_jump") and jump_cooldown_timer <= 0:
+		if is_grounded:
+			var jump_vec = ground_normal.normalized() * jump_impulse
+			apply_central_impulse(jump_vec)
+
+		# Wall jump
+		if can_wall_jump and is_walled:
+			var jump_vec = wall_normal.normalized() * wall_jump_impulse
+			apply_central_impulse(jump_vec)
+
+		jump_cooldown_timer = jump_cooldown
+
+	# Quick fall
+	if Input.is_action_pressed("player_1_fall"):
+		if !is_grounded:
+			apply_central_force(Vector2(0, quick_fall_speed))
+		
+		if ray.is_colliding():
+			var collider = ray.get_collider()
+			if collider is StaticBody2D:
+				add_collision_exception_with(collider)
+			
+				await get_tree().create_timer(3).timeout
+				remove_collision_exception_with(collider)
+
+	# Caps the player's horizontal velocity as to let me increase the acceleration of the player without breaking the balance
+	if abs(linear_velocity.x) > vel_cap:
+		linear_velocity.x = sign(linear_velocity.x) * vel_cap
+
+	# Animation systems:
 	# Handles the direction of the head, by flipping the the sprite based off of the velocity.
-	if velocity.x > 0:
+	if linear_velocity.x > 1:
 		head_sprite.flip_h = false
-	elif velocity.x < 0:
+	elif linear_velocity.x < -1:
 		head_sprite.flip_h = true
 	
 	# Plays the boulder's rolling animation based off of the characters veloctiy for the animation speed
 	# Also plays the head animation. Refers to the "player_1_colour" global var for the colour choice.
-	if (round(100*(abs(velocity.x)))/100) > MOVING_THRESHOLD:
+	if (round(100*(abs(linear_velocity.x)))/100) > moving_threshold:
 		ball_sprite.play(GameData.player_1_colour)
-		ball_sprite.speed_scale = velocity.x/BOULDER_RADIUS_IN_PIXELS
+		ball_sprite.speed_scale = linear_velocity.x/boulder_radius_in_pixels
 		head_sprite.play(GameData.player_1_colour)
 	else:
 		ball_sprite.speed_scale = 0
 		head_sprite.stop()
-		
-	# Handles the Movement and deceleration
-	if direction != 0:
-		velocity.x += direction * SPEED * delta
-		if abs(velocity.x) > SPEED:
-			velocity.x = direction * SPEED
-	elif is_on_floor(): # Add drag
-		velocity = velocity - DRAG * velocity * delta
-
-	move_and_slide()

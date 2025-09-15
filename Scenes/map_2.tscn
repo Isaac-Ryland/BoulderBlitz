@@ -1,0 +1,207 @@
+[gd_scene load_steps=15 format=3 uid="uid://2uei1xuwee7j"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://bvkabrx6nujub" path="res://Assets/PhysicsMaterials/ground-material.tres" id="1_wuwv3"]
+[ext_resource type="PackedScene" uid="uid://bsdt52so4t0v4" path="res://Scenes/player_1.tscn" id="2_uuwls"]
+[ext_resource type="PackedScene" uid="uid://d1puv3ejjkocr" path="res://Scenes/player_2.tscn" id="3_qmr3o"]
+[ext_resource type="PackedScene" uid="uid://gitaxeafjoim" path="res://Scenes/booster.tscn" id="4_uuwls"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wy8n8"]
+size = Vector2(1920, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3kc4c"]
+size = Vector2(1920, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l8x2o"]
+size = Vector2(20, 1200)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j8ect"]
+size = Vector2(20, 1200)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wy8n8"]
+radius = 200.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wuwv3"]
+friction = 0.0
+bounce = 1000.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wy8n8"]
+radius = 20.0
+height = 324.0
+
+[sub_resource type="Animation" id="Animation_3kc4c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.5708]
+}
+
+[sub_resource type="Animation" id="Animation_wy8n8"]
+resource_name = "Spin"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.5708, 4.71239]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l8x2o"]
+_data = {
+&"RESET": SubResource("Animation_3kc4c"),
+&"Spin": SubResource("Animation_wy8n8")
+}
+
+[node name="Map2" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1200.0
+
+[node name="BG" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.00649999, 0.446225, 0.65, 1)
+
+[node name="PlatformsStatic" type="Node" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="PlatformsStatic"]
+physics_material_override = ExtResource("1_wuwv3")
+
+[node name="Floor" type="CollisionShape2D" parent="PlatformsStatic/StaticBody2D"]
+position = Vector2(960, 1190)
+shape = SubResource("RectangleShape2D_wy8n8")
+
+[node name="ColorRect" type="ColorRect" parent="PlatformsStatic/StaticBody2D/Floor"]
+offset_left = -960.0
+offset_top = -10.0
+offset_right = 960.0
+offset_bottom = 10.0
+
+[node name="Roof" type="CollisionShape2D" parent="PlatformsStatic/StaticBody2D"]
+position = Vector2(960, 10)
+shape = SubResource("RectangleShape2D_3kc4c")
+
+[node name="ColorRect" type="ColorRect" parent="PlatformsStatic/StaticBody2D/Roof"]
+offset_left = -960.0
+offset_top = -10.0
+offset_right = 960.0
+offset_bottom = 10.0
+
+[node name="LeftWall" type="CollisionShape2D" parent="PlatformsStatic/StaticBody2D"]
+position = Vector2(10, 600)
+shape = SubResource("RectangleShape2D_l8x2o")
+
+[node name="ColorRect" type="ColorRect" parent="PlatformsStatic/StaticBody2D/LeftWall"]
+offset_left = -10.0
+offset_top = -600.0
+offset_right = 10.0
+offset_bottom = 600.0
+
+[node name="RightWall" type="CollisionShape2D" parent="PlatformsStatic/StaticBody2D"]
+position = Vector2(1910, 600)
+shape = SubResource("RectangleShape2D_j8ect")
+
+[node name="ColorRect" type="ColorRect" parent="PlatformsStatic/StaticBody2D/RightWall"]
+offset_left = -10.0
+offset_top = -600.0
+offset_right = 10.0
+offset_bottom = 600.0
+
+[node name="HumpCircle" type="CollisionShape2D" parent="PlatformsStatic/StaticBody2D"]
+position = Vector2(960, 1200)
+shape = SubResource("CircleShape2D_wy8n8")
+
+[node name="Polygon2D" type="Polygon2D" parent="PlatformsStatic/StaticBody2D/HumpCircle"]
+polygon = PackedVector2Array(-200, 0, -193, -52, -173, -100, -141, -141, -100, -173, -52, -193, 0, -200, 52, -193, 100, -173, 141, -141, 173, -100, 193, -52, 200, 0)
+
+[node name="HumpLeftCurve" type="CollisionPolygon2D" parent="PlatformsStatic/StaticBody2D"]
+position = Vector2(-8, 10)
+polygon = PackedVector2Array(795, 1090, 770, 1123, 750, 1143, 736, 1152, 716, 1160, 689, 1166, 663, 1168, 634, 1169, 607, 1170, 582, 1170, 582, 1200, 786, 1200)
+
+[node name="Polygon2D" type="Polygon2D" parent="PlatformsStatic/StaticBody2D/HumpLeftCurve"]
+polygon = PackedVector2Array(582, 1170, 607, 1170, 663, 1168, 689, 1166, 716, 1160, 736, 1152, 750, 1143, 770, 1123, 795, 1090, 786, 1200, 582, 1200)
+
+[node name="HumpLeftCurve2" type="CollisionPolygon2D" parent="PlatformsStatic/StaticBody2D"]
+position = Vector2(551, 10)
+polygon = PackedVector2Array(582, 1090, 607, 1123, 634, 1143, 663, 1152, 689, 1160, 716, 1166, 736, 1168, 750, 1169, 770, 1170, 795, 1170, 795, 1200, 582, 1200)
+
+[node name="Polygon2D" type="Polygon2D" parent="PlatformsStatic/StaticBody2D/HumpLeftCurve2"]
+polygon = PackedVector2Array(582, 1090, 607, 1123, 634, 1143, 663, 1152, 689, 1160, 716, 1166, 736, 1168, 750, 1169, 770, 1170, 795, 1170, 795, 1200, 582, 1200)
+
+[node name="BottomRightCorner" type="CollisionPolygon2D" parent="PlatformsStatic/StaticBody2D"]
+polygon = PackedVector2Array(1900, 980, 1893, 1032, 1873, 1080, 1841, 1121, 1800, 1153, 1752, 1173, 1700, 1180, 1700, 1200, 1920, 1200, 1920, 980)
+
+[node name="Polygon2D" type="Polygon2D" parent="PlatformsStatic/StaticBody2D/BottomRightCorner"]
+polygon = PackedVector2Array(1900, 980, 1893, 1032, 1873, 1080, 1841, 1121, 1800, 1153, 1752, 1173, 1700, 1180, 1700, 1200, 1920, 1200, 1920, 980)
+
+[node name="TopRightCorner" type="CollisionPolygon2D" parent="PlatformsStatic/StaticBody2D"]
+polygon = PackedVector2Array(1700, 20, 1752, 27, 1800, 47, 1841, 79, 1873, 120, 1893, 168, 1900, 219, 1920, 219, 1920, 0, 1700, 0)
+
+[node name="Polygon2D" type="Polygon2D" parent="PlatformsStatic/StaticBody2D/TopRightCorner"]
+polygon = PackedVector2Array(1700, 20, 1753, 27, 1800, 47, 1841, 79, 1873, 120, 1893, 168, 1900, 219, 1920, 219, 1920, 0, 1700, 0)
+
+[node name="TopLeftCorner" type="CollisionPolygon2D" parent="PlatformsStatic/StaticBody2D"]
+polygon = PackedVector2Array(20, 220, 27, 168, 47, 120, 79, 79, 120, 47, 168, 27, 220, 20, 220, 0, 0, 0, 0, 220)
+
+[node name="Polygon2D" type="Polygon2D" parent="PlatformsStatic/StaticBody2D/TopLeftCorner"]
+polygon = PackedVector2Array(20, 220, 27, 168, 47, 120, 79, 79, 120, 47, 168, 27, 220, 20, 220, 0, 0, 0, 0, 220)
+
+[node name="BottomLeftCorner" type="CollisionPolygon2D" parent="PlatformsStatic/StaticBody2D"]
+polygon = PackedVector2Array(220, 1180, 168, 1173, 120, 1153, 79, 1121, 47, 1080, 27, 1032, 20, 980, 0, 980, 0, 1200, 220, 1200)
+
+[node name="Polygon2D" type="Polygon2D" parent="PlatformsStatic/StaticBody2D/BottomLeftCorner"]
+polygon = PackedVector2Array(220, 1180, 168, 1173, 120, 1153, 79, 1121, 47, 1080, 27, 1032, 20, 980, 0, 980, 0, 1200, 220, 1200)
+
+[node name="PlatformsMoving" type="Node" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="PlatformsMoving"]
+physics_material_override = SubResource("PhysicsMaterial_wuwv3")
+
+[node name="CentralSpinning" type="CollisionShape2D" parent="PlatformsMoving/StaticBody2D"]
+position = Vector2(968, 592)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_wy8n8")
+
+[node name="Polygon2D" type="Polygon2D" parent="PlatformsMoving/StaticBody2D/CentralSpinning"]
+polygon = PackedVector2Array(-3.05176e-05, -162, -5.00003, -161, -10, -159, -14, -156, -17, -152, -19, -147, -20, -142, -20, 142, -19, 147, -17, 152, -14, 156, -10, 159, -5, 161, 0, 162, 5, 161, 10, 159, 14, 156, 17, 152, 19, 147, 20, 142, 20, -142, 19, -147, 17, -152, 14, -156, 9.99997, -159, 4.99997, -161)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlatformsMoving/StaticBody2D/CentralSpinning"]
+libraries = {
+&"": SubResource("AnimationLibrary_l8x2o")
+}
+autoplay = "Spin"
+speed_scale = 2.0
+
+[node name="Booster" parent="." instance=ExtResource("4_uuwls")]
+position = Vector2(58, 827)
+scale = Vector2(0.8, 0.8)
+
+[node name="Booster2" parent="." instance=ExtResource("4_uuwls")]
+position = Vector2(1859, 827)
+scale = Vector2(0.8, 0.8)
+
+[node name="player_1" parent="." instance=ExtResource("2_uuwls")]
+position = Vector2(213, 1059)
+
+[node name="player_2" parent="." instance=ExtResource("3_qmr3o")]
+position = Vector2(1371, 1163)

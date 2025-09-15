@@ -1,6 +1,4 @@
 # boulderblitz
 to do:
-	fix the bloody physics
-	sort all the goddamn images
-	make all the back buttons match
-	
+	Build maps
+	Implement some sort of damage system

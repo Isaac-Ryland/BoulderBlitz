@@ -1,27 +1,27 @@
-[gd_scene load_steps=10 format=3 uid="uid://ctrpi4xhqxa33"]
+[gd_scene load_steps=10 format=3 uid="uid://bykjmyqtd0e75"]
 
-[ext_resource type="PhysicsMaterial" uid="uid://bvkabrx6nujub" path="res://Assets/PhysicsMaterials/ground-material.tres" id="1_4ov7l"]
-[ext_resource type="PackedScene" uid="uid://ne7hphg2o5hd" path="res://Scenes/player_1.tscn" id="2_2t7xj"]
-[ext_resource type="PackedScene" uid="uid://d1puv3ejjkocr" path="res://Scenes/player_2.tscn" id="3_f6pk4"]
+[ext_resource type="PhysicsMaterial" uid="uid://bvkabrx6nujub" path="res://Assets/PhysicsMaterials/ground-material.tres" id="1_vma17"]
+[ext_resource type="PackedScene" uid="uid://bsdt52so4t0v4" path="res://Scenes/player_1.tscn" id="2_xtteh"]
+[ext_resource type="PackedScene" uid="uid://d1puv3ejjkocr" path="res://Scenes/player_2.tscn" id="3_57v0g"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_es4yc"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o5g0d"]
 size = Vector2(1046, 120)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hrdr6"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3lf7l"]
 size = Vector2(40, 329)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_uifhc"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_aca6x"]
 radius = 98.0204
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j2fs2"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c74ph"]
 size = Vector2(1114.5, 28)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ov7l"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i54f7"]
 size = Vector2(29, 1200)
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kpjo8"]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_hkwdu"]
 
-[node name="Map1" type="Node2D"]
+[node name="Map3" type="Node2D"]
 
 [node name="temp_BG" type="Control" parent="."]
 layout_mode = 3
@@ -55,11 +55,11 @@ grow_vertical = 0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="temp_BG/temp_platforms/bottom_middle_rect"]
 position = Vector2(409, 1109)
-physics_material_override = ExtResource("1_4ov7l")
+physics_material_override = ExtResource("1_vma17")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="temp_BG/temp_platforms/bottom_middle_rect/StaticBody2D"]
 position = Vector2(552, 78)
-shape = SubResource("RectangleShape2D_es4yc")
+shape = SubResource("RectangleShape2D_o5g0d")
 
 [node name="ColorRect" type="ColorRect" parent="temp_BG/temp_platforms/bottom_middle_rect/StaticBody2D/CollisionShape2D"]
 offset_left = -523.0
@@ -70,12 +70,12 @@ offset_bottom = 60.0
 [node name="centre_slope_small" type="Node" parent="temp_BG/temp_platforms"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="temp_BG/temp_platforms/centre_slope_small"]
-physics_material_override = ExtResource("1_4ov7l")
+physics_material_override = ExtResource("1_vma17")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="temp_BG/temp_platforms/centre_slope_small/StaticBody2D"]
 position = Vector2(787, 643)
 rotation = 1.0472
-shape = SubResource("RectangleShape2D_hrdr6")
+shape = SubResource("RectangleShape2D_3lf7l")
 
 [node name="ColorRect" type="ColorRect" parent="temp_BG/temp_platforms/centre_slope_small/StaticBody2D/CollisionShape2D"]
 offset_left = -20.0
@@ -86,11 +86,11 @@ offset_bottom = 165.0
 [node name="ball" type="Node" parent="temp_BG/temp_platforms"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="temp_BG/temp_platforms/ball"]
-physics_material_override = ExtResource("1_4ov7l")
+physics_material_override = ExtResource("1_vma17")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="temp_BG/temp_platforms/ball/StaticBody2D"]
 position = Vector2(510, 271)
-shape = SubResource("CircleShape2D_uifhc")
+shape = SubResource("CircleShape2D_aca6x")
 debug_color = Color(0, 0.6, 0.701961, 0.6)
 
 [node name="Polygon2D" type="Polygon2D" parent="temp_BG/temp_platforms/ball/StaticBody2D/CollisionShape2D"]
@@ -103,12 +103,12 @@ polygon = PackedVector2Array(1, -98, 24, -95, 49, -85, 69, -70, 84, -50, 94, -26
 [node name="StaticBody2D" type="StaticBody2D" parent="temp_BG/temp_platforms/left_slope"]
 position = Vector2(-659, -158)
 rotation = -6.28319
-physics_material_override = ExtResource("1_4ov7l")
+physics_material_override = ExtResource("1_vma17")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="temp_BG/temp_platforms/left_slope/StaticBody2D"]
 position = Vector2(785, 632)
 rotation = -0.698132
-shape = SubResource("RectangleShape2D_hrdr6")
+shape = SubResource("RectangleShape2D_3lf7l")
 
 [node name="ColorRect" type="ColorRect" parent="temp_BG/temp_platforms/left_slope/StaticBody2D/CollisionShape2D"]
 offset_left = -20.0
@@ -121,12 +121,12 @@ metadata/_edit_use_anchors_ = true
 [node name="centre_slope_large" type="Node" parent="temp_BG/temp_platforms"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="temp_BG/temp_platforms/centre_slope_large"]
-physics_material_override = ExtResource("1_4ov7l")
+physics_material_override = ExtResource("1_vma17")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="temp_BG/temp_platforms/centre_slope_large/StaticBody2D"]
 position = Vector2(1409, 277)
 rotation = -0.523599
-shape = SubResource("RectangleShape2D_j2fs2")
+shape = SubResource("RectangleShape2D_c74ph")
 
 [node name="ColorRect" type="ColorRect" parent="temp_BG/temp_platforms/centre_slope_large/StaticBody2D/CollisionShape2D"]
 offset_left = -557.0
@@ -137,11 +137,11 @@ offset_bottom = 14.0
 [node name="right_wall" type="Node" parent="temp_BG/temp_platforms"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="temp_BG/temp_platforms/right_wall"]
-physics_material_override = ExtResource("1_4ov7l")
+physics_material_override = ExtResource("1_vma17")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="temp_BG/temp_platforms/right_wall/StaticBody2D"]
 position = Vector2(1905.5, 600)
-shape = SubResource("RectangleShape2D_4ov7l")
+shape = SubResource("RectangleShape2D_i54f7")
 
 [node name="ColorRect" type="ColorRect" parent="temp_BG/temp_platforms/right_wall/StaticBody2D/CollisionShape2D"]
 offset_left = -15.0
@@ -152,7 +152,7 @@ offset_bottom = 600.0
 [node name="curve" type="Node" parent="temp_BG/temp_platforms"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="temp_BG/temp_platforms/curve"]
-physics_material_override = ExtResource("1_4ov7l")
+physics_material_override = ExtResource("1_vma17")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="temp_BG/temp_platforms/curve/StaticBody2D"]
 position = Vector2(1590.98, 1118.87)
@@ -176,15 +176,14 @@ polygon = PackedVector2Array(35, 335, 22, 315, 13, 287, 9, 262, 7, 228, 5, 164, 
 [node name="temp_ground" type="Node" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="temp_ground"]
-physics_material_override = ExtResource("1_4ov7l")
+physics_material_override = ExtResource("1_vma17")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="temp_ground/StaticBody2D"]
 position = Vector2(0, 1200)
-shape = SubResource("WorldBoundaryShape2D_kpjo8")
+shape = SubResource("WorldBoundaryShape2D_hkwdu")
 
-[node name="Player1" parent="." instance=ExtResource("2_2t7xj")]
-position = Vector2(308, 1109)
-floor_block_on_wall = false
+[node name="player_1" parent="." instance=ExtResource("2_xtteh")]
+position = Vector2(147, 1075)
 
-[node name="Player2" parent="." instance=ExtResource("3_f6pk4")]
+[node name="Player2" parent="." instance=ExtResource("3_57v0g")]
 position = Vector2(856, 1000)

@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://gitaxeafjoim"]
+
+[ext_resource type="Script" uid="uid://bo524vyv3l3p7" path="res://Scripts/booster.gd" id="1_o0tsq"]
+[ext_resource type="Texture2D" uid="uid://d30s6tvll2av1" path="res://Assets/Sprites/pixilart-sprite (1).png" id="2_tf3vi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0tsq"]
+atlas = ExtResource("2_tf3vi")
+region = Rect2(0, 0, 128, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ntnxt"]
+atlas = ExtResource("2_tf3vi")
+region = Rect2(128, 0, 128, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_geh36"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0tsq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ntnxt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tf3vi"]
+size = Vector2(64, 192)
+
+[node name="Booster" type="Area2D"]
+script = ExtResource("1_o0tsq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_geh36")
+autoplay = "default"
+frame_progress = 0.498949
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tf3vi")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

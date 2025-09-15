@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://tlkvxk0efmv7"]
+[gd_scene load_steps=21 format=3 uid="uid://tlkvxk0efmv7"]
 
 [ext_resource type="Script" uid="uid://djpx42dkqolut" path="res://Scripts/start_menu.gd" id="1_fljge"]
 [ext_resource type="Texture2D" uid="uid://l2pa8i1xdmjy" path="res://Assets/StartMenuArt/StartMenuBG.png" id="2_jgtwh"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://ckv2wjsgw1w57" path="res://Assets/StartMenuArt/AbilitySlotsRight/AbilitySlotRightHover.png" id="6_ru7em"]
 [ext_resource type="PackedScene" uid="uid://x0ebwlv5qjfo" path="res://Scenes/ability_select_left.tscn" id="7_i2i62"]
 [ext_resource type="PackedScene" uid="uid://cob2bii56u5iu" path="res://Scenes/ability_select_right.tscn" id="8_lfskg"]
+[ext_resource type="Texture2D" uid="uid://df8cnbqtpbtih" path="res://Assets/StartMenuArt/Ability1.png" id="11_6k3d4"]
 [ext_resource type="Texture2D" uid="uid://c36v28xbwrco3" path="res://Assets/MainMenuArt/Buttons/SelectSettingsDefault.png" id="11_l146v"]
 [ext_resource type="Texture2D" uid="uid://kfps87gt2b65" path="res://Assets/MainMenuArt/Buttons/BackDefault.png" id="11_rpttd"]
 [ext_resource type="PackedScene" uid="uid://b04qg2381bh2c" path="res://Scenes/map_select.tscn" id="11_slhe1"]
@@ -186,6 +187,54 @@ texture_hover = ExtResource("6_ru7em")
 layout_mode = 2
 texture_normal = ExtResource("5_lfskg")
 texture_hover = ExtResource("6_ru7em")
+
+[node name="AbilitySlot1" type="TextureRect" parent="."]
+visible = false
+offset_left = 244.0
+offset_top = 308.0
+offset_right = 344.0
+offset_bottom = 408.0
+texture = ExtResource("11_6k3d4")
+
+[node name="AbilitySlot2" type="TextureRect" parent="."]
+visible = false
+offset_left = 486.0
+offset_top = 308.0
+offset_right = 586.0
+offset_bottom = 408.0
+texture = ExtResource("11_6k3d4")
+
+[node name="AbilitySlot3" type="TextureRect" parent="."]
+visible = false
+offset_left = 728.0
+offset_top = 308.0
+offset_right = 828.0
+offset_bottom = 408.0
+texture = ExtResource("11_6k3d4")
+
+[node name="AbilitySlot4" type="TextureRect" parent="."]
+visible = false
+offset_left = 1092.0
+offset_top = 308.0
+offset_right = 1192.0
+offset_bottom = 408.0
+texture = ExtResource("11_6k3d4")
+
+[node name="AbilitySlot5" type="TextureRect" parent="."]
+visible = false
+offset_left = 1334.0
+offset_top = 308.0
+offset_right = 1434.0
+offset_bottom = 408.0
+texture = ExtResource("11_6k3d4")
+
+[node name="AbilitySlot6" type="TextureRect" parent="."]
+visible = false
+offset_left = 1576.0
+offset_top = 308.0
+offset_right = 1676.0
+offset_bottom = 408.0
+texture = ExtResource("11_6k3d4")
 
 [node name="SettingsButton" type="Control" parent="."]
 layout_mode = 3
