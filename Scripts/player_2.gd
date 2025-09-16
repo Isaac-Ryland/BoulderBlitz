@@ -11,6 +11,9 @@ const quick_fall_speed: float = 1000.0
 const wall_jump_impulse: Vector2 = Vector2(500, 0)
 const boulder_radius_in_pixels: int = 100
 const moving_threshold: float = 0.01
+const jump_cooldown = 0.08
+const damage_threshold = 200
+const damage_scale = 4
 
 var is_grounded = false
 var is_walled = false
@@ -18,13 +21,14 @@ var ground_normal = Vector2.UP
 var wall_normal = Vector2.ZERO
 var can_wall_jump = false
 var is_falling = false
-var jump_cooldown = 0.08
 var jump_cooldown_timer = 0.0
 var abilities = []
 var ability_selected = 0
 
 # Once the player enters the scene, iterates through the player's abilities and instantiates them so they can be used
 func _enter_tree() -> void:
+	GameData.player_2_health = 1000
+	
 	for ab in GameData.player_2_abilities:
 		if ab is PackedScene:
 			var inst = ab.instantiate()
@@ -39,6 +43,10 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	var contact_count = state.get_contact_count() # Get all the points of contact between the player and other surfaces
 
 	for i in range(contact_count): # Iterates through each contact to see if it's a ground / wall. Updates is_grounded/walled accordingly
+		var other = state.get_contact_collider_object(i) # Gets the type of object the player has collided with
+		if other and other is RigidBody2D: # Check to confirm that the object is another player
+			_handle_player_collision(other)
+		
 		var normal = state.get_contact_local_normal(i)
 		if normal.dot(Vector2.UP) > 0.6: # 1 = horizontal
 			is_grounded = true
@@ -128,3 +136,30 @@ func _physics_process(delta: float) -> void:
 	else:
 		ball_sprite.speed_scale = 0
 		head_sprite.stop()
+
+# Used to update the player's health after collision
+func apply_dmg(damage):
+	GameData.player_2_health -= abs(round(damage))
+	if GameData.player_2_health <= 0:
+		print("Player 2 has died! Player 1 wins!")
+		queue_free() # "Kills" the player if there health is gone
+	print(GameData.player_2_health, " Health left for player 2")
+
+func _handle_player_collision(other: RigidBody2D):
+	var rel_vel = linear_velocity - other.linear_velocity
+	var normal = (other.global_position - global_position).normalized()
+	var impact_speed = rel_vel.dot(normal)
+	print(impact_speed)
+	
+	if abs(impact_speed) < damage_threshold:
+		return
+	
+	var my_speed = linear_velocity.length()
+	var their_speed = other.linear_velocity.length()
+	
+	if my_speed > their_speed:
+		var dmg = impact_speed / damage_scale
+		other.apply_dmg(dmg)
+	elif my_speed < their_speed:
+		var dmg = impact_speed / damage_scale
+		apply_dmg(dmg)

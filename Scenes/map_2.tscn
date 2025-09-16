@@ -178,7 +178,7 @@ polygon = PackedVector2Array(220, 1180, 168, 1173, 120, 1153, 79, 1121, 47, 1080
 physics_material_override = SubResource("PhysicsMaterial_wuwv3")
 
 [node name="CentralSpinning" type="CollisionShape2D" parent="PlatformsMoving/StaticBody2D"]
-position = Vector2(968, 592)
+position = Vector2(1472, 640)
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_wy8n8")
 
@@ -191,6 +191,21 @@ libraries = {
 }
 autoplay = "Spin"
 speed_scale = 2.0
+
+[node name="CentralSpinning2" type="CollisionShape2D" parent="PlatformsMoving/StaticBody2D"]
+position = Vector2(448, 640)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_wy8n8")
+
+[node name="Polygon2D" type="Polygon2D" parent="PlatformsMoving/StaticBody2D/CentralSpinning2"]
+polygon = PackedVector2Array(-3.05176e-05, -162, -5.00003, -161, -10, -159, -14, -156, -17, -152, -19, -147, -20, -142, -20, 142, -19, 147, -17, 152, -14, 156, -10, 159, -5, 161, 0, 162, 5, 161, 10, 159, 14, 156, 17, 152, 19, 147, 20, 142, 20, -142, 19, -147, 17, -152, 14, -156, 9.99997, -159, 4.99997, -161)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlatformsMoving/StaticBody2D/CentralSpinning2"]
+libraries = {
+&"": SubResource("AnimationLibrary_l8x2o")
+}
+autoplay = "Spin"
+speed_scale = -2.0
 
 [node name="Booster" parent="." instance=ExtResource("4_uuwls")]
 position = Vector2(58, 827)

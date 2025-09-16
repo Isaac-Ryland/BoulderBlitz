@@ -1,9 +1,11 @@
 extends Node
 
 var player_1_colour = "GREEN"
-var player_2_colour = "BLUE"
 var player_1_abilities = ["", "", ""]
+var player_1_health = 1000 # For balancing, start by multiplying vel by 0.25
+var player_2_colour = "BLUE"
 var player_2_abilities = ["", "", ""]
+var player_2_health = 1000
 
 var settings_prev_menu = "res://Scenes/main_menu.tscn"
 
