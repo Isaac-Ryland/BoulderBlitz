@@ -1,8 +1,9 @@
 Boulder Blitz
 
 to do:
-	Build maps
-	Implement some sort of damage system
-	Do more basic abilities
-	Add colour switching
-	Create an actual way for users to win, or at least be told they have
+	Build maps # 4
+	Do more basic abilities # 4
+	Add colour switching # 1
+	Create an actual way for users to win, or at least be told they have # 5
+	UI overlay # 13
+	Rubble cloud with player colour on collision # 7

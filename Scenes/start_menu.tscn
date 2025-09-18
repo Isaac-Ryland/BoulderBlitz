@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cb3o7nasvuihw" path="res://Assets/StartMenuArt/AbilitySlotsLeft/AbilitySlotLeftHover.png" id="4_i2i62"]
 [ext_resource type="Texture2D" uid="uid://cymaj5170j0ad" path="res://Assets/StartMenuArt/SelectMenuBoulderLeft/GreenBoulderLeft.png" id="5_1u5ka"]
 [ext_resource type="Texture2D" uid="uid://d27gs6tpvn3so" path="res://Assets/StartMenuArt/AbilitySlotsRight/AbilitySlotRightDefault.png" id="5_lfskg"]
-[ext_resource type="Texture2D" uid="uid://dgnu1lay52d8s" path="res://Assets/StartMenuArt/SelectMenuBoulderRight/BlueBoulder.png" id="6_jfkjl"]
+[ext_resource type="Texture2D" uid="uid://dgnu1lay52d8s" path="res://Assets/StartMenuArt/SelectMenuBoulderRight/BlueBoulderRight.png" id="6_6k3d4"]
 [ext_resource type="Texture2D" uid="uid://ckv2wjsgw1w57" path="res://Assets/StartMenuArt/AbilitySlotsRight/AbilitySlotRightHover.png" id="6_ru7em"]
 [ext_resource type="PackedScene" uid="uid://x0ebwlv5qjfo" path="res://Scenes/ability_select_left.tscn" id="7_i2i62"]
 [ext_resource type="PackedScene" uid="uid://cob2bii56u5iu" path="res://Scenes/ability_select_right.tscn" id="8_lfskg"]
@@ -113,7 +113,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("6_jfkjl")
+texture = ExtResource("6_6k3d4")
 
 [node name="SlotsLeft" type="Control" parent="."]
 layout_mode = 3

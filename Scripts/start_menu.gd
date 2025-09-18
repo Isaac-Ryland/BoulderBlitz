@@ -6,6 +6,8 @@ extends Node2D
 @onready var ReadyLeft: TextureButton = $ReadyLeft/TextureButton
 @onready var ReadyRight: TextureButton = $ReadyRight/TextureButton
 
+@onready var slot_1: TextureButton = $SlotsLeft/HBoxContainer/Slot1
+
 # Ability slot textures, for showing currently selected ability
 @onready var ability_slot_textures = {
 	1: $AbilitySlot1,
@@ -31,19 +33,34 @@ var right_textures = [
 	preload("res://Assets/StartMenuArt/AbilityMenuRight/AbilityMenuRightSlot2.png"),
 	preload("res://Assets/StartMenuArt/AbilityMenuRight/AbilityMenuRightSlot3.png")
 ]
-var ability_selected_textures = [
-	preload("res://Assets/StartMenuArt/Ability1.png"),
-	preload("res://Assets/StartMenuArt/Ability2.png"),
-	preload("res://Assets/StartMenuArt/Ability3.png"),
-	preload("res://Assets/StartMenuArt/Ability4.png"),
-	preload("res://Assets/StartMenuArt/Ability5.png"),
-	preload("res://Assets/StartMenuArt/Ability6.png")
-]
+var ability_selected_textures = {
+	1: preload("res://Assets/StartMenuArt/Ability1.png"),
+	2: preload("res://Assets/StartMenuArt/Ability2.png"),
+	3: preload("res://Assets/StartMenuArt/Ability3.png"),
+	4: preload("res://Assets/StartMenuArt/Ability4.png"),
+	5: preload("res://Assets/StartMenuArt/Ability5.png"),
+	6: preload("res://Assets/StartMenuArt/Ability6.png")
+}
 
 var current_left_slot = 0
 var current_right_slot = 0
 var p1_ready = false
 var p2_ready = false
+
+func _ready() -> void:
+	if GameData.player_1_abilities[0] is not String:
+		update_selected_ability(1, 1, GameData.player_1_abilities[0])
+	if GameData.player_1_abilities[1] is not String:
+		update_selected_ability(1, 2, GameData.player_1_abilities[1])
+	if GameData.player_1_abilities[2] is not String:
+		update_selected_ability(1, 3, GameData.player_1_abilities[2])
+	
+	if GameData.player_2_abilities[0] is not String:
+		update_selected_ability(2, 1, GameData.player_2_abilities[0])
+	if GameData.player_2_abilities[2] is not String:
+		update_selected_ability(2, 2, GameData.player_2_abilities[1])
+	if GameData.player_2_abilities[2] is not String:
+		update_selected_ability(2, 3, GameData.player_2_abilities[2])
 
 # Menu Navigation buttons
 func on_back_button_pressed() -> void:
@@ -112,11 +129,11 @@ func _on_slot_3_right_pressed() -> void:
 # Displays the selected ability in its according slot
 func update_selected_ability(player: int, slot: int, ab: int):
 	if player == 1:
-		ability_slot_textures[slot].texture = ability_selected_textures[ab - 1]
+		ability_slot_textures[slot].texture = ability_selected_textures[ab]
 		ability_slot_textures[slot].visible = true
 	elif player == 2:
 		slot += 3
-		ability_slot_textures[slot].texture = ability_selected_textures[ab - 1]
+		ability_slot_textures[slot].texture = ability_selected_textures[ab]
 		ability_slot_textures[slot].visible = true
 
 # Player colour switch logic. Will not allow matching colours

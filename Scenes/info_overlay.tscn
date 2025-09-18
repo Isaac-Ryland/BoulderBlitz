@@ -1,0 +1,128 @@
+[gd_scene load_steps=6 format=3 uid="uid://baomiiwxpn8hf"]
+
+[ext_resource type="Script" uid="uid://b3ds85re0yedq" path="res://Scripts/info_overlay.gd" id="1_xmmvv"]
+[ext_resource type="Texture2D" uid="uid://cymaj5170j0ad" path="res://Assets/StartMenuArt/SelectMenuBoulderLeft/GreenBoulderLeft.png" id="1_ylol2"]
+[ext_resource type="Texture2D" uid="uid://dabfcts7pkg8l" path="res://Assets/InfoOverlay/FullHealth.png" id="2_xmmvv"]
+[ext_resource type="Texture2D" uid="uid://dgnu1lay52d8s" path="res://Assets/StartMenuArt/SelectMenuBoulderRight/BlueBoulderRight.png" id="3_xmmvv"]
+[ext_resource type="Texture2D" uid="uid://dsbck87x8f65j" path="res://Assets/StartMenuArt/AbilityButtonLeft1/HDashLeftDefault.png" id="4_lyxnu"]
+
+[node name="InfoOverlay" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_xmmvv")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 384.0
+offset_bottom = 133.0
+
+[node name="P1" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -50.5
+offset_right = 100.0
+offset_bottom = 50.5
+grow_vertical = 2
+texture = ExtResource("1_ylol2")
+expand_mode = 1
+
+[node name="HealthBar" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 104.0
+offset_right = 144.0
+offset_bottom = 101.0
+texture = ExtResource("2_xmmvv")
+
+[node name="P1Abilities" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 149.0
+offset_right = 352.0
+offset_bottom = 101.0
+theme_override_constants/separation = 5
+
+[node name="Ab1" type="TextureRect" parent="Control/P1Abilities"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("4_lyxnu")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Ab2" type="TextureRect" parent="Control/P1Abilities"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("4_lyxnu")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Ab3" type="TextureRect" parent="Control/P1Abilities"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("4_lyxnu")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1536.0
+offset_top = 32.0
+offset_right = 1888.0
+offset_bottom = 133.0
+
+[node name="P2" type="TextureRect" parent="Control2"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -50.5
+offset_bottom = 50.5
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("3_xmmvv")
+expand_mode = 1
+
+[node name="HealthBar" type="TextureRect" parent="Control2"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -144.0
+offset_right = -104.0
+offset_bottom = 101.0
+grow_horizontal = 0
+texture = ExtResource("2_xmmvv")
+
+[node name="P2Abilities" type="HBoxContainer" parent="Control2"]
+layout_mode = 0
+offset_right = 203.0
+offset_bottom = 101.0
+theme_override_constants/separation = 5
+
+[node name="Ab1" type="TextureRect" parent="Control2/P2Abilities"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("4_lyxnu")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Ab2" type="TextureRect" parent="Control2/P2Abilities"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("4_lyxnu")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Ab3" type="TextureRect" parent="Control2/P2Abilities"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("4_lyxnu")
+expand_mode = 1
+stretch_mode = 5

@@ -3,6 +3,7 @@ extends RigidBody2D
 @onready var ball_sprite: AnimatedSprite2D = $BallSprite
 @onready var head_sprite: AnimatedSprite2D = $HeadSprite
 @onready var ray: RayCast2D = $CollisionShape2D/RayCast2D
+@onready var info_overlay: Control = $"../InfoOverlay"
 
 const move_force: float = 1000.0
 const vel_cap: float = 1500.0
@@ -12,7 +13,7 @@ const wall_jump_impulse: Vector2 = Vector2(500, 0)
 const boulder_radius_in_pixels: int = 100
 const moving_threshold: float = 0.01
 const jump_cooldown = 0.08
-const damage_threshold = 200
+const damage_threshold = 250
 const damage_scale = 4
 
 var is_grounded = false
@@ -26,16 +27,22 @@ var abilities = []
 var ability_selected = 0
 
 # Once the player enters the scene, iterates through the player's abilities and instantiates them so they can be used
-func _enter_tree() -> void:
+func _ready() -> void:
 	GameData.player_2_health = 1000
 	
+	ball_sprite.play(GameData.player_2_colour)
+	ball_sprite.speed_scale = 0
+	head_sprite.play(GameData.player_2_colour)
+	head_sprite.speed_scale = 0
+	
 	for ab in GameData.player_2_abilities:
-		if ab is PackedScene:
-			var inst = ab.instantiate()
+		var scene = GameData.abilities[ab]
+		if scene is PackedScene:
+			var inst = scene.instantiate()
 			add_child(inst)
 			abilities.append(inst)
-		elif ab is String:
-			abilities.append(ab)
+		elif scene is String:
+			abilities.append(scene)
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	is_grounded = false # Assume player is not grounded or walled unless told otherwise
@@ -76,11 +83,13 @@ func _physics_process(delta: float) -> void:
 		ability_selected += 1
 		if ability_selected > 2:
 			ability_selected = 0
+		info_overlay.update_ability_icons(2, GameData.player_2_abilities, ability_selected)
 
 	# Activates the selected ability
 	if Input.is_action_just_pressed("player_2_ability_use"):
 		if abilities[ability_selected] is not String:
-			abilities[ability_selected].activate(self, 2)
+			if abilities[ability_selected].has_method("activate"):
+				abilities[ability_selected].activate(self, 1)
 
 	# Resets the wall jump once the player has returned to the ground
 	if is_grounded:
@@ -154,9 +163,9 @@ func _handle_player_collision(other: RigidBody2D):
 	if abs(impact_speed) < damage_threshold:
 		return
 	
-	var my_speed = linear_velocity.length()
-	var their_speed = other.linear_velocity.length()
-	
+	var my_speed = abs(linear_velocity.length())
+	var their_speed = abs(other.linear_velocity.length())
+
 	if my_speed > their_speed:
 		var dmg = impact_speed / damage_scale
 		other.apply_dmg(dmg)

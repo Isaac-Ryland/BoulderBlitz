@@ -18,8 +18,8 @@ func activate(player, player_id):
 
 	can_activate = false
 	# creates and starts a timer with length (cooldown) that will stop the player using the ability until finished
-	var t = get_tree().create_timer(cooldown)
-	t.timeout.connect(_on_timer_timeout)
+	var cooldown_timer = get_tree().create_timer(cooldown)
+	cooldown_timer.timeout.connect(_on_timer_timeout)
 
 	var dir = Vector2.ZERO
 

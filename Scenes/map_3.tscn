@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bykjmyqtd0e75"]
+[gd_scene load_steps=11 format=3 uid="uid://bykjmyqtd0e75"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://bvkabrx6nujub" path="res://Assets/PhysicsMaterials/ground-material.tres" id="1_vma17"]
 [ext_resource type="PackedScene" uid="uid://bsdt52so4t0v4" path="res://Scenes/player_1.tscn" id="2_xtteh"]
 [ext_resource type="PackedScene" uid="uid://d1puv3ejjkocr" path="res://Scenes/player_2.tscn" id="3_57v0g"]
+[ext_resource type="PackedScene" uid="uid://baomiiwxpn8hf" path="res://Scenes/info_overlay.tscn" id="4_xtteh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o5g0d"]
 size = Vector2(1046, 120)
@@ -185,5 +186,8 @@ shape = SubResource("WorldBoundaryShape2D_hkwdu")
 [node name="player_1" parent="." instance=ExtResource("2_xtteh")]
 position = Vector2(147, 1075)
 
-[node name="Player2" parent="." instance=ExtResource("3_57v0g")]
+[node name="player_2" parent="." instance=ExtResource("3_57v0g")]
 position = Vector2(856, 1000)
+
+[node name="InfoOverlay" parent="." instance=ExtResource("4_xtteh")]
+top_level = true

@@ -2,25 +2,25 @@
 
 [ext_resource type="Script" uid="uid://t4bfyssmkqx2" path="res://Scripts/ability_select_right.gd" id="1_kwluk"]
 [ext_resource type="Texture2D" uid="uid://bhetiiieh1ov2" path="res://Assets/StartMenuArt/AbilityMenuLeft/AbilityMenuLeftSlot1.png" id="2_wt2ys"]
-[ext_resource type="Texture2D" uid="uid://yxbt311kkcc1" path="res://Assets/StartMenuArt/AbilityButtonRight1/AbilityButtonDefaultRight1.png" id="3_kwluk"]
-[ext_resource type="Texture2D" uid="uid://cwv5fixofddjs" path="res://Assets/StartMenuArt/AbilityButtonRight1/AbilityButtonPressRight1.png" id="4_swt44"]
-[ext_resource type="Texture2D" uid="uid://nl4e76mhm5fb" path="res://Assets/StartMenuArt/AbilityButtonRight1/AbilityButtonHoverRight1.png" id="4_wt2ys"]
-[ext_resource type="Texture2D" uid="uid://dbf5fktpv4fyf" path="res://Assets/StartMenuArt/AbilityButtonRight2/AbilityButtonDefaultRight2.png" id="5_aqki3"]
-[ext_resource type="Texture2D" uid="uid://bf8pr1et6ldco" path="res://Assets/StartMenuArt/AbilityButtonRight2/AbilityButtonHoverRight2.png" id="6_8cb0e"]
-[ext_resource type="Texture2D" uid="uid://cb5flij2eq883" path="res://Assets/StartMenuArt/AbilityButtonRight3/AbilityButtonDefaultRight3.png" id="7_lvs8g"]
-[ext_resource type="Texture2D" uid="uid://d4an6utn7l1ht" path="res://Assets/StartMenuArt/AbilityButtonRight2/AbilityButtonPressRight2.png" id="7_m1mkn"]
-[ext_resource type="Texture2D" uid="uid://dne7uvm5p0hpa" path="res://Assets/StartMenuArt/AbilityButtonRight3/AbilityButtonHoverRight3.png" id="8_rf0wp"]
-[ext_resource type="Texture2D" uid="uid://c4sauk88yaqei" path="res://Assets/StartMenuArt/AbilityButtonRight4/AbilityButtonDefaultRight4.png" id="9_swt44"]
-[ext_resource type="Texture2D" uid="uid://2kiuqvmv88ok" path="res://Assets/StartMenuArt/AbilityButtonRight3/AbilityButtonPressRight3.png" id="10_436rt"]
-[ext_resource type="Texture2D" uid="uid://dt4u7skbm46do" path="res://Assets/StartMenuArt/AbilityButtonRight4/AbilityButtonHoverRight4.png" id="10_m1mkn"]
-[ext_resource type="Texture2D" uid="uid://yoe5b6cu62pn" path="res://Assets/StartMenuArt/AbilityButtonRight5/AbilityButtonDefault5.png" id="11_436rt"]
-[ext_resource type="Texture2D" uid="uid://dfcix3bgelc8w" path="res://Assets/StartMenuArt/AbilityButtonRight5/AbilityButtonHoverRight5.png" id="12_aoy85"]
-[ext_resource type="Texture2D" uid="uid://cpntyv3fnmal6" path="res://Assets/StartMenuArt/AbilityButtonRight6/AbilityButtonDefaultRight6.png" id="13_1rcev"]
-[ext_resource type="Texture2D" uid="uid://di1g2uq574u7m" path="res://Assets/StartMenuArt/AbilityButtonRight4/AbilityButtonPressRight4.png" id="13_aoy85"]
-[ext_resource type="Texture2D" uid="uid://dkaypw132k7y0" path="res://Assets/StartMenuArt/AbilityButtonRight6/AbilityButtonHoverRight6.png" id="14_76115"]
+[ext_resource type="Texture2D" uid="uid://n7hereg4vwj2" path="res://Assets/StartMenuArt/AbilityButtonRight1/HDashRightDefault.png" id="3_swt44"]
+[ext_resource type="Texture2D" uid="uid://xi1xh72e37vc" path="res://Assets/StartMenuArt/AbilityButtonRight1/HDashRightPress.png" id="4_m1mkn"]
+[ext_resource type="Texture2D" uid="uid://30puq5acfch6" path="res://Assets/StartMenuArt/AbilityButtonRight1/HDashRightHover.png" id="5_436rt"]
+[ext_resource type="Texture2D" uid="uid://can2hg5jhty5b" path="res://Assets/StartMenuArt/AbilityButtonRight2/VDashRightDefault.png" id="6_aoy85"]
+[ext_resource type="Texture2D" uid="uid://dysedetaid1rc" path="res://Assets/StartMenuArt/AbilityButtonRight2/VDashRightPress.png" id="7_1rcev"]
+[ext_resource type="Texture2D" uid="uid://bb8punuek1plq" path="res://Assets/StartMenuArt/AbilityButtonRight2/VDashRightHover.png" id="8_76115"]
+[ext_resource type="Texture2D" uid="uid://dxwgcjb5mw8e0" path="res://Assets/StartMenuArt/AbilityButtonRight3/FrictionlessRightDefault.png" id="9_v3mnb"]
+[ext_resource type="Texture2D" uid="uid://ndpmrnk3p577" path="res://Assets/StartMenuArt/AbilityButtonRight3/FrictionlessRightPress.png" id="10_jir6o"]
+[ext_resource type="Texture2D" uid="uid://ir0yyg0fd2ev" path="res://Assets/StartMenuArt/AbilityButtonRight3/FrictionlessRightHover.png" id="11_e3n2q"]
+[ext_resource type="Texture2D" uid="uid://dwmj7utvoyvda" path="res://Assets/StartMenuArt/AbilityButtonRight4/GrappleRightDefault.png" id="12_m2b6f"]
+[ext_resource type="Texture2D" uid="uid://w1jqtpnur6h" path="res://Assets/StartMenuArt/AbilityButtonRight4/GrappleRightPress.png" id="13_78ulv"]
+[ext_resource type="Texture2D" uid="uid://d2lccsx61x2da" path="res://Assets/StartMenuArt/AbilityButtonRight4/GrappleRightHover.png" id="14_0gb5e"]
+[ext_resource type="Texture2D" uid="uid://c4pkojcmknq8y" path="res://Assets/StartMenuArt/AbilityButtonRight5/SlingshotRightDefault.png" id="15_btygw"]
 [ext_resource type="Texture2D" uid="uid://cfs26uddq4tae" path="res://Assets/StartMenuArt/LockRight.png" id="15_v3mnb"]
-[ext_resource type="Texture2D" uid="uid://d7yqyqlrfwuf" path="res://Assets/StartMenuArt/AbilityButtonRight5/AbilityButtonPressRight5.png" id="16_1rcev"]
-[ext_resource type="Texture2D" uid="uid://cdejbe8i6o0af" path="res://Assets/StartMenuArt/AbilityButtonRight6/AbilityButtonPressRight6.png" id="19_76115"]
+[ext_resource type="Texture2D" uid="uid://c12ue5r8l2h8l" path="res://Assets/StartMenuArt/AbilityButtonRight5/SlingshotRightPress.png" id="16_k12u8"]
+[ext_resource type="Texture2D" uid="uid://bnrpup8xoi10l" path="res://Assets/StartMenuArt/AbilityButtonRight5/SlingshotRightHover.png" id="17_ubq4h"]
+[ext_resource type="Texture2D" uid="uid://bnhxxbqcg51ij" path="res://Assets/StartMenuArt/AbilityButtonRight6/SpikeRightDefault.png" id="18_s5hu8"]
+[ext_resource type="Texture2D" uid="uid://diofxc6408q3c" path="res://Assets/StartMenuArt/AbilityButtonRight6/SpikeRightPress.png" id="19_fsuk8"]
+[ext_resource type="Texture2D" uid="uid://cq8rq2pwl7lml" path="res://Assets/StartMenuArt/AbilityButtonRight6/SpikeRightHover.png" id="20_e0ufo"]
 
 [node name="ability_select_right" type="Control"]
 layout_mode = 3
@@ -53,32 +53,32 @@ size_flags_vertical = 2
 custom_minimum_size = Vector2(142, 0)
 layout_mode = 2
 size_flags_horizontal = 2
-texture_normal = ExtResource("3_kwluk")
-texture_pressed = ExtResource("4_swt44")
-texture_hover = ExtResource("4_wt2ys")
+texture_normal = ExtResource("3_swt44")
+texture_pressed = ExtResource("4_m1mkn")
+texture_hover = ExtResource("5_436rt")
 
 [node name="Ability2" type="TextureButton" parent="AbilityMenuRight/VBoxContainer/AbilityRow1"]
 custom_minimum_size = Vector2(142, 0)
 layout_mode = 2
 size_flags_horizontal = 2
-texture_normal = ExtResource("5_aqki3")
-texture_pressed = ExtResource("7_m1mkn")
-texture_hover = ExtResource("6_8cb0e")
+texture_normal = ExtResource("6_aoy85")
+texture_pressed = ExtResource("7_1rcev")
+texture_hover = ExtResource("8_76115")
 
 [node name="Ability3" type="TextureButton" parent="AbilityMenuRight/VBoxContainer/AbilityRow1"]
 custom_minimum_size = Vector2(142, 0)
 layout_mode = 2
 size_flags_horizontal = 2
-texture_normal = ExtResource("7_lvs8g")
-texture_pressed = ExtResource("10_436rt")
-texture_hover = ExtResource("8_rf0wp")
+texture_normal = ExtResource("9_v3mnb")
+texture_pressed = ExtResource("10_jir6o")
+texture_hover = ExtResource("11_e3n2q")
 
 [node name="Ability4" type="TextureButton" parent="AbilityMenuRight/VBoxContainer/AbilityRow1"]
 custom_minimum_size = Vector2(142, 0)
 layout_mode = 2
-texture_normal = ExtResource("9_swt44")
-texture_pressed = ExtResource("13_aoy85")
-texture_hover = ExtResource("10_m1mkn")
+texture_normal = ExtResource("12_m2b6f")
+texture_pressed = ExtResource("13_78ulv")
+texture_hover = ExtResource("14_0gb5e")
 ignore_texture_size = true
 
 [node name="AbilityRow2" type="HBoxContainer" parent="AbilityMenuRight/VBoxContainer"]
@@ -89,17 +89,17 @@ size_flags_vertical = 2
 custom_minimum_size = Vector2(142, 0)
 layout_mode = 2
 size_flags_horizontal = 2
-texture_normal = ExtResource("11_436rt")
-texture_pressed = ExtResource("16_1rcev")
-texture_hover = ExtResource("12_aoy85")
+texture_normal = ExtResource("15_btygw")
+texture_pressed = ExtResource("16_k12u8")
+texture_hover = ExtResource("17_ubq4h")
 
 [node name="Ability6" type="TextureButton" parent="AbilityMenuRight/VBoxContainer/AbilityRow2"]
 custom_minimum_size = Vector2(142, 0)
 layout_mode = 2
 size_flags_horizontal = 2
-texture_normal = ExtResource("13_1rcev")
-texture_pressed = ExtResource("19_76115")
-texture_hover = ExtResource("14_76115")
+texture_normal = ExtResource("18_s5hu8")
+texture_pressed = ExtResource("19_fsuk8")
+texture_hover = ExtResource("20_e0ufo")
 
 [node name="Ability7" type="TextureButton" parent="AbilityMenuRight/VBoxContainer/AbilityRow2"]
 custom_minimum_size = Vector2(142, 0)
