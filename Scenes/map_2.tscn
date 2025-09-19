@@ -1,8 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://2uei1xuwee7j"]
+[gd_scene load_steps=15 format=3 uid="uid://2uei1xuwee7j"]
 
-[ext_resource type="PhysicsMaterial" uid="uid://bvkabrx6nujub" path="res://Assets/PhysicsMaterials/ground-material.tres" id="1_wuwv3"]
-[ext_resource type="PackedScene" uid="uid://bsdt52so4t0v4" path="res://Scenes/player_1.tscn" id="2_uuwls"]
-[ext_resource type="PackedScene" uid="uid://d1puv3ejjkocr" path="res://Scenes/player_2.tscn" id="3_qmr3o"]
+[ext_resource type="PhysicsMaterial" uid="uid://bvkabrx6nujub" path="res://Assets/PhysicsMaterials/ground_material.tres" id="1_wuwv3"]
+[ext_resource type="PackedScene" uid="uid://cg7bxbpkffuo2" path="res://Scenes/player.tscn" id="3_uuwls"]
 [ext_resource type="PackedScene" uid="uid://gitaxeafjoim" path="res://Scenes/booster.tscn" id="4_uuwls"]
 [ext_resource type="PackedScene" uid="uid://baomiiwxpn8hf" path="res://Scenes/info_overlay.tscn" id="5_qmr3o"]
 
@@ -216,11 +215,10 @@ scale = Vector2(0.8, 0.8)
 position = Vector2(1859, 827)
 scale = Vector2(0.8, 0.8)
 
-[node name="player_1" parent="." instance=ExtResource("2_uuwls")]
-position = Vector2(213, 1059)
+[node name="Player1" parent="." instance=ExtResource("3_uuwls")]
 
-[node name="player_2" parent="." instance=ExtResource("3_qmr3o")]
-position = Vector2(1371, 1163)
+[node name="Player2" parent="." instance=ExtResource("3_uuwls")]
+player_index = 1
 
 [node name="InfoOverlay" parent="." instance=ExtResource("5_qmr3o")]
 top_level = true

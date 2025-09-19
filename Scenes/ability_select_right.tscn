@@ -31,6 +31,7 @@ offset_bottom = -0.400024
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kwluk")
+player_index = 1
 
 [node name="AbilityMenuRight" type="TextureRect" parent="."]
 layout_mode = 0

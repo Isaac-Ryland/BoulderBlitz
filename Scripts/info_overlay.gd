@@ -1,4 +1,7 @@
 extends Control
+## UI overlay 
+##
+## The overlay that displays info about both players during games
 
 @onready var player_1_icon: TextureRect = $Control/P1
 @onready var player_2_icon: TextureRect = $Control2/P2
@@ -14,7 +17,7 @@ extends Control
 	1: $Control2/P2Abilities/Ab1,
 	2: $Control2/P2Abilities/Ab2,
 	3: $Control2/P2Abilities/Ab3
-}
+} # MAKE ARRAYS
 var p1_colour_textures = {
 	"BLUE": preload("res://Assets/StartMenuArt/SelectMenuBoulderLeft/BlueBoulderLeft.png"),
 	"GREEN": preload("res://Assets/StartMenuArt/SelectMenuBoulderLeft/GreenBoulderLeft.png"),
@@ -45,7 +48,8 @@ var p1_ability_textures = {
 	3: preload("res://Assets/StartMenuArt/AbilityButtonLeft3/FrictionlessLeftDefault.png"),
 	4: preload("res://Assets/StartMenuArt/AbilityButtonLeft4/GrappleLeftDefault.png"),
 	5: preload("res://Assets/StartMenuArt/AbilityButtonLeft5/SlingshotLeftDefault.png"),
-	6: preload("res://Assets/StartMenuArt/AbilityButtonLeft6/SpikeLeftDefault.png")
+	6: preload("res://Assets/StartMenuArt/AbilityButtonLeft6/SpikeLeftDefault.png"),
+	7: preload("res://Assets/StartMenuArt/BlankLeftDefault.png")
 }
 var p2_ability_textures = {
 	1: preload("res://Assets/StartMenuArt/AbilityButtonRight1/HDashRightDefault.png"),
@@ -53,7 +57,8 @@ var p2_ability_textures = {
 	3: preload("res://Assets/StartMenuArt/AbilityButtonRight3/FrictionlessRightDefault.png"),
 	4: preload("res://Assets/StartMenuArt/AbilityButtonRight4/GrappleRightDefault.png"),
 	5: preload("res://Assets/StartMenuArt/AbilityButtonRight5/SlingshotRightDefault.png"),
-	6: preload("res://Assets/StartMenuArt/AbilityButtonRight6/SpikeRightDefault.png")
+	6: preload("res://Assets/StartMenuArt/AbilityButtonRight6/SpikeRightDefault.png"),
+	7: preload("res://Assets/StartMenuArt/BlankRightDefault.png")
 }
 var p1_ability_textures_hover = {
 	1: preload("res://Assets/StartMenuArt/AbilityButtonLeft1/HDashLeftHover.png"),
@@ -61,7 +66,8 @@ var p1_ability_textures_hover = {
 	3: preload("res://Assets/StartMenuArt/AbilityButtonLeft3/FrictionlessLeftHover.png"),
 	4: preload("res://Assets/StartMenuArt/AbilityButtonLeft4/GrappleLeftHover.png"),
 	5: preload("res://Assets/StartMenuArt/AbilityButtonLeft5/SlingshotLeftHover.png"),
-	6: preload("res://Assets/StartMenuArt/AbilityButtonLeft6/SpikeLeftHover.png")
+	6: preload("res://Assets/StartMenuArt/AbilityButtonLeft6/SpikeLeftHover.png"),
+	7: preload("res://Assets/StartMenuArt/BlankLeftHover.png")
 }
 var p2_ability_textures_hover = {
 	1: preload("res://Assets/StartMenuArt/AbilityButtonRight1/HDashRightHover.png"),
@@ -69,27 +75,36 @@ var p2_ability_textures_hover = {
 	3: preload("res://Assets/StartMenuArt/AbilityButtonRight3/FrictionlessRightHover.png"),
 	4: preload("res://Assets/StartMenuArt/AbilityButtonRight4/GrappleRightHover.png"),
 	5: preload("res://Assets/StartMenuArt/AbilityButtonRight5/SlingshotRightHover.png"),
-	6: preload("res://Assets/StartMenuArt/AbilityButtonRight6/SpikeRightHover.png")
+	6: preload("res://Assets/StartMenuArt/AbilityButtonRight6/SpikeRightHover.png"),
+	7: preload("res://Assets/StartMenuArt/BlankRightHover.png")
 }
 
+
 func _ready() -> void:
-	player_1_icon.texture = p1_colour_textures[GameData.player_1_colour]
-	player_2_icon.texture = p2_colour_textures[GameData.player_2_colour]
+	player_1_icon.texture = p1_colour_textures[GameData.player_colour[0]]
+	player_2_icon.texture = p2_colour_textures[GameData.player_colour[1]]
 	
 	for i in p1_ability_icons.size():
-		var ab_icon = GameData.player_1_abilities[i]
-		p1_ability_icons[i+1].texture = p1_ability_textures[ab_icon]
+		var ab_icon = GameData.player_abilities[0][i]
+		if ab_icon is not String:
+			p1_ability_icons[i+1].texture = p1_ability_textures[ab_icon]
+		else:
+			p1_ability_icons[i+1].texture = p1_ability_textures[7]
 	
 	for i in p2_ability_icons.size():
-		var ab_icon = GameData.player_2_abilities[i]
-		p2_ability_icons[i+1].texture = p2_ability_textures[ab_icon]
+		var ab_icon = GameData.player_abilities[1][i]
+		if ab_icon is not String:
+			p2_ability_icons[i+1].texture = p2_ability_textures[ab_icon]
+		else:
+			p2_ability_icons[i+1].texture = p2_ability_textures[7]
 
-func update_ability_icons(p: int, abilities: Array, selected_index: int) -> void:
+
+func update_ability_icons(player_index: int, abilities: Array, selected_index: int) -> void:
 	var icons
 	var textures
 	var highlighted
 
-	if p == 1:
+	if player_index == 0:
 		icons = p1_ability_icons
 		textures = p1_ability_textures
 		highlighted = p1_ability_textures_hover
@@ -100,10 +115,11 @@ func update_ability_icons(p: int, abilities: Array, selected_index: int) -> void
 
 	for i in range(abilities.size()):
 		var ability_id = abilities[i]
-		if i == selected_index:
-			icons[i+1].texture = highlighted[ability_id]
+		if i == selected_index: #BSLVHJBUIAMKJFHBCOUSKJGVBNOUILSADJFHVCOIULAC
+			icons[i+1].texture = highlighted[ability_id] if ability_id is not String else highlighted[7]
 		else:
-			icons[i+1].texture = textures[ability_id]
+			icons[i+1].texture = textures[ability_id] if ability_id is not String else textures[7]
+
 
 func update_health_bar(health: int) -> Texture2D:
 	if health > 800:
@@ -119,6 +135,7 @@ func update_health_bar(health: int) -> Texture2D:
 	else:
 		return health_bar_textures[0]
 
+
 func _physics_process(delta: float) -> void:
-	p1_health_bar.texture = update_health_bar(GameData.player_1_health)
-	p2_health_bar.texture = update_health_bar(GameData.player_2_health)
+	p1_health_bar.texture = update_health_bar(GameData.player_health[0])
+	p2_health_bar.texture = update_health_bar(GameData.player_health[1])

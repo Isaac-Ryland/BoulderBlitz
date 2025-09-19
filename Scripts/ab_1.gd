@@ -1,15 +1,18 @@
 extends Node2D
+## Dash ability
+##
+## Used to apply a force in the held direction, excluding upwards
 
-# Dash ability
-# Used to apply a force in the held direction, excluding upwards
+const dash_impulse: float = 600
+const cooldown: float = 3.0
 
-var dash_impulse: float = 600
-var cooldown: float = 3.0
 var can_activate: bool = true
+
 
 # When the cooldown timer runs out, this is called which allows the activation of abilities again
 func _on_timer_timeout() -> void:
 	can_activate = true
+
 
 func activate(player, player_id):
 	# Cuts the ability activation short to prevent ability use while on cooldown
@@ -24,12 +27,11 @@ func activate(player, player_id):
 	var dir = Vector2.ZERO
 
 	# Gets the inputs of the player that is using the ability
-	var right = "player_%d_right" % player_id
-	var left = "player_%d_left" % player_id
+	var controls = GameData.player_controls[player_id]
 	
-	if Input.is_action_pressed(right):
+	if Input.is_action_pressed(controls.right):
 		dir.x = 1
-	if Input.is_action_pressed(left):
+	if Input.is_action_pressed(controls.left):
 		dir.x = -1
 
 	# If no input, dash in direction of player's horizontal velocity

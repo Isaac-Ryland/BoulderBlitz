@@ -5,5 +5,4 @@ to do:
 	Do more basic abilities # 4
 	Add colour switching # 1
 	Create an actual way for users to win, or at least be told they have # 5
-	UI overlay # 13
 	Rubble cloud with player colour on collision # 7

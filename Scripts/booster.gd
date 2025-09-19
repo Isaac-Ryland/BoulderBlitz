@@ -1,16 +1,22 @@
 extends Area2D
+## Booster
+##
+## The booster is an area that propels the player in a given direction
 
 @export var boost_strength: float = 2000.0
 
 # Keeps track of how many bodies are inside booster
 var bodies_inside = []
 
+
 func _on_body_entered(body: Node) -> void:
 	if body is RigidBody2D: # Only appends body if it is a RigidBody2D, which is what the players are
 		bodies_inside.append(body)
 
+
 func _on_body_exited(body: Node) -> void:
 	bodies_inside.erase(body)
+
 
 func _physics_process(delta: float) -> void:
 	# Does nothing if there are no bodies inside booster

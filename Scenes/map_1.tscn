@@ -1,10 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://ctrpi4xhqxa33"]
+[gd_scene load_steps=12 format=3 uid="uid://ctrpi4xhqxa33"]
 
-[ext_resource type="PhysicsMaterial" uid="uid://bvkabrx6nujub" path="res://Assets/PhysicsMaterials/ground-material.tres" id="1_pj5k7"]
-[ext_resource type="PackedScene" uid="uid://bsdt52so4t0v4" path="res://Scenes/player_1.tscn" id="2_k5iew"]
-[ext_resource type="PackedScene" uid="uid://d1puv3ejjkocr" path="res://Scenes/player_2.tscn" id="3_lmd5f"]
+[ext_resource type="PhysicsMaterial" uid="uid://bvkabrx6nujub" path="res://Assets/PhysicsMaterials/ground_material.tres" id="1_pj5k7"]
 [ext_resource type="PackedScene" uid="uid://gitaxeafjoim" path="res://Scenes/booster.tscn" id="4_k5iew"]
 [ext_resource type="PackedScene" uid="uid://baomiiwxpn8hf" path="res://Scenes/info_overlay.tscn" id="5_lmd5f"]
+[ext_resource type="PackedScene" uid="uid://cg7bxbpkffuo2" path="res://Scenes/player.tscn" id="6_ptrbc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pj5k7"]
 size = Vector2(1920, 22)
@@ -287,13 +286,12 @@ shape = SubResource("CapsuleShape2D_lmd5f")
 position = Vector2(960, 118)
 rotation = 3.14159
 
-[node name="player_1" parent="." instance=ExtResource("2_k5iew")]
-top_level = true
-position = Vector2(578, 1086)
-
-[node name="player_2" parent="." instance=ExtResource("3_lmd5f")]
-top_level = true
-position = Vector2(1345, 1088)
-
 [node name="InfoOverlay" parent="." instance=ExtResource("5_lmd5f")]
 top_level = true
+
+[node name="Player1" parent="." instance=ExtResource("6_ptrbc")]
+position = Vector2(641, 599)
+
+[node name="Player2" parent="." instance=ExtResource("6_ptrbc")]
+position = Vector2(1217, 597)
+player_index = 1
