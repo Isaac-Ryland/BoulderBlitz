@@ -2079,6 +2079,30 @@ animation = &"GREEN"
 position = Vector2(0, -64)
 shape = SubResource("CircleShape2D_vfarp")
 
-[node name="RayCast2D" type="RayCast2D" parent="CollisionShape2D"]
+[node name="OneWayRay" type="RayCast2D" parent="CollisionShape2D"]
 target_position = Vector2(0, 150)
 collision_mask = 2
+
+[node name="LeftCast" type="RayCast2D" parent="CollisionShape2D"]
+target_position = Vector2(-1200, 0)
+
+[node name="TopLeftCast" type="RayCast2D" parent="CollisionShape2D"]
+target_position = Vector2(-848, -848)
+
+[node name="TopCast" type="RayCast2D" parent="CollisionShape2D"]
+target_position = Vector2(0, -1200)
+
+[node name="TopRightCast" type="RayCast2D" parent="CollisionShape2D"]
+target_position = Vector2(848, -848)
+
+[node name="RightCast" type="RayCast2D" parent="CollisionShape2D"]
+target_position = Vector2(1200, 0)
+
+[node name="BottomRightCast" type="RayCast2D" parent="CollisionShape2D"]
+target_position = Vector2(848, 848)
+
+[node name="BottomCast" type="RayCast2D" parent="CollisionShape2D"]
+target_position = Vector2(0, 1200)
+
+[node name="BottomLeftCast" type="RayCast2D" parent="CollisionShape2D"]
+target_position = Vector2(-848, 848)

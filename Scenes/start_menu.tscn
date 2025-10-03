@@ -262,9 +262,6 @@ offset_left = 179.84
 offset_top = 461.8
 offset_right = 179.84
 offset_bottom = 461.8
-is_visible = false
-current_slot = 0
-player_index = 0
 
 [node name="ability_select_right" parent="." instance=ExtResource("8_lfskg")]
 visible = false

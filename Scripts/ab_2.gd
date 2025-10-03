@@ -2,6 +2,7 @@ extends Node2D
 ## Jetpack ability
 ## 
 ## Used to apply a force in the held direction, excluding horizontal
+## Ability fires once on ability button pressed
 
 const jetpack_impulse: float = 600
 const cooldown: float = 3.0

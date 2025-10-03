@@ -2,10 +2,12 @@ extends Node2D
 ## Frictionless ability
 ##
 ## Removes the friction of the player, meaning no deccelaration until the ability runs out
+## Ability activates and stays on for a duration when ability button pressed
 
 const cooldown: float = 18.0
 const duration: float = 10.0
 const default_friction: float = 0.25
+const ability_friction: float = 0.0
 
 var can_activate: bool = true
 
@@ -36,7 +38,7 @@ func activate(player, player_id):
 	var original_friction = mat.friction
 
 	# Remove friction
-	mat.friction = 0.0
+	mat.friction = ability_friction
 
 	# Restore original friction after duration
 	var duration_timer = get_tree().create_timer(duration)

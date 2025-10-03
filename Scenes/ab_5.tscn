@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://bdc5tnfvcsyh1"]
+[gd_scene load_steps=2 format=3 uid="uid://bdc5tnfvcsyh1"]
+
+[ext_resource type="Script" uid="uid://hosqy2eb4ukw" path="res://Scripts/ab_5.gd" id="1_qme4j"]
 
 [node name="Ab5" type="Node2D"]
+script = ExtResource("1_qme4j")

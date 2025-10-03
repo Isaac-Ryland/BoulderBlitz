@@ -216,8 +216,10 @@ position = Vector2(1859, 827)
 scale = Vector2(0.8, 0.8)
 
 [node name="Player1" parent="." instance=ExtResource("3_uuwls")]
+position = Vector2(448, 1072)
 
 [node name="Player2" parent="." instance=ExtResource("3_uuwls")]
+position = Vector2(1472, 1087)
 player_index = 1
 
 [node name="InfoOverlay" parent="." instance=ExtResource("5_qmr3o")]

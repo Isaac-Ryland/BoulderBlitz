@@ -183,8 +183,10 @@ position = Vector2(0, 1200)
 shape = SubResource("WorldBoundaryShape2D_hkwdu")
 
 [node name="Player1" parent="." instance=ExtResource("2_vma17")]
+position = Vector2(144, 1144)
 
 [node name="Player2" parent="." instance=ExtResource("2_vma17")]
+position = Vector2(1288, 848)
 player_index = 1
 
 [node name="InfoOverlay" parent="." instance=ExtResource("4_xtteh")]

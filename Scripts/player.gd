@@ -5,8 +5,18 @@ extends RigidBody2D
 
 @onready var ball_sprite: AnimatedSprite2D = $BallSprite
 @onready var head_sprite: AnimatedSprite2D = $HeadSprite
-@onready var ray: RayCast2D = $CollisionShape2D/RayCast2D
+@onready var one_way_ray: RayCast2D = $CollisionShape2D/OneWayRay
 @onready var info_overlay: Control = $"../InfoOverlay"
+@onready var rays = [
+	$CollisionShape2D/LeftCast,
+	$CollisionShape2D/TopLeftCast,
+	$CollisionShape2D/TopCast,
+	$CollisionShape2D/TopRightCast,
+	$CollisionShape2D/RightCast,
+	$CollisionShape2D/BottomRightCast,
+	$CollisionShape2D/BottomCast,
+	$CollisionShape2D/BottomLeftCast
+]
 
 const move_force: float = 1000.0
 const vel_cap: float = 1500.0
@@ -16,8 +26,8 @@ const wall_jump_impulse: Vector2 = Vector2(500, 0)
 const boulder_radius_in_pixels: int = 100
 const moving_threshold: float = 0.01
 const damage_threshold = 250
-const damage_scale = 5
 const jump_cooldown = 0.08
+const one_way_collision_timer: int = 2
 
 var is_grounded = false
 var is_walled = false
@@ -29,6 +39,7 @@ var jump_cooldown_timer = 0.0
 var abilities = []
 var ability_selected = 0
 var controls = {}
+var damage_scale = 5
 
 @export var player_index = 0
 
@@ -128,11 +139,11 @@ func _physics_process(delta: float) -> void:
 			apply_central_force(Vector2(0, quick_fall_speed))
 		
 		# Checks on a certain collision layer for platforms that the player can fall through
-		if ray.is_colliding():
-			var collider = ray.get_collider()
+		if one_way_ray.is_colliding():
+			var collider = one_way_ray.get_collider()
 			if collider is StaticBody2D: # Ensures the collsion detected is a platform
 				add_collision_exception_with(collider)
-				await get_tree().create_timer(3).timeout # Removes the collsion for 3s before replacing it
+				await get_tree().create_timer(one_way_collision_timer).timeout # Removes the collsion for 3s before replacing it
 				remove_collision_exception_with(collider)
 
 	# Caps the player's horizontal velocity
@@ -167,19 +178,23 @@ func apply_dmg(damage: float):
 
 
 func _handle_player_collision(other: RigidBody2D):
-	var rel_vel = linear_velocity - other.linear_velocity
+	var rel_vel = other.linear_velocity - linear_velocity
 	var normal = (other.global_position - global_position).normalized()
 	var impact_speed = rel_vel.dot(normal)
-	print(impact_speed)
 	
-	if abs(impact_speed) < damage_threshold:
+	if impact_speed >= 0 or abs(impact_speed) < damage_threshold:
 		return
+	
+	impact_speed = abs(impact_speed)
+	print(impact_speed)
 	
 	var my_speed = abs(linear_velocity.length())
 	var their_speed = abs(other.linear_velocity.length())
 	var dmg = impact_speed / damage_scale
 	
 	if my_speed > their_speed:
+		print(impact_speed / damage_scale, " damage applied to ", other)
 		other.apply_dmg(dmg)
 	elif my_speed < their_speed:
+		print(impact_speed / damage_scale, " damage applied to ", self)
 		apply_dmg(dmg)

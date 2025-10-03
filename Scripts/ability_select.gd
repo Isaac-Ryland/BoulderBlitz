@@ -4,12 +4,12 @@ class_name AbilitySelect
 ##
 ## The ui where players can select their abilities
 
-@onready var start_menu: Node2D = $".."
+@onready var start_menu: Node2D = $".." # Gets the parent menu
 
 var ability_menu_texture
 @export var is_visible = false
 @export var current_slot = 0
-@export var player_index = 0
+@export var player_index = 0 # Used to know what player to update
 
 
 # Sets the menu to invisible on game start-up

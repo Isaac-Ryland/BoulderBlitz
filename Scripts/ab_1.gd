@@ -2,6 +2,7 @@ extends Node2D
 ## Dash ability
 ##
 ## Used to apply a force in the held direction, excluding upwards
+## Ability fires once on ability button pressed
 
 const dash_impulse: float = 600
 const cooldown: float = 3.0

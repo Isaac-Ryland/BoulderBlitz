@@ -8,16 +8,16 @@ extends Control
 @onready var p1_health_bar: TextureRect = $Control/HealthBar
 @onready var p2_health_bar: TextureRect = $Control2/HealthBar
 
-@onready var p1_ability_icons = {
-	1: $Control/P1Abilities/Ab1,
-	2: $Control/P1Abilities/Ab2,
-	3: $Control/P1Abilities/Ab3
-}
-@onready var p2_ability_icons = {
-	1: $Control2/P2Abilities/Ab1,
-	2: $Control2/P2Abilities/Ab2,
-	3: $Control2/P2Abilities/Ab3
-} # MAKE ARRAYS
+@onready var p1_ability_icons = [
+	$Control/P1Abilities/Ab1,
+	$Control/P1Abilities/Ab2,
+	$Control/P1Abilities/Ab3
+]
+@onready var p2_ability_icons = [
+	$Control2/P2Abilities/Ab1,
+	$Control2/P2Abilities/Ab2,
+	$Control2/P2Abilities/Ab3
+]
 var p1_colour_textures = {
 	"BLUE": preload("res://Assets/StartMenuArt/SelectMenuBoulderLeft/BlueBoulderLeft.png"),
 	"GREEN": preload("res://Assets/StartMenuArt/SelectMenuBoulderLeft/GreenBoulderLeft.png"),
@@ -87,16 +87,16 @@ func _ready() -> void:
 	for i in p1_ability_icons.size():
 		var ab_icon = GameData.player_abilities[0][i]
 		if ab_icon is not String:
-			p1_ability_icons[i+1].texture = p1_ability_textures[ab_icon]
+			p1_ability_icons[i].texture = p1_ability_textures[ab_icon]
 		else:
-			p1_ability_icons[i+1].texture = p1_ability_textures[7]
+			p1_ability_icons[i].texture = p1_ability_textures[7]
 	
 	for i in p2_ability_icons.size():
 		var ab_icon = GameData.player_abilities[1][i]
 		if ab_icon is not String:
-			p2_ability_icons[i+1].texture = p2_ability_textures[ab_icon]
+			p2_ability_icons[i].texture = p2_ability_textures[ab_icon]
 		else:
-			p2_ability_icons[i+1].texture = p2_ability_textures[7]
+			p2_ability_icons[i].texture = p2_ability_textures[7]
 
 
 func update_ability_icons(player_index: int, abilities: Array, selected_index: int) -> void:
@@ -116,9 +116,9 @@ func update_ability_icons(player_index: int, abilities: Array, selected_index: i
 	for i in range(abilities.size()):
 		var ability_id = abilities[i]
 		if i == selected_index: #BSLVHJBUIAMKJFHBCOUSKJGVBNOUILSADJFHVCOIULAC
-			icons[i+1].texture = highlighted[ability_id] if ability_id is not String else highlighted[7]
+			icons[i].texture = highlighted[ability_id] if ability_id is not String else highlighted[7]
 		else:
-			icons[i+1].texture = textures[ability_id] if ability_id is not String else textures[7]
+			icons[i].texture = textures[ability_id] if ability_id is not String else textures[7]
 
 
 func update_health_bar(health: int) -> Texture2D:
