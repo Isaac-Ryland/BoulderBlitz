@@ -36,8 +36,8 @@ var wall_normal = Vector2.ZERO
 var can_wall_jump = false
 var is_falling = false
 var jump_cooldown_timer = 0.0
-var abilities = []
-var ability_selected = 0
+var selected_abilities = []
+var ability_selected_index = 0
 var controls = {}
 var damage_scale = 5
 
@@ -53,15 +53,24 @@ func _ready() -> void:
 	head_sprite.play(GameData.player_colour[player_index])
 	head_sprite.speed_scale = 0
 	
-	for ab in GameData.player_abilities[player_index]: # Ab stands for ability
-		if ab is String:
-			abilities.append(ab)
+	var abilities = [
+		preload("res://Scenes/ab_1.tscn"),
+		preload("res://Scenes/ab_2.tscn"),
+		preload("res://Scenes/ab_3.tscn"),
+		preload("res://Scenes/ab_4.tscn"),
+		preload("res://Scenes/ab_5.tscn"),
+		preload("res://Scenes/ab_6.tscn")
+		]
+	
+	for ability in GameData.player_abilities[player_index]:
+		if ability is String:
+			selected_abilities.append(ability)
 		else:
-			var scene = GameData.abilities[ab]
+			var scene = abilities[ability]
 			if scene is PackedScene:
 				var inst = scene.instantiate()
 				add_child(inst)
-				abilities.append(inst)
+				selected_abilities.append(inst)
 
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
@@ -101,16 +110,16 @@ func _physics_process(delta: float) -> void:
 
 	# Cylces between which ability is currently selected
 	if Input.is_action_just_pressed(controls.cycle):
-		ability_selected += 1
-		if ability_selected > 2:
-			ability_selected = 0
-		info_overlay.update_ability_icons(player_index, GameData.player_abilities[player_index], ability_selected)
+		ability_selected_index += 1
+		if ability_selected_index > 2:
+			ability_selected_index = 0
+		info_overlay.update_ability_icons(player_index, GameData.player_abilities[player_index], ability_selected_index)
 
 	# Activates the selected ability
 	if Input.is_action_just_pressed(controls.use):
-		if abilities[ability_selected] is not String:
-			if abilities[ability_selected].has_method("activate"):
-				abilities[ability_selected].activate(self, player_index)
+		if selected_abilities[ability_selected_index] is not String:
+			if selected_abilities[ability_selected_index].has_method("activate"):
+				selected_abilities[ability_selected_index].activate(self, player_index)
 
 	# Resets the wall jump once the player has returned to the ground
 	if is_grounded:

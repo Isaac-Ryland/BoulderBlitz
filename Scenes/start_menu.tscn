@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://tlkvxk0efmv7"]
+[gd_scene load_steps=23 format=3 uid="uid://tlkvxk0efmv7"]
 
 [ext_resource type="Script" uid="uid://djpx42dkqolut" path="res://Scripts/start_menu.gd" id="1_fljge"]
 [ext_resource type="Texture2D" uid="uid://l2pa8i1xdmjy" path="res://Assets/StartMenuArt/StartMenuBG.png" id="2_jgtwh"]
@@ -20,6 +20,14 @@
 [ext_resource type="Texture2D" uid="uid://gf3nn8ojaftw" path="res://Assets/MainMenuArt/Buttons/BackPress.png" id="12_slhe1"]
 [ext_resource type="Texture2D" uid="uid://d3vrm78lnsl81" path="res://Assets/MainMenuArt/Buttons/SelectSettingsHover.png" id="13_7c4jf"]
 [ext_resource type="Texture2D" uid="uid://bch6kx63ly1to" path="res://Assets/MainMenuArt/Buttons/BackHover.png" id="13_qnxl2"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_6k3d4"]
+device = -1
+keycode = 4194305
+unicode = 96
+
+[sub_resource type="Shortcut" id="Shortcut_7c4jf"]
+events = [SubResource("InputEventKey_6k3d4")]
 
 [node name="StartMenu" type="Node2D"]
 script = ExtResource("1_fljge")
@@ -297,6 +305,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+shortcut = SubResource("Shortcut_7c4jf")
 texture_normal = ExtResource("11_rpttd")
 texture_pressed = ExtResource("12_slhe1")
 texture_hover = ExtResource("13_qnxl2")

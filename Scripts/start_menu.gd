@@ -10,14 +10,14 @@ extends Node2D
 @onready var ReadyRight: TextureButton = $ReadyRight/TextureButton
 @onready var slot_1: TextureButton = $SlotsLeft/HBoxContainer/Slot1
 # Ability slot textures, for showing currently selected ability
-@onready var ability_slot_textures = {
-	1: $AbilitySlot1,
-	2: $AbilitySlot2,
-	3: $AbilitySlot3,
-	4: $AbilitySlot4,
-	5: $AbilitySlot5,
-	6: $AbilitySlot6
-}
+@onready var ability_slot_textures = [
+	$AbilitySlot1,
+	$AbilitySlot2,
+	$AbilitySlot3,
+	$AbilitySlot4,
+	$AbilitySlot5,
+	$AbilitySlot6
+]
 
 # Signals for changing the visibility of the pop-up menus
 signal change_left_visibility()
@@ -28,33 +28,32 @@ var left_textures = [
 	preload("res://Assets/StartMenuArt/AbilityMenuLeft/AbilityMenuLeftSlot1.png"),
 	preload("res://Assets/StartMenuArt/AbilityMenuLeft/AbilityMenuLeftSlot2.png"),
 	preload("res://Assets/StartMenuArt/AbilityMenuLeft/AbilityMenuLeftSlot3.png")
-]
+	]
 var right_textures = [
 	preload("res://Assets/StartMenuArt/AbilityMenuRight/AbilityMenuRightSlot1.png"),
 	preload("res://Assets/StartMenuArt/AbilityMenuRight/AbilityMenuRightSlot2.png"),
 	preload("res://Assets/StartMenuArt/AbilityMenuRight/AbilityMenuRightSlot3.png")
-]
-var ability_selected_textures = {
-	1: preload("res://Assets/StartMenuArt/HDash.png"),
-	2: preload("res://Assets/StartMenuArt/VDash.png"),
-	3: preload("res://Assets/StartMenuArt/Frictionless.png"),
-	4: preload("res://Assets/StartMenuArt/Grapple.png"),
-	5: preload("res://Assets/StartMenuArt/Slingshot.png"),
-	6: preload("res://Assets/StartMenuArt/Spike.png")
-}
+	]
+var ability_selected_textures = [
+	preload("res://Assets/StartMenuArt/HDash.png"),
+	preload("res://Assets/StartMenuArt/VDash.png"),
+	preload("res://Assets/StartMenuArt/Frictionless.png"),
+	preload("res://Assets/StartMenuArt/Grapple.png"),
+	preload("res://Assets/StartMenuArt/Slingshot.png"),
+	preload("res://Assets/StartMenuArt/Spike.png")
+	]
 
-var current_left_slot = 0
-var current_right_slot = 0
+var current_slot = 0
 var p1_ready = false
 var p2_ready = false
 
 
 func _ready() -> void:
-	for player_id in [0, 1]:
-		for slot in range(GameData.player_abilities[player_id].size()):
-			var ability = GameData.player_abilities[player_id][slot]
+	for player_index in [0, 1]:
+		for slot in range(GameData.player_abilities[player_index].size()):
+			var ability = GameData.player_abilities[player_index][slot]
 			if ability is not String:
-				update_selected_ability(player_id + 1, slot + 1, ability)
+				update_selected_ability(player_index, slot, ability)
 
 
 # Menu Navigation buttons
@@ -70,73 +69,60 @@ func on_settings_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/settings.tscn")
 
 
+func handle_slot_press(menu, menu_visibility_signal, slot_index: int) -> void:
+	if !menu.visible:
+		menu_visibility_signal.emit()
+	elif current_slot == slot_index:
+		menu_visibility_signal.emit()
+	current_slot = slot_index
+
+
 # Ability slots for player 1 (left side of the menu)
 func _on_slot_1_left_pressed() -> void:
-	if !ability_select_left.visible:
-		change_left_visibility.emit()
-	elif current_left_slot == 1:
-		change_left_visibility.emit()
-	current_left_slot = 1
-	ability_select_left.set_texture(left_textures[0], current_left_slot)
+	handle_slot_press(ability_select_left, change_left_visibility, 0)
+	ability_select_left.set_texture(left_textures[0])
+	ability_select_left.set_slot(current_slot)
 
 
 func _on_slot_2_left_pressed() -> void:
-	if !ability_select_left.visible:
-		change_left_visibility.emit()
-	elif current_left_slot == 2:
-		change_left_visibility.emit()
-	current_left_slot = 2
-	ability_select_left.set_texture(left_textures[1], current_left_slot)
+	handle_slot_press(ability_select_left, change_left_visibility, 1)
+	ability_select_left.set_texture(left_textures[1])
+	ability_select_left.set_slot(current_slot)
 
 
 func _on_slot_3_left_pressed() -> void:
-	if !ability_select_left.visible:
-		change_left_visibility.emit()
-	elif current_left_slot == 3:
-		change_left_visibility.emit()
-	current_left_slot = 3
-	ability_select_left.set_texture(left_textures[2], current_left_slot)
+	handle_slot_press(ability_select_left, change_left_visibility, 2)
+	ability_select_left.set_texture(left_textures[2])
+	ability_select_left.set_slot(current_slot)
 
 
 # Ability slots for player 2 (right side of the menu)
 func _on_slot_1_right_pressed() -> void:
-	if !ability_select_right.visible:
-		change_right_visibility.emit()
-	elif current_right_slot == 1:
-		change_right_visibility.emit()
-		current_right_slot = 0
-	current_right_slot = 1
-	ability_select_right.set_texture(right_textures[0], current_right_slot)
+	handle_slot_press(ability_select_right, change_right_visibility, 0)
+	ability_select_right.set_texture(right_textures[0])
+	ability_select_right.set_slot(current_slot)
 
 
 func _on_slot_2_right_pressed() -> void:
-	if !ability_select_right.visible:
-		change_right_visibility.emit()
-	elif current_right_slot == 2:
-		change_right_visibility.emit()
-		current_right_slot = 0
-	current_right_slot = 2
-	ability_select_right.set_texture(right_textures[1], current_right_slot)
+	handle_slot_press(ability_select_right, change_right_visibility, 1)
+	ability_select_right.set_texture(right_textures[1])
+	ability_select_right.set_slot(current_slot)
 
 
 func _on_slot_3_right_pressed() -> void:
-	if !ability_select_right.visible:
-		change_right_visibility.emit()
-	elif current_right_slot == 3:
-		change_right_visibility.emit()
-		current_right_slot = 0
-	current_right_slot = 3
-	ability_select_right.set_texture(right_textures[2], current_right_slot)
+	handle_slot_press(ability_select_right, change_right_visibility, 2)
+	ability_select_right.set_texture(right_textures[2])
+	ability_select_right.set_slot(current_slot)
 
 
 # Displays the selected ability in its according slot
-func update_selected_ability(player: int, slot: int, ab: int):
-	if player == 1:
-		ability_slot_textures[slot].texture = ability_selected_textures[ab]
+func update_selected_ability(player_index: int, slot: int, ability: int):
+	if player_index == 0:
+		ability_slot_textures[slot].texture = ability_selected_textures[ability]
 		ability_slot_textures[slot].visible = true
-	elif player == 2:
+	else:
 		slot += 3
-		ability_slot_textures[slot].texture = ability_selected_textures[ab]
+		ability_slot_textures[slot].texture = ability_selected_textures[ability]
 		ability_slot_textures[slot].visible = true
 
 

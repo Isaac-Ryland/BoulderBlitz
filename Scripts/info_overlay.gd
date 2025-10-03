@@ -42,42 +42,42 @@ var health_bar_textures = [
 	preload("res://Assets/InfoOverlay/80Health.png"),
 	preload("res://Assets/InfoOverlay/FullHealth.png")
 ]
-var p1_ability_textures = {
-	1: preload("res://Assets/StartMenuArt/AbilityButtonLeft1/HDashLeftDefault.png"),
-	2: preload("res://Assets/StartMenuArt/AbilityButtonLeft2/VDashLeftDefault.png"),
-	3: preload("res://Assets/StartMenuArt/AbilityButtonLeft3/FrictionlessLeftDefault.png"),
-	4: preload("res://Assets/StartMenuArt/AbilityButtonLeft4/GrappleLeftDefault.png"),
-	5: preload("res://Assets/StartMenuArt/AbilityButtonLeft5/SlingshotLeftDefault.png"),
-	6: preload("res://Assets/StartMenuArt/AbilityButtonLeft6/SpikeLeftDefault.png"),
-	7: preload("res://Assets/StartMenuArt/BlankLeftDefault.png")
-}
-var p2_ability_textures = {
-	1: preload("res://Assets/StartMenuArt/AbilityButtonRight1/HDashRightDefault.png"),
-	2: preload("res://Assets/StartMenuArt/AbilityButtonRight2/VDashRightDefault.png"),
-	3: preload("res://Assets/StartMenuArt/AbilityButtonRight3/FrictionlessRightDefault.png"),
-	4: preload("res://Assets/StartMenuArt/AbilityButtonRight4/GrappleRightDefault.png"),
-	5: preload("res://Assets/StartMenuArt/AbilityButtonRight5/SlingshotRightDefault.png"),
-	6: preload("res://Assets/StartMenuArt/AbilityButtonRight6/SpikeRightDefault.png"),
-	7: preload("res://Assets/StartMenuArt/BlankRightDefault.png")
-}
-var p1_ability_textures_hover = {
-	1: preload("res://Assets/StartMenuArt/AbilityButtonLeft1/HDashLeftHover.png"),
-	2: preload("res://Assets/StartMenuArt/AbilityButtonLeft2/VDashLeftHover.png"),
-	3: preload("res://Assets/StartMenuArt/AbilityButtonLeft3/FrictionlessLeftHover.png"),
-	4: preload("res://Assets/StartMenuArt/AbilityButtonLeft4/GrappleLeftHover.png"),
-	5: preload("res://Assets/StartMenuArt/AbilityButtonLeft5/SlingshotLeftHover.png"),
-	6: preload("res://Assets/StartMenuArt/AbilityButtonLeft6/SpikeLeftHover.png"),
-	7: preload("res://Assets/StartMenuArt/BlankLeftHover.png")
-}
-var p2_ability_textures_hover = {
-	1: preload("res://Assets/StartMenuArt/AbilityButtonRight1/HDashRightHover.png"),
-	2: preload("res://Assets/StartMenuArt/AbilityButtonRight2/VDashRightHover.png"),
-	3: preload("res://Assets/StartMenuArt/AbilityButtonRight3/FrictionlessRightHover.png"),
-	4: preload("res://Assets/StartMenuArt/AbilityButtonRight4/GrappleRightHover.png"),
-	5: preload("res://Assets/StartMenuArt/AbilityButtonRight5/SlingshotRightHover.png"),
-	6: preload("res://Assets/StartMenuArt/AbilityButtonRight6/SpikeRightHover.png"),
-	7: preload("res://Assets/StartMenuArt/BlankRightHover.png")
-}
+var p1_ability_textures = [
+	preload("res://Assets/StartMenuArt/AbilityButtonLeft1/HDashLeftDefault.png"),
+	preload("res://Assets/StartMenuArt/AbilityButtonLeft2/VDashLeftDefault.png"),
+	preload("res://Assets/StartMenuArt/AbilityButtonLeft3/FrictionlessLeftDefault.png"),
+	preload("res://Assets/StartMenuArt/AbilityButtonLeft4/GrappleLeftDefault.png"),
+	preload("res://Assets/StartMenuArt/AbilityButtonLeft5/SlingshotLeftDefault.png"),
+	preload("res://Assets/StartMenuArt/AbilityButtonLeft6/SpikeLeftDefault.png"),
+	preload("res://Assets/StartMenuArt/BlankLeftDefault.png")
+	]
+var p2_ability_textures = [
+	preload("res://Assets/StartMenuArt/AbilityButtonRight1/HDashRightDefault.png"),
+	preload("res://Assets/StartMenuArt/AbilityButtonRight2/VDashRightDefault.png"),
+	preload("res://Assets/StartMenuArt/AbilityButtonRight3/FrictionlessRightDefault.png"),
+	preload("res://Assets/StartMenuArt/AbilityButtonRight4/GrappleRightDefault.png"),
+	preload("res://Assets/StartMenuArt/AbilityButtonRight5/SlingshotRightDefault.png"),
+	preload("res://Assets/StartMenuArt/AbilityButtonRight6/SpikeRightDefault.png"),
+	preload("res://Assets/StartMenuArt/BlankRightDefault.png")
+	]
+var p1_ability_textures_hover = [
+	preload("res://Assets/StartMenuArt/AbilityButtonLeft1/HDashLeftHover.png"),
+	preload("res://Assets/StartMenuArt/AbilityButtonLeft2/VDashLeftHover.png"),
+	preload("res://Assets/StartMenuArt/AbilityButtonLeft3/FrictionlessLeftHover.png"),
+	preload("res://Assets/StartMenuArt/AbilityButtonLeft4/GrappleLeftHover.png"),
+	preload("res://Assets/StartMenuArt/AbilityButtonLeft5/SlingshotLeftHover.png"),
+	preload("res://Assets/StartMenuArt/AbilityButtonLeft6/SpikeLeftHover.png"),
+	preload("res://Assets/StartMenuArt/BlankLeftHover.png")
+	]
+var p2_ability_textures_hover = [
+	preload("res://Assets/StartMenuArt/AbilityButtonRight1/HDashRightHover.png"),
+	preload("res://Assets/StartMenuArt/AbilityButtonRight2/VDashRightHover.png"),
+	preload("res://Assets/StartMenuArt/AbilityButtonRight3/FrictionlessRightHover.png"),
+	preload("res://Assets/StartMenuArt/AbilityButtonRight4/GrappleRightHover.png"),
+	preload("res://Assets/StartMenuArt/AbilityButtonRight5/SlingshotRightHover.png"),
+	preload("res://Assets/StartMenuArt/AbilityButtonRight6/SpikeRightHover.png"),
+	preload("res://Assets/StartMenuArt/BlankRightHover.png")
+	]
 
 
 func _ready() -> void:
@@ -89,14 +89,14 @@ func _ready() -> void:
 		if ab_icon is not String:
 			p1_ability_icons[i].texture = p1_ability_textures[ab_icon]
 		else:
-			p1_ability_icons[i].texture = p1_ability_textures[7]
+			p1_ability_icons[i].texture = p1_ability_textures[-1]
 	
 	for i in p2_ability_icons.size():
 		var ab_icon = GameData.player_abilities[1][i]
 		if ab_icon is not String:
 			p2_ability_icons[i].texture = p2_ability_textures[ab_icon]
 		else:
-			p2_ability_icons[i].texture = p2_ability_textures[7]
+			p2_ability_icons[i].texture = p2_ability_textures[-1]
 
 
 func update_ability_icons(player_index: int, abilities: Array, selected_index: int) -> void:
@@ -116,9 +116,9 @@ func update_ability_icons(player_index: int, abilities: Array, selected_index: i
 	for i in range(abilities.size()):
 		var ability_id = abilities[i]
 		if i == selected_index: #BSLVHJBUIAMKJFHBCOUSKJGVBNOUILSADJFHVCOIULAC
-			icons[i].texture = highlighted[ability_id] if ability_id is not String else highlighted[7]
+			icons[i].texture = highlighted[ability_id] if ability_id is not String else highlighted[-1]
 		else:
-			icons[i].texture = textures[ability_id] if ability_id is not String else textures[7]
+			icons[i].texture = textures[ability_id] if ability_id is not String else textures[-1]
 
 
 func update_health_bar(health: int) -> Texture2D:

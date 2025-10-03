@@ -7,7 +7,7 @@ var settings_prev_menu = "res://Scenes/main_menu.tscn"
 var map_selected = "res://Scenes/Map1.tscn"
 
 var player_health = [1000, 1000]
-var player_colour = ["RED", "PURPLE"]
+var player_colour = ["GREEN", "BLUE"]
 var player_abilities = [["", "", ""], ["", "", ""]]
 var player_controls = [
 	{
@@ -28,19 +28,10 @@ var player_controls = [
 	}
 ]
 
-var abilities = {
-	1: preload("res://Scenes/ab_1.tscn"),
-	3: preload("res://Scenes/ab_3.tscn"),
-	2: preload("res://Scenes/ab_2.tscn"),
-	4: preload("res://Scenes/ab_4.tscn"),
-	5: preload("res://Scenes/ab_5.tscn"),
-	6: preload("res://Scenes/ab_6.tscn")
-}
-
 
 # Takes the ability selected and in which slot, before assigning it to the player_x_abilities array
 func select_ability(player_index: int, slot: int, ability) -> void:
-	player_abilities[player_index][slot-1] = ability
+	player_abilities[player_index][slot] = ability
 
 
 # Hotkey for returning to the main menu, anywhere

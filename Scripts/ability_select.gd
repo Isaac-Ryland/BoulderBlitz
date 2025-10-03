@@ -7,8 +7,8 @@ class_name AbilitySelect
 @onready var start_menu: Node2D = $".." # Gets the parent menu
 
 var ability_menu_texture
-@export var is_visible = false
-@export var current_slot = 0
+@export var is_visible = false # Flag to toggle the ability select menu visible or invisible
+@export var current_slot = 0 # The current slot for which the ability is being chosen for
 @export var player_index = 0 # Used to know what player to update
 
 
@@ -17,56 +17,48 @@ func _ready() -> void:
 	self.visible = is_visible
 
 
-# When called will set the texture of the menu's background to the one specified
-func set_texture(new_textures: Texture, slot: int) -> void:
+# Sets the texture of the ability select menu's background
+func set_texture(new_textures: Texture) -> void:
 	ability_menu_texture.texture = new_textures
+
+
+func set_slot(slot: int) -> void:
 	current_slot = slot
 
 
-# Toggles the visibility of the menu
+# Toggles the visibility of the ability select menu
 func change_visibility() -> void:
 	is_visible = !is_visible
 	self.visible = is_visible
 
 
-# Ability buttons
-func _on_ability_1_pressed() -> void:
-	GameData.select_ability(player_index, current_slot, 1)
+func handle_button_press(button_index):
+	GameData.select_ability(player_index, current_slot, button_index)
 	# Tells the start menu what icon to fill the slot with
-	get_parent().update_selected_ability(player_index+1, current_slot, 1)
+	get_parent().update_selected_ability(player_index, current_slot, button_index)
 	change_visibility()
+
+
+# The following functions are for the respective ability button
+func _on_ability_1_pressed() -> void:
+	handle_button_press(0)
 
 
 func _on_ability_2_pressed() -> void:
-	GameData.select_ability(player_index, current_slot, 2)
-	# Tells the start menu what icon to fill the slot with
-	get_parent().update_selected_ability(player_index+1, current_slot, 2)
-	change_visibility()
+	handle_button_press(1)
 
 
 func _on_ability_3_pressed() -> void:
-	GameData.select_ability(player_index, current_slot, 3)
-	# Tells the start menu what icon to fill the slot with
-	get_parent().update_selected_ability(player_index+1, current_slot, 3)
-	change_visibility()
+	handle_button_press(2)
 
 
 func _on_ability_4_pressed() -> void:
-	GameData.select_ability(player_index, current_slot, 4)
-	# Tells the start menu what icon to fill the slot with
-	get_parent().update_selected_ability(player_index+1, current_slot, 4)
-	change_visibility()
+	handle_button_press(3)
 
 
 func _on_ability_5_pressed() -> void:
-	GameData.select_ability(player_index, current_slot, 5)
-	# Tells the start menu what icon to fill the slot with
-	get_parent().update_selected_ability(player_index+1, current_slot, 5)
-	change_visibility()
+	handle_button_press(4)
 
 
 func _on_ability_6_pressed() -> void:
-	GameData.select_ability(player_index, current_slot, 6)
-	# Tells the start menu what icon to fill the slot with
-	get_parent().update_selected_ability(player_index+1, current_slot, 6)
-	change_visibility()
+	handle_button_press(5)
