@@ -1,7 +1,7 @@
 extends Node2D
 ## Credits Menu
 ##
-## The menu that displays the credits of our game
+## The menu that displays the credits of the game
 
 
 # Used to travel back to the main menu

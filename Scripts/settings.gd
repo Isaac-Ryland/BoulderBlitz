@@ -17,20 +17,21 @@ var p2_presets = [
 ]
 
 
-# Removes all assigned keys to an action before replacing them with the keys from a control preset
+# Removes all assigned keys to an action before replacing them with the keys from a specified control preset
 func apply_preset(preset: Dictionary):
 	for action in preset.keys():
 		InputMap.action_erase_events(action)
 		
-		var ev = InputEventKey.new()
-		ev.physical_keycode = preset[action]
-		InputMap.action_add_event(action, ev)
+		var event = InputEventKey.new()
+		event.physical_keycode = preset[action]
+		InputMap.action_add_event(action, event)
 
 
 func on_back_button_pressed() -> void:
-	get_tree().change_scene_to_file(GameData.settings_prev_menu) # Used to travel back to where the user was before
+	get_tree().change_scene_to_file(GameData.settings_prev_menu) # Used to travel back to the previous menu
 
 
+# Radio buttons for player 1's controls
 func _on_check_button_1_pressed() -> void:
 	apply_preset(p1_presets[0])
 
@@ -47,6 +48,7 @@ func _on_check_button_4_pressed() -> void:
 	apply_preset(p1_presets[3])
 
 
+# Radio buttons for player 2's controls
 func _on_check_button_5_pressed() -> void:
 	apply_preset(p2_presets[0])
 

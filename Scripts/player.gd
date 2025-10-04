@@ -3,6 +3,7 @@ extends RigidBody2D
 ##
 ## Handles the player's physics, movement, graphics, abilities, and collision
 
+# References to Nodes in the scene tree
 @onready var ball_sprite: AnimatedSprite2D = $BallSprite
 @onready var head_sprite: AnimatedSprite2D = $HeadSprite
 @onready var one_way_ray: RayCast2D = $CollisionShape2D/OneWayRay
@@ -16,7 +17,7 @@ extends RigidBody2D
 	$CollisionShape2D/BottomRightCast,
 	$CollisionShape2D/BottomCast,
 	$CollisionShape2D/BottomLeftCast
-]
+	]
 
 const move_force: float = 1000.0
 const vel_cap: float = 1500.0

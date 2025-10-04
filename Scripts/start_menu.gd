@@ -3,27 +3,31 @@ extends Node2D
 ##
 ## The menu where users select their abilities, and can navigate to settings and back to the main menu
 
+# References to Nodes in the scene tree
 @onready var ability_select_left: Control = $ability_select_left
 @onready var ability_select_right: Control = $ability_select_right
 @onready var map_select: Control = $map_select
 @onready var ReadyLeft: TextureButton = $ReadyLeft/TextureButton
 @onready var ReadyRight: TextureButton = $ReadyRight/TextureButton
 @onready var slot_1: TextureButton = $SlotsLeft/HBoxContainer/Slot1
-# Ability slot textures, for showing currently selected ability
-@onready var ability_slot_textures = [
+@onready var ability_slot_textures = [ # Ability slot textures, for showing currently selected ability
 	$AbilitySlot1,
 	$AbilitySlot2,
 	$AbilitySlot3,
 	$AbilitySlot4,
 	$AbilitySlot5,
 	$AbilitySlot6
-]
+	]
 
 # Signals for changing the visibility of the pop-up menus
 signal change_left_visibility()
 signal change_right_visibility()
 signal change_map_visibilty()
 
+
+var current_slot = 0
+var p1_ready = false
+var p2_ready = false
 var left_textures = [
 	preload("res://Assets/StartMenuArt/AbilityMenuLeft/AbilityMenuLeftSlot1.png"),
 	preload("res://Assets/StartMenuArt/AbilityMenuLeft/AbilityMenuLeftSlot2.png"),
@@ -43,20 +47,17 @@ var ability_selected_textures = [
 	preload("res://Assets/StartMenuArt/Spike.png")
 	]
 
-var current_slot = 0
-var p1_ready = false
-var p2_ready = false
 
-
+# When the menu is loaded, checks the player's abilities to put the correct icons in the slots
 func _ready() -> void:
 	for player_index in [0, 1]:
 		for slot in range(GameData.player_abilities[player_index].size()):
 			var ability = GameData.player_abilities[player_index][slot]
 			if ability is not String:
-				update_selected_ability(player_index, slot, ability)
+				update_selected_ability_texture(player_index, slot, ability)
 
 
-# Menu Navigation buttons
+# If the map select menu is visible then close it, else go to the main menu
 func on_back_button_pressed() -> void:
 	if map_select.visible:
 		change_map_visibilty.emit()
@@ -65,10 +66,11 @@ func on_back_button_pressed() -> void:
 
 
 func on_settings_button_pressed() -> void:
-	GameData.settings_prev_menu = "res://Scenes/start_menu.tscn"
+	GameData.settings_prev_menu = "res://Scenes/start_menu.tscn" # Sets the start menu as the previous menu so the settings menu can go back correctly
 	get_tree().change_scene_to_file("res://Scenes/settings.tscn")
 
 
+# Toggles the visibility of the ability select menu, and changes its texture to the respective slot
 func handle_slot_press(menu, menu_visibility_signal, slot_index: int) -> void:
 	if !menu.visible:
 		menu_visibility_signal.emit()
@@ -116,12 +118,12 @@ func _on_slot_3_right_pressed() -> void:
 
 
 # Displays the selected ability in its according slot
-func update_selected_ability(player_index: int, slot: int, ability: int):
+func update_selected_ability_texture(player_index: int, slot: int, ability: int):
 	if player_index == 0:
 		ability_slot_textures[slot].texture = ability_selected_textures[ability]
 		ability_slot_textures[slot].visible = true
 	else:
-		slot += 3
+		slot += 3 # Slot is increased by three o update the slots on the right side when the player is two
 		ability_slot_textures[slot].texture = ability_selected_textures[ability]
 		ability_slot_textures[slot].visible = true
 

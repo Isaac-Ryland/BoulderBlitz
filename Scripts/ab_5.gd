@@ -9,7 +9,7 @@ const cooldown: float = 3.0
 const rope_colour: Color = Color(1, 1, 1, 1)
 const local_ray_offset: int = 64
 const min_hook_dist: int = 16
-const yoink_force: float = 40
+const yoink_impulse: float = 30
 
 var can_activate: bool = true
 var is_hooked: bool = false
@@ -31,7 +31,7 @@ func _on_timer_timeout() -> void:
 	can_activate = true
 
 
-func activate(player, player_id):
+func activate(player, player_index):
 	# Cuts the ability activation short to prevent ability use while on cooldown
 	if not can_activate:
 		return
@@ -41,14 +41,13 @@ func activate(player, player_id):
 		is_hooked = false
 		can_activate = false
 		queue_redraw()
-		# creates and starts a timer with length (cooldown) that will stop the player using the ability until finished
+		# Prevent re-use of the ability for (cooldown) amount of seconds
 		var cooldown_timer = get_tree().create_timer(cooldown)
 		cooldown_timer.timeout.connect(_on_timer_timeout)
 		return
 
-	# Gets the inputs of the player that is using the ability
-	var controls = GameData.player_controls[player_id]
-	var dir = Vector2.ZERO
+	var dir = Vector2.ZERO # A vector representing the direction of the player. Primarily set by inputs, but if no input may fall back to player velocity
+	var controls = GameData.player_controls[player_index] # Gets the keybinds of the player
 	if Input.is_action_pressed(controls.right):
 		dir.x = 1
 	if Input.is_action_pressed(controls.left):
@@ -85,7 +84,7 @@ func activate(player, player_id):
 		else:
 			dir.y = -1
 
-	var ray_map = {
+	var rays = {
 		Vector2(-1, 0):  get_parent().rays[0], # Left
 		Vector2(-1, -1): get_parent().rays[1], # TopLeft
 		Vector2(0, -1):  get_parent().rays[2], # Top
@@ -96,21 +95,21 @@ func activate(player, player_id):
 		Vector2(-1, 1):  get_parent().rays[7], # BottomLeft
 	}
 
-	var ray = ray_map.get(dir, null)
+	var ray = rays.get(dir, null) # Chooses the raycast that corresponds to the correct direction
 
-
-	if ray.is_colliding():  # HAPPENS ON KEY PRESS - REPLACE ME LATER
+	# If the raycast is colliding, set the hook position and rope length
+	if ray.is_colliding():
 		var collider = ray.get_collider()
 		if collider is StaticBody2D and not is_hooked:
 			hook_pos = ray.get_collision_point()
 			current_rope_length	= global_position.distance_to(hook_pos)
-			var rope = player.global_position - hook_pos
-			if rope.length() < (local_ray_offset + min_hook_dist): return
+			if current_rope_length < min_hook_dist: return # If the hook pos is too close to the player then slingshot will not activate
 			is_hooked = true
 			queue_redraw()
 
 
 func _physics_process(delta: float) -> void:
+	# Only runs if the slingshot is currently active
 	if not is_hooked:
 		return
 	
@@ -118,13 +117,15 @@ func _physics_process(delta: float) -> void:
 	
 	var player = get_parent()
 
+	# Accelerates the player towards the the hook point
 	var rope = player.global_position - hook_pos
 	var rope_normal = rope.normalized()
-	
-	player.apply_central_impulse(yoink_force * -rope_normal)
+	player.apply_central_impulse(yoink_impulse * -rope_normal)
 
 
+# Draws a line from the centre of the player to the hook point to visualise the slingshot
 func _draw() -> void:
+	# Only draws the line when the slingshot is attached
 	if not is_hooked:
 		return
 	

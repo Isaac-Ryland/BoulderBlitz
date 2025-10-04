@@ -3,6 +3,7 @@ extends Node
 ##
 ## Stores global variables and functions, as well as important game data
 
+# Default scenes
 var settings_prev_menu = "res://Scenes/main_menu.tscn"
 var map_selected = "res://Scenes/Map1.tscn"
 
@@ -26,15 +27,15 @@ var player_controls = [
 		"cycle": "player_2_ability_cycle",
 		"use": "player_2_ability_use"
 	}
-]
+	]
 
 
-# Takes the ability selected and in which slot, before assigning it to the player_x_abilities array
+# Takes the ability selected and in which slot, before assigning it to the player
 func select_ability(player_index: int, slot: int, ability) -> void:
 	player_abilities[player_index][slot] = ability
 
 
-# Hotkey for returning to the main menu, anywhere
+# Hotkey for returning to the main menu from anywhere
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("main_menu"): 
 		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
