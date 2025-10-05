@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bosnxeje6jnc8"
-path="res://.godot/imported/AbilityMenuLeftSLot3.png-e8d3444bf6a0c4fb4d278d9bb738e4fe.ctex"
+path="res://.godot/imported/AbilityMenuLeftSlot3.png-deb5af929b4af5d5ed27da98e1d9662d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/StartMenuArt/AbilityMenuLeft/AbilityMenuLeftSLot3.png"
-dest_files=["res://.godot/imported/AbilityMenuLeftSLot3.png-e8d3444bf6a0c4fb4d278d9bb738e4fe.ctex"]
+source_file="res://Assets/StartMenuArt/AbilityMenuLeft/AbilityMenuLeftSlot3.png"
+dest_files=["res://.godot/imported/AbilityMenuLeftSlot3.png-deb5af929b4af5d5ed27da98e1d9662d.ctex"]
 
 [params]
 
