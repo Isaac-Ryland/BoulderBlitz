@@ -3,7 +3,7 @@ extends RigidBody2D
 ##
 ## Handles the player's physics, movement, graphics, abilities, and collision
 
-# References to Nodes in the scene tree
+# References to Nodes in the node tree
 @onready var ball_sprite: AnimatedSprite2D = $BallSprite
 @onready var head_sprite: AnimatedSprite2D = $HeadSprite
 @onready var one_way_ray: RayCast2D = $CollisionShape2D/OneWayRay
@@ -20,15 +20,14 @@ extends RigidBody2D
 	]
 
 const move_force: float = 1000.0
-const vel_cap: float = 1500.0
 const jump_impulse: float = 650.0
 const quick_fall_speed: float = 1000.0
-const wall_jump_impulse: Vector2 = Vector2(500, 0)
-const boulder_radius_in_pixels: int = 100
-const moving_threshold: float = 0.01
-const damage_threshold = 250
+const wall_jump_impulse: float = 500
+const boulder_radius_in_pixels: int = 100 # Used to scale the speed of the rolling animation
+const moving_threshold: float = 0.01 # The minimum velocity the player needs to display the animation
+const damage_threshold = 250 # The minimum amount of damage required to actually apply it
 const jump_cooldown = 0.08
-const one_way_collision_timer: int = 2
+const one_way_collision_duration: int = 2 # The duration that collision is deactivated for one-way platforms
 
 var is_grounded = false
 var is_walled = false
@@ -37,18 +36,19 @@ var wall_normal = Vector2.ZERO
 var can_wall_jump = false
 var is_falling = false
 var jump_cooldown_timer = 0.0
-var selected_abilities = []
-var ability_selected_index = 0
-var controls = {}
-var damage_scale = 5
+var selected_abilities = [] # A list of all selected abilities of the player
+var ability_selected_index = 0 # Used for cycling between the individual selected ability
+var controls = {} # The control preset the player has chosen
+var damage_scale = 5 # The amount damage is scaled down by before being applied. Used for balancing
 
 @export var player_index = 0
 
 # Once the player enters the scene, iterates through the player's abilities and instantiates them so they can be used
 func _ready() -> void:
-	GameData.player_health[player_index] = 1000
-	controls = GameData.player_controls[player_index]
+	GameData.player_health[player_index] = 1000 # Reset health to max
+	controls = GameData.player_controls[player_index] # Assigns the player the controls they selected
 	
+	# Initialises the player's animation according to their chosen colour
 	ball_sprite.play(GameData.player_colour[player_index])
 	ball_sprite.speed_scale = 0
 	head_sprite.play(GameData.player_colour[player_index])
@@ -63,8 +63,9 @@ func _ready() -> void:
 		preload("res://Scenes/ab_6.tscn")
 		]
 	
+	# Gets the selected abilities and adds the ability as a child of the player
 	for ability in GameData.player_abilities[player_index]:
-		if ability is String:
+		if ability is String: # If the ability is empty, still add it to the list. This allows the player to not select an ability
 			selected_abilities.append(ability)
 		else:
 			var scene = abilities[ability]
@@ -79,17 +80,21 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	is_walled = false
 	var contact_count = state.get_contact_count() # Get all the points of contact between the player and other surfaces
 
-	for i in range(contact_count): # Iterates through each contact to see if it's a ground / wall. Updates is_grounded/walled accordingly
+	# Iterates through each contact to see if it's a ground / wall. Updates is_grounded/walled accordingly
+	for i in range(contact_count):
+		# Other player detection
 		var other = state.get_contact_collider_object(i) # Gets the type of object the player has collided with
 		if other and other is RigidBody2D: # Bunch of checks to confirm that the object is another player
 			_handle_player_collision(other)
 
+		# Ground detection
 		var normal = state.get_contact_local_normal(i)
 		if normal.dot(Vector2.UP) > 0.6: # 1 = horizontal
 			is_grounded = true
 			ground_normal = normal
 			break  # Quits loop once there is a contact with the "ground"
 
+		# Wall detection
 		if abs(normal.dot(Vector2.RIGHT)) > 0.6 and abs(normal.dot(Vector2.RIGHT)) != 0: # 0 = vertical
 			is_walled = true
 			wall_normal = normal
@@ -114,11 +119,11 @@ func _physics_process(delta: float) -> void:
 		ability_selected_index += 1
 		if ability_selected_index > 2:
 			ability_selected_index = 0
-		info_overlay.update_ability_icons(player_index, GameData.player_abilities[player_index], ability_selected_index)
+		info_overlay.update_ability_icons(player_index, GameData.player_abilities[player_index], ability_selected_index) # Changes what ability in the overlay is highlighted
 
 	# Activates the selected ability
 	if Input.is_action_just_pressed(controls.use):
-		if selected_abilities[ability_selected_index] is not String:
+		if selected_abilities[ability_selected_index] is not String: # Makes sure the ability currently selected isn't blank
 			if selected_abilities[ability_selected_index].has_method("activate"):
 				selected_abilities[ability_selected_index].activate(self, player_index)
 
@@ -148,17 +153,13 @@ func _physics_process(delta: float) -> void:
 		if !is_grounded:
 			apply_central_force(Vector2(0, quick_fall_speed))
 		
-		# Checks on a certain collision layer for platforms that the player can fall through
+		# Checks on a certain collision layer for one way platforms
 		if one_way_ray.is_colliding():
 			var collider = one_way_ray.get_collider()
 			if collider is StaticBody2D: # Ensures the collsion detected is a platform
-				add_collision_exception_with(collider)
-				await get_tree().create_timer(one_way_collision_timer).timeout # Removes the collsion for 3s before replacing it
-				remove_collision_exception_with(collider)
-
-	# Caps the player's horizontal velocity
-	if abs(linear_velocity.x) > vel_cap:
-		linear_velocity.x = sign(linear_velocity.x) * vel_cap
+				add_collision_exception_with(collider) # Removes collision between the player and the platform
+				await get_tree().create_timer(one_way_collision_duration).timeout # Removes the collsion for 3s before replacing it
+				remove_collision_exception_with(collider) # Restores collsision between them
 
 	# Animation systems:
 	# Handles the direction of the head, by flipping the the sprite based on the velocity.
@@ -168,7 +169,7 @@ func _physics_process(delta: float) -> void:
 		head_sprite.flip_h = true
 	
 	# Plays the boulder's rolling animation based off of the characters veloctiy for the animation speed
-	# Also plays the head animation. Refers to the "player_1_colour" global var for the colour choice.
+	# Also plays the head animation. Refers to the "player_x_colour" global var for the colour choice.
 	if (round(100*(abs(linear_velocity.x)))/100) > moving_threshold:
 		ball_sprite.play(GameData.player_colour[player_index])
 		ball_sprite.speed_scale = linear_velocity.x/boulder_radius_in_pixels
@@ -182,8 +183,9 @@ func _physics_process(delta: float) -> void:
 func apply_dmg(damage: float):
 	GameData.player_health[player_index] -= abs(round(damage))
 	if GameData.player_health[player_index] <= 0:
-		print("Player %s has died!" % (player_index+1))
-		queue_free() # "Kills" the player if there health is gone
+		GameData.loser = player_index
+		GameData.game_over = true
+		queue_free() # "Kills" the player if their health is gone
 	print(GameData.player_health[player_index], " Health left for player %s" % (player_index+1))
 
 
@@ -192,16 +194,17 @@ func _handle_player_collision(other: RigidBody2D):
 	var normal = (other.global_position - global_position).normalized()
 	var impact_speed = rel_vel.dot(normal)
 	
+	# If the speed is too small or the players are travelling away during contact, don't apply any damage
 	if impact_speed >= 0 or abs(impact_speed) < damage_threshold:
 		return
 	
 	impact_speed = abs(impact_speed)
-	print(impact_speed)
 	
 	var my_speed = abs(linear_velocity.length())
 	var their_speed = abs(other.linear_velocity.length())
 	var dmg = impact_speed / damage_scale
 	
+	# Only applies damage to the slower player
 	if my_speed > their_speed:
 		print(impact_speed / damage_scale, " damage applied to ", other)
 		other.apply_dmg(dmg)

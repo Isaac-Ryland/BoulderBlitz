@@ -3,7 +3,7 @@ extends Control
 ##
 ## The pop-up menu where the users select the map they wish to play
 
-# References to Nodes in the scene tree
+# References to Nodes in the node tree
 @onready var map_1: TextureButton = $map_menu_bg/VBoxContainer/MapRow1/Map1
 @onready var map_2: TextureButton = $map_menu_bg/VBoxContainer/MapRow1/Map2
 @onready var map_3: TextureButton = $map_menu_bg/VBoxContainer/MapRow1/Map3

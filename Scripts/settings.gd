@@ -8,13 +8,13 @@ var p1_presets = [
 	{"player_1_ability_cycle": KEY_E, "player_1_ability_use": KEY_Q},
 	{"player_1_ability_cycle": KEY_CTRL, "player_1_ability_use": KEY_SHIFT},
 	{"player_1_ability_cycle": KEY_SHIFT, "player_1_ability_use": KEY_C}
-]
+	]
 var p2_presets = [
 	{"player_2_ability_cycle": KEY_O, "player_2_ability_use": KEY_U},
 	{"player_2_ability_cycle": KEY_U, "player_2_ability_use": KEY_O},
 	{"player_2_ability_cycle": KEY_SLASH, "player_2_ability_use": KEY_APOSTROPHE},
 	{"player_2_ability_cycle": KEY_SLASH, "player_2_ability_use": KEY_N}
-]
+	]
 
 
 # Removes all assigned keys to an action before replacing them with the keys from a specified control preset

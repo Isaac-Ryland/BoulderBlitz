@@ -3,7 +3,7 @@ extends Node2D
 ##
 ## The menu where users select their abilities, and can navigate to settings and back to the main menu
 
-# References to Nodes in the scene tree
+# References to Nodes in the node tree
 @onready var ability_select_left: Control = $ability_select_left
 @onready var ability_select_right: Control = $ability_select_right
 @onready var map_select: Control = $map_select
