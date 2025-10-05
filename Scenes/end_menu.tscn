@@ -1,0 +1,70 @@
+[gd_scene load_steps=6 format=3 uid="uid://dfans0gkoyjg8"]
+
+[ext_resource type="Texture2D" uid="uid://c763hasgleobs" path="res://Assets/BG.png" id="1_bg38y"]
+[ext_resource type="Script" uid="uid://1i6uv3da6vg" path="res://Scripts/end_menu.gd" id="1_tx7ng"]
+[ext_resource type="Texture2D" uid="uid://kfps87gt2b65" path="res://Assets/MainMenuArt/Buttons/BackDefault.png" id="3_tx7ng"]
+[ext_resource type="Texture2D" uid="uid://gf3nn8ojaftw" path="res://Assets/MainMenuArt/Buttons/BackPress.png" id="4_77tpm"]
+[ext_resource type="Texture2D" uid="uid://bch6kx63ly1to" path="res://Assets/MainMenuArt/Buttons/BackHover.png" id="5_fjfhw"]
+
+[node name="EndMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tx7ng")
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_bg38y")
+
+[node name="WinnerLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -670.0
+offset_top = -325.5
+offset_right = 670.0
+offset_bottom = -120.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 150
+text = "Player 0 Has Won!!"
+horizontal_alignment = 1
+
+[node name="BackButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -147.0
+offset_top = 1.0
+offset_right = 147.0
+offset_bottom = 123.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_tx7ng")
+texture_pressed = ExtResource("4_77tpm")
+texture_hover = ExtResource("5_fjfhw")
+
+[node name="WinsText" type="Label" parent="."]
+layout_mode = 0
+offset_left = 778.0
+offset_top = 901.0
+offset_right = 1142.0
+offset_bottom = 956.0
+theme_override_font_sizes/font_size = 40
+text = "Player 0 has 0 wins"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

@@ -3,7 +3,7 @@ extends Control
 ##
 ## The overlay that displays info about both players during games
 
-# References to Nodes in the scene tree
+# References to Nodes in the node tree
 @onready var player_1_icon: TextureRect = $Control/P1
 @onready var player_2_icon: TextureRect = $Control2/P2
 @onready var p1_health_bar: TextureRect = $Control/HealthBar

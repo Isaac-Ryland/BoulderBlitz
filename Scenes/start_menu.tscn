@@ -1,25 +1,25 @@
 [gd_scene load_steps=23 format=3 uid="uid://tlkvxk0efmv7"]
 
-[ext_resource type="Script" uid="uid://djpx42dkqolut" path="res://Scripts/start_menu.gd" id="1_fljge"]
-[ext_resource type="Texture2D" uid="uid://l2pa8i1xdmjy" path="res://Assets/StartMenuArt/StartMenuBG.png" id="2_jgtwh"]
-[ext_resource type="Texture2D" uid="uid://c1m3roq5r7n8e" path="res://Assets/StartMenuArt/AbilitySlotsLeft/AbilitySlotLeftDefault.png" id="3_8u0lp"]
-[ext_resource type="Texture2D" uid="uid://cv476agrxemf4" path="res://Assets/StartMenuArt/ReadyButtons/ReadyToggled.png" id="3_77ila"]
-[ext_resource type="Texture2D" uid="uid://c0wx7x6wdupj0" path="res://Assets/StartMenuArt/ReadyButtons/ReadyHover.png" id="4_00l4x"]
-[ext_resource type="Texture2D" uid="uid://cb3o7nasvuihw" path="res://Assets/StartMenuArt/AbilitySlotsLeft/AbilitySlotLeftHover.png" id="4_i2i62"]
-[ext_resource type="Texture2D" uid="uid://cymaj5170j0ad" path="res://Assets/StartMenuArt/SelectMenuBoulderLeft/GreenBoulderLeft.png" id="5_1u5ka"]
-[ext_resource type="Texture2D" uid="uid://d27gs6tpvn3so" path="res://Assets/StartMenuArt/AbilitySlotsRight/AbilitySlotRightDefault.png" id="5_lfskg"]
-[ext_resource type="Texture2D" uid="uid://dgnu1lay52d8s" path="res://Assets/StartMenuArt/SelectMenuBoulderRight/BlueBoulderRight.png" id="6_6k3d4"]
-[ext_resource type="Texture2D" uid="uid://ckv2wjsgw1w57" path="res://Assets/StartMenuArt/AbilitySlotsRight/AbilitySlotRightHover.png" id="6_ru7em"]
-[ext_resource type="PackedScene" uid="uid://x0ebwlv5qjfo" path="res://Scenes/ability_select_left.tscn" id="7_i2i62"]
-[ext_resource type="PackedScene" uid="uid://cob2bii56u5iu" path="res://Scenes/ability_select_right.tscn" id="8_lfskg"]
-[ext_resource type="Texture2D" uid="uid://hax8jukrcugl" path="res://Assets/StartMenuArt/HDash.png" id="11_6k3d4"]
-[ext_resource type="Texture2D" uid="uid://c36v28xbwrco3" path="res://Assets/MainMenuArt/Buttons/SelectSettingsDefault.png" id="11_l146v"]
-[ext_resource type="Texture2D" uid="uid://kfps87gt2b65" path="res://Assets/MainMenuArt/Buttons/BackDefault.png" id="11_rpttd"]
-[ext_resource type="PackedScene" uid="uid://b04qg2381bh2c" path="res://Scenes/map_select.tscn" id="11_slhe1"]
-[ext_resource type="Texture2D" uid="uid://cwspc85wvkfs7" path="res://Assets/MainMenuArt/Buttons/SelectSettingsPress.png" id="12_6k3d4"]
-[ext_resource type="Texture2D" uid="uid://gf3nn8ojaftw" path="res://Assets/MainMenuArt/Buttons/BackPress.png" id="12_slhe1"]
-[ext_resource type="Texture2D" uid="uid://d3vrm78lnsl81" path="res://Assets/MainMenuArt/Buttons/SelectSettingsHover.png" id="13_7c4jf"]
-[ext_resource type="Texture2D" uid="uid://bch6kx63ly1to" path="res://Assets/MainMenuArt/Buttons/BackHover.png" id="13_qnxl2"]
+[ext_resource type="Script" uid="uid://djpx42dkqolut" path="res://Scripts/start_menu.gd" id="1_6k3d4"]
+[ext_resource type="Texture2D" uid="uid://l2pa8i1xdmjy" path="res://Assets/StartMenuArt/StartMenuBG.png" id="2_7c4jf"]
+[ext_resource type="Texture2D" uid="uid://cv476agrxemf4" path="res://Assets/StartMenuArt/ReadyButtons/ReadyToggled.png" id="3_bbfqj"]
+[ext_resource type="Texture2D" uid="uid://c0wx7x6wdupj0" path="res://Assets/StartMenuArt/ReadyButtons/ReadyHover.png" id="4_7l3x2"]
+[ext_resource type="Texture2D" uid="uid://cymaj5170j0ad" path="res://Assets/StartMenuArt/SelectMenuBoulderLeft/GreenBoulderLeft.png" id="5_r3v4q"]
+[ext_resource type="Texture2D" uid="uid://dgnu1lay52d8s" path="res://Assets/StartMenuArt/SelectMenuBoulderRight/BlueBoulderRight.png" id="6_vjr4a"]
+[ext_resource type="Texture2D" uid="uid://c1m3roq5r7n8e" path="res://Assets/StartMenuArt/AbilitySlotsLeft/AbilitySlotLeftDefault.png" id="7_nqieh"]
+[ext_resource type="Texture2D" uid="uid://cb3o7nasvuihw" path="res://Assets/StartMenuArt/AbilitySlotsLeft/AbilitySlotLeftHover.png" id="8_ql55h"]
+[ext_resource type="Texture2D" uid="uid://d27gs6tpvn3so" path="res://Assets/StartMenuArt/AbilitySlotsRight/AbilitySlotRightDefault.png" id="9_rsq34"]
+[ext_resource type="Texture2D" uid="uid://ckv2wjsgw1w57" path="res://Assets/StartMenuArt/AbilitySlotsRight/AbilitySlotRightHover.png" id="10_owajr"]
+[ext_resource type="Texture2D" uid="uid://hax8jukrcugl" path="res://Assets/StartMenuArt/HDash.png" id="11_2jmie"]
+[ext_resource type="Texture2D" uid="uid://c36v28xbwrco3" path="res://Assets/MainMenuArt/Buttons/SelectSettingsDefault.png" id="12_148ai"]
+[ext_resource type="Texture2D" uid="uid://cwspc85wvkfs7" path="res://Assets/MainMenuArt/Buttons/SelectSettingsPress.png" id="13_116fv"]
+[ext_resource type="Texture2D" uid="uid://d3vrm78lnsl81" path="res://Assets/MainMenuArt/Buttons/SelectSettingsHover.png" id="14_ptes2"]
+[ext_resource type="PackedScene" uid="uid://x0ebwlv5qjfo" path="res://Scenes/ability_select_left.tscn" id="15_ppo5q"]
+[ext_resource type="PackedScene" uid="uid://cob2bii56u5iu" path="res://Scenes/ability_select_right.tscn" id="16_0yyjb"]
+[ext_resource type="PackedScene" uid="uid://b04qg2381bh2c" path="res://Scenes/map_select.tscn" id="17_4ixqo"]
+[ext_resource type="Texture2D" uid="uid://kfps87gt2b65" path="res://Assets/MainMenuArt/Buttons/BackDefault.png" id="18_g8pjx"]
+[ext_resource type="Texture2D" uid="uid://gf3nn8ojaftw" path="res://Assets/MainMenuArt/Buttons/BackPress.png" id="19_pg853"]
+[ext_resource type="Texture2D" uid="uid://bch6kx63ly1to" path="res://Assets/MainMenuArt/Buttons/BackHover.png" id="20_uge4m"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_6k3d4"]
 device = -1
@@ -30,7 +30,7 @@ unicode = 96
 events = [SubResource("InputEventKey_6k3d4")]
 
 [node name="StartMenu" type="Node2D"]
-script = ExtResource("1_fljge")
+script = ExtResource("1_6k3d4")
 
 [node name="BG" type="Control" parent="."]
 layout_mode = 3
@@ -45,7 +45,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_jgtwh")
+texture = ExtResource("2_7c4jf")
 
 [node name="ReadyLeft" type="Control" parent="."]
 layout_mode = 3
@@ -63,8 +63,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 toggle_mode = true
-texture_pressed = ExtResource("3_77ila")
-texture_hover = ExtResource("4_00l4x")
+texture_pressed = ExtResource("3_bbfqj")
+texture_hover = ExtResource("4_7l3x2")
 
 [node name="ReadyRight" type="Control" parent="."]
 layout_mode = 3
@@ -82,8 +82,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 toggle_mode = true
-texture_pressed = ExtResource("3_77ila")
-texture_hover = ExtResource("4_00l4x")
+texture_pressed = ExtResource("3_bbfqj")
+texture_hover = ExtResource("4_7l3x2")
 
 [node name="BoulderLeft" type="Control" parent="."]
 custom_minimum_size = Vector2(260, 272)
@@ -103,7 +103,7 @@ offset_left = 2.0
 offset_right = 2.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("5_1u5ka")
+texture = ExtResource("5_r3v4q")
 
 [node name="BoulderRight" type="Control" parent="."]
 custom_minimum_size = Vector2(260, 272)
@@ -121,7 +121,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("6_6k3d4")
+texture = ExtResource("6_vjr4a")
 
 [node name="SlotsLeft" type="Control" parent="."]
 layout_mode = 3
@@ -147,18 +147,18 @@ alignment = 1
 
 [node name="Slot1" type="TextureButton" parent="SlotsLeft/HBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("3_8u0lp")
-texture_hover = ExtResource("4_i2i62")
+texture_normal = ExtResource("7_nqieh")
+texture_hover = ExtResource("8_ql55h")
 
 [node name="Slot2" type="TextureButton" parent="SlotsLeft/HBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("3_8u0lp")
-texture_hover = ExtResource("4_i2i62")
+texture_normal = ExtResource("7_nqieh")
+texture_hover = ExtResource("8_ql55h")
 
 [node name="Slot3" type="TextureButton" parent="SlotsLeft/HBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("3_8u0lp")
-texture_hover = ExtResource("4_i2i62")
+texture_normal = ExtResource("7_nqieh")
+texture_hover = ExtResource("8_ql55h")
 
 [node name="SlotsRight" type="Control" parent="."]
 layout_mode = 3
@@ -183,18 +183,18 @@ theme_override_constants/separation = 6
 
 [node name="Slot1" type="TextureButton" parent="SlotsRight/HBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("5_lfskg")
-texture_hover = ExtResource("6_ru7em")
+texture_normal = ExtResource("9_rsq34")
+texture_hover = ExtResource("10_owajr")
 
 [node name="Slot2" type="TextureButton" parent="SlotsRight/HBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("5_lfskg")
-texture_hover = ExtResource("6_ru7em")
+texture_normal = ExtResource("9_rsq34")
+texture_hover = ExtResource("10_owajr")
 
 [node name="Slot3" type="TextureButton" parent="SlotsRight/HBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("5_lfskg")
-texture_hover = ExtResource("6_ru7em")
+texture_normal = ExtResource("9_rsq34")
+texture_hover = ExtResource("10_owajr")
 
 [node name="AbilitySlot1" type="TextureRect" parent="."]
 visible = false
@@ -202,7 +202,7 @@ offset_left = 238.0
 offset_top = 302.0
 offset_right = 350.0
 offset_bottom = 414.0
-texture = ExtResource("11_6k3d4")
+texture = ExtResource("11_2jmie")
 
 [node name="AbilitySlot2" type="TextureRect" parent="."]
 visible = false
@@ -210,7 +210,7 @@ offset_left = 480.0
 offset_top = 302.0
 offset_right = 592.0
 offset_bottom = 414.0
-texture = ExtResource("11_6k3d4")
+texture = ExtResource("11_2jmie")
 
 [node name="AbilitySlot3" type="TextureRect" parent="."]
 visible = false
@@ -218,7 +218,7 @@ offset_left = 722.0
 offset_top = 302.0
 offset_right = 834.0
 offset_bottom = 414.0
-texture = ExtResource("11_6k3d4")
+texture = ExtResource("11_2jmie")
 
 [node name="AbilitySlot4" type="TextureRect" parent="."]
 visible = false
@@ -226,7 +226,7 @@ offset_left = 1086.0
 offset_top = 302.0
 offset_right = 1198.0
 offset_bottom = 414.0
-texture = ExtResource("11_6k3d4")
+texture = ExtResource("11_2jmie")
 
 [node name="AbilitySlot5" type="TextureRect" parent="."]
 visible = false
@@ -234,7 +234,7 @@ offset_left = 1328.0
 offset_top = 302.0
 offset_right = 1440.0
 offset_bottom = 414.0
-texture = ExtResource("11_6k3d4")
+texture = ExtResource("11_2jmie")
 
 [node name="AbilitySlot6" type="TextureRect" parent="."]
 visible = false
@@ -242,7 +242,7 @@ offset_left = 1570.0
 offset_top = 302.0
 offset_right = 1682.0
 offset_bottom = 414.0
-texture = ExtResource("11_6k3d4")
+texture = ExtResource("11_2jmie")
 
 [node name="SettingsButton" type="Control" parent="."]
 layout_mode = 3
@@ -259,26 +259,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("11_l146v")
-texture_pressed = ExtResource("12_6k3d4")
-texture_hover = ExtResource("13_7c4jf")
+texture_normal = ExtResource("12_148ai")
+texture_pressed = ExtResource("13_116fv")
+texture_hover = ExtResource("14_ptes2")
 ignore_texture_size = true
 
-[node name="ability_select_left" parent="." instance=ExtResource("7_i2i62")]
+[node name="ability_select_left" parent="." instance=ExtResource("15_ppo5q")]
 visible = false
 offset_left = 179.84
 offset_top = 461.8
 offset_right = 179.84
 offset_bottom = 461.8
 
-[node name="ability_select_right" parent="." instance=ExtResource("8_lfskg")]
+[node name="ability_select_right" parent="." instance=ExtResource("16_0yyjb")]
 visible = false
 offset_left = 1027.84
 offset_top = 461.8
 offset_right = 1027.84
 offset_bottom = 461.8
 
-[node name="map_select" parent="." instance=ExtResource("11_slhe1")]
+[node name="map_select" parent="." instance=ExtResource("17_4ixqo")]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -306,9 +306,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 shortcut = SubResource("Shortcut_7c4jf")
-texture_normal = ExtResource("11_rpttd")
-texture_pressed = ExtResource("12_slhe1")
-texture_hover = ExtResource("13_qnxl2")
+texture_normal = ExtResource("18_g8pjx")
+texture_pressed = ExtResource("19_pg853")
+texture_hover = ExtResource("20_uge4m")
 ignore_texture_size = true
 
 [connection signal="change_left_visibility" from="." to="ability_select_left" method="_on_start_menu_change_left_visibility"]
