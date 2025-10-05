@@ -1,6 +1,5 @@
-[gd_scene load_steps=12 format=3 uid="uid://ctrpi4xhqxa33"]
+[gd_scene load_steps=11 format=3 uid="uid://ctrpi4xhqxa33"]
 
-[ext_resource type="PhysicsMaterial" uid="uid://bvkabrx6nujub" path="res://Assets/PhysicsMaterials/ground_material.tres" id="1_pj5k7"]
 [ext_resource type="PackedScene" uid="uid://gitaxeafjoim" path="res://Scenes/booster.tscn" id="4_k5iew"]
 [ext_resource type="PackedScene" uid="uid://baomiiwxpn8hf" path="res://Scenes/info_overlay.tscn" id="5_lmd5f"]
 [ext_resource type="PackedScene" uid="uid://cg7bxbpkffuo2" path="res://Scenes/player.tscn" id="6_ptrbc"]
@@ -46,7 +45,6 @@ color = Color(0.94902, 0.521569, 0, 1)
 [node name="PlatformsStatic" type="Node" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="PlatformsStatic"]
-physics_material_override = ExtResource("1_pj5k7")
 
 [node name="Floor" type="CollisionShape2D" parent="PlatformsStatic/StaticBody2D"]
 position = Vector2(960, 1189)

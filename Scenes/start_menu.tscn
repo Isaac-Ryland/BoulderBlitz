@@ -311,9 +311,6 @@ texture_pressed = ExtResource("19_pg853")
 texture_hover = ExtResource("20_uge4m")
 ignore_texture_size = true
 
-[connection signal="change_left_visibility" from="." to="ability_select_left" method="_on_start_menu_change_left_visibility"]
-[connection signal="change_map_visibilty" from="." to="map_select" method="_on_start_menu_change_map_visibilty"]
-[connection signal="change_right_visibility" from="." to="ability_select_right" method="_on_start_menu_change_right_visibility"]
 [connection signal="pressed" from="ReadyLeft/TextureButton" to="." method="_on_ready_left_pressed"]
 [connection signal="pressed" from="ReadyRight/TextureButton" to="." method="_on_ready_right_pressed"]
 [connection signal="pressed" from="SlotsLeft/HBoxContainer/Slot1" to="." method="_on_slot_1_left_pressed"]

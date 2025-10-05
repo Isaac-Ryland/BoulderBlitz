@@ -176,7 +176,6 @@ polygon = PackedVector2Array(35, 335, 22, 315, 13, 287, 9, 262, 7, 228, 5, 164, 
 [node name="temp_ground" type="Node" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="temp_ground"]
-physics_material_override = ExtResource("1_vma17")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="temp_ground/StaticBody2D"]
 position = Vector2(0, 1200)

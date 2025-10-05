@@ -19,12 +19,6 @@ extends Node2D
 	$AbilitySlot6
 	]
 
-# Signals for changing the visibility of the pop-up menus
-signal change_left_visibility()
-signal change_right_visibility()
-signal change_map_visibilty()
-
-
 var current_slot = 0
 var p1_ready = false
 var p2_ready = false
@@ -60,7 +54,7 @@ func _ready() -> void:
 # If the map select menu is visible then close it, else go to the main menu
 func on_back_button_pressed() -> void:
 	if map_select.visible:
-		change_map_visibilty.emit()
+		map_select._on_start_menu_change_map_visibilty()
 	else:
 		get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
@@ -71,48 +65,48 @@ func on_settings_button_pressed() -> void:
 
 
 # Toggles the visibility of the ability select menu, and changes its texture to the respective slot
-func handle_slot_press(menu, menu_visibility_signal, slot_index: int) -> void:
+func handle_slot_press(menu, slot_index: int) -> void:
 	if !menu.visible:
-		menu_visibility_signal.emit()
+		menu._on_start_menu_change_visibility()
 	elif current_slot == slot_index:
-		menu_visibility_signal.emit()
+		menu._on_start_menu_change_visibility()
 	current_slot = slot_index
 
 
 # Ability slots for player 1 (left side of the menu)
 func _on_slot_1_left_pressed() -> void:
-	handle_slot_press(ability_select_left, change_left_visibility, 0)
+	handle_slot_press(ability_select_left, 0)
 	ability_select_left.set_texture(left_textures[0])
 	ability_select_left.set_slot(current_slot)
 
 
 func _on_slot_2_left_pressed() -> void:
-	handle_slot_press(ability_select_left, change_left_visibility, 1)
+	handle_slot_press(ability_select_left, 1)
 	ability_select_left.set_texture(left_textures[1])
 	ability_select_left.set_slot(current_slot)
 
 
 func _on_slot_3_left_pressed() -> void:
-	handle_slot_press(ability_select_left, change_left_visibility, 2)
+	handle_slot_press(ability_select_left, 2)
 	ability_select_left.set_texture(left_textures[2])
 	ability_select_left.set_slot(current_slot)
 
 
 # Ability slots for player 2 (right side of the menu)
 func _on_slot_1_right_pressed() -> void:
-	handle_slot_press(ability_select_right, change_right_visibility, 0)
+	handle_slot_press(ability_select_right, 0)
 	ability_select_right.set_texture(right_textures[0])
 	ability_select_right.set_slot(current_slot)
 
 
 func _on_slot_2_right_pressed() -> void:
-	handle_slot_press(ability_select_right, change_right_visibility, 1)
+	handle_slot_press(ability_select_right, 1)
 	ability_select_right.set_texture(right_textures[1])
 	ability_select_right.set_slot(current_slot)
 
 
 func _on_slot_3_right_pressed() -> void:
-	handle_slot_press(ability_select_right, change_right_visibility, 2)
+	handle_slot_press(ability_select_right, 2)
 	ability_select_right.set_texture(right_textures[2])
 	ability_select_right.set_slot(current_slot)
 
@@ -132,10 +126,10 @@ func update_selected_ability_texture(player_index: int, slot: int, ability: int)
 func _on_ready_left_pressed() -> void:
 	p1_ready = !p1_ready
 	if p1_ready and p2_ready:
-		change_map_visibilty.emit()
+		map_select._on_start_menu_change_map_visibilty()
 
 
 func _on_ready_right_pressed() -> void:
 	p2_ready = !p2_ready
 	if p1_ready and p2_ready:
-		change_map_visibilty.emit()
+		map_select._on_start_menu_change_map_visibilty()

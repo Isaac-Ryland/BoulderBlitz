@@ -15,6 +15,7 @@ run/main_scene="res://Scenes/game.tscn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/image="uid://ca6xum0rvyaeq"
 config/icon="res://Assets/BB-logo256.png"
+config/windows_native_icon="res://Assets/BB-logo256.ico"
 
 [autoload]
 

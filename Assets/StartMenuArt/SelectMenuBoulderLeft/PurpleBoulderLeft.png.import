@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dvv7jqmpd3ab2"
-path="res://.godot/imported/PurpleDefault.png-436979741132ae53f17aebfa0809b206.ctex"
+path="res://.godot/imported/PurpleBoulderLeft.png-397b2a140f1e4b39293ca881787ee6e9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/StartMenuArt/SelectMenuBoulderLeft/PurpleDefault.png"
-dest_files=["res://.godot/imported/PurpleDefault.png-436979741132ae53f17aebfa0809b206.ctex"]
+source_file="res://Assets/StartMenuArt/SelectMenuBoulderLeft/PurpleBoulderLeft.png"
+dest_files=["res://.godot/imported/PurpleBoulderLeft.png-397b2a140f1e4b39293ca881787ee6e9.ctex"]
 
 [params]
 

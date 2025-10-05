@@ -7,5 +7,5 @@ func _ready() -> void:
 
 
 # Toggles the visibility of the left ability select menu
-func _on_start_menu_change_left_visibility() -> void:
+func _on_start_menu_change_visibility() -> void:
 	change_visibility()
