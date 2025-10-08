@@ -4,14 +4,18 @@ extends Node2D
 ## Grapples onto the map and lets the player swing from the latch point
 ## Ability is toggled by the first press of the button, where after de-activation the cooldown applies
 
-const cooldown: float = 10.0
+const cooldown: float = 5.0
 const rope_colour: Color = Color(0.25, 0.25, 0.25, 1)
 const min_grapple_dist: int = 80 # Takes the player's radius plus a margin and used to prevent grapples from too close
+const moving_threshold: float = 10 # The minimum velocity for velocity based directions
 
 var can_activate: bool = true # Flag for prevention of use when on cooldown
 var is_grappled: bool = false # Flag for toggling grapple on and off
 var current_rope_length: float
+var collider
 var hook_pos: Vector2
+var hook_local_pos: Vector2
+var current_hook_pos: Vector2
 
 
 # When the cooldown timer runs out, allows the activation of the ability again
@@ -47,27 +51,27 @@ func activate(player, player_index):
 
 	# If no input, hook in direction of player's velocity
 	if dir == Vector2.ZERO:
-		if player.linear_velocity.x > 0:
+		if player.linear_velocity.x > moving_threshold:
 			dir.x = 1
-		elif player.linear_velocity.x < 0:
+		elif player.linear_velocity.x < moving_threshold:
 			dir.x = -1
-		elif player.linear_velocity.y > 0:
+		elif player.linear_velocity.y > moving_threshold:
 			dir.y = -1
-		elif player.linear_velocity.y < 0:
+		elif player.linear_velocity.y < moving_threshold:
 			dir.y = 1
 		else:
 			dir = Vector2(1, -1)  # default to top right
-	elif dir.x == 0:
-		if player.linear_velocity.x > 0:
+	elif dir.x == moving_threshold:
+		if player.linear_velocity.x > moving_threshold:
 			dir.x = 1
-		elif player.linear_velocity.x < 0:
+		elif player.linear_velocity.x < moving_threshold:
 			dir.x = -1
 		else:
 			dir.x = 1
-	elif dir.y == 0:
-		if player.linear_velocity.y > 0:
+	elif dir.y == moving_threshold:
+		if player.linear_velocity.y > moving_threshold:
 			dir.y = -1
-		elif player.linear_velocity.y < 0:
+		elif player.linear_velocity.y < moving_threshold:
 			dir.y = 1
 		else:
 			dir.y = -1
@@ -87,9 +91,10 @@ func activate(player, player_index):
 
 	# If the raycast is colliding, set the hook position and rope length
 	if ray.is_colliding():
-		var collider = ray.get_collider()
+		collider = ray.get_collider()
 		if collider is StaticBody2D and not is_grappled:
 			hook_pos = ray.get_collision_point()
+			hook_local_pos = collider.to_local(hook_pos)
 			current_rope_length	= global_position.distance_to(hook_pos)
 			if current_rope_length < min_grapple_dist: return # If the hook pos is too close to the player then the grapple will not activate
 			is_grappled = true
@@ -100,14 +105,15 @@ func _physics_process(delta: float) -> void:
 	# Only runs if the grapple is currently active
 	if not is_grappled:
 		return
-	
+
 	queue_redraw()
-	
+
 	var player = get_parent()
 
-	# Clamps players velocity to give circular motion around the hook point
-	var rope = player.global_position - hook_pos
+	current_hook_pos = collider.to_global(hook_local_pos)
+	var rope = player.global_position - current_hook_pos
 	var rope_normal = rope.normalized()
+	# Clamps players velocity to give circular motion around the hook point
 	var radial_speed = rope_normal.dot(player.linear_velocity)
 	if radial_speed <= 0: 
 		return
@@ -120,7 +126,7 @@ func _physics_process(delta: float) -> void:
 
 	# Prevets the rope from being extended
 	if rope.length() > current_rope_length:
-		player.global_position = hook_pos + rope_normal * current_rope_length
+		player.global_position = current_hook_pos + rope_normal * current_rope_length
 
 
 # Draws a line from the centre of the player to the hook point to visualise the grapple hook
@@ -129,4 +135,4 @@ func _draw() -> void:
 	if not is_grappled:
 		return
 	
-	draw_line(Vector2(0, -64), (hook_pos - get_parent().global_position), rope_colour, 10)
+	draw_line(Vector2(0, -64), (current_hook_pos - get_parent().global_position), rope_colour, 10)

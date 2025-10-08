@@ -4,8 +4,9 @@ extends Node2D
 ## Used to apply a force in the held direction, excluding horizontal
 ## Ability fires once on ability button pressed
 
-const jetpack_impulse: float = 600
 const cooldown: float = 3.0
+const jetpack_impulse: float = 600
+const moving_threshold: float = 10 # The minimum velocity for velocity based directions
 
 var can_activate: bool = true # Flag for prevention of use when on cooldown
 
@@ -34,10 +35,10 @@ func activate(player, player_index):
 		dir.y = 1
 
 	# If no input, boost in direction of player's vertical velocity
-	if dir == Vector2.ZERO or dir.y == 0:
-		if player.linear_velocity.y > 0:
+	if dir == Vector2.ZERO or dir.y == moving_threshold:
+		if player.linear_velocity.y > moving_threshold:
 			dir.y = 1
-		elif player.linear_velocity.y < 0:
+		elif player.linear_velocity.y < moving_threshold:
 			dir.y = -1
 		else:
 			dir.y = 1  # default to up

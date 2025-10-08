@@ -4,8 +4,9 @@ extends Node2D
 ## Used to apply a force in the held direction, excluding upwards
 ## Ability fires once on ability button pressed
 
-const dash_impulse: float = 600
 const cooldown: float = 3.0
+const dash_impulse: float = 600
+const moving_threshold: float = 10 # The minimum velocity for velocity based directions
 
 var can_activate: bool = true # Flag for prevention of use when on cooldown
 
@@ -34,10 +35,10 @@ func activate(player, player_index):
 		dir.x = -1
 
 	# If no input, dash in direction of player's horizontal velocity
-	if dir == Vector2.ZERO or dir.x == 0:
-		if player.linear_velocity.x > 0:
+	if dir == Vector2.ZERO or dir.x == moving_threshold:
+		if player.linear_velocity.x > moving_threshold:
 			dir.x = 1
-		elif player.linear_velocity.x < 0:
+		elif player.linear_velocity.x < moving_threshold:
 			dir.x = -1
 		else:
 			dir.x = 1  # default to right

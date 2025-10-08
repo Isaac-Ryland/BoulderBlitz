@@ -2066,7 +2066,7 @@ max_contacts_reported = 10
 script = ExtResource("1_v0iea")
 
 [node name="BallSprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -63)
+position = Vector2(0, -64)
 sprite_frames = SubResource("SpriteFrames_p1odr")
 animation = &"GREEN"
 
@@ -2084,25 +2084,26 @@ target_position = Vector2(0, 150)
 collision_mask = 2
 
 [node name="LeftCast" type="RayCast2D" parent="CollisionShape2D"]
-target_position = Vector2(-1200, 0)
+position = Vector2(1, 0)
+target_position = Vector2(-2000, 0)
 
 [node name="TopLeftCast" type="RayCast2D" parent="CollisionShape2D"]
-target_position = Vector2(-848, -848)
+target_position = Vector2(-2000, -2000)
 
 [node name="TopCast" type="RayCast2D" parent="CollisionShape2D"]
-target_position = Vector2(0, -1200)
+target_position = Vector2(0, -2000)
 
 [node name="TopRightCast" type="RayCast2D" parent="CollisionShape2D"]
-target_position = Vector2(848, -848)
+target_position = Vector2(2000, -2000)
 
 [node name="RightCast" type="RayCast2D" parent="CollisionShape2D"]
-target_position = Vector2(1200, 0)
+target_position = Vector2(2000, 0)
 
 [node name="BottomRightCast" type="RayCast2D" parent="CollisionShape2D"]
-target_position = Vector2(848, 848)
+target_position = Vector2(2000, 2000)
 
 [node name="BottomCast" type="RayCast2D" parent="CollisionShape2D"]
-target_position = Vector2(0, 1200)
+target_position = Vector2(0, 2000)
 
 [node name="BottomLeftCast" type="RayCast2D" parent="CollisionShape2D"]
-target_position = Vector2(-848, 848)
+target_position = Vector2(-2000, 2000)

@@ -30,6 +30,7 @@ var player_controls = [
 		"use": "player_2_ability_use"
 	}
 	]
+var player_last_velocity = [Vector2(0,0), Vector2(0,0)] # Used fr damage calculation, Storing last vel to do the calc with pre-collision speeds
 var loser = null
 var player_1_wins = 0
 var player_2_wins = 0

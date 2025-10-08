@@ -6,11 +6,10 @@ extends Node2D
 
 const cooldown: float = 18.0
 const duration: float = 10.0
-const default_damage_scale: float = 5
 const ability_damage_scale: float = 1.5
 
 var can_activate: bool = true
-
+var default_damage_scale: float = get_parent().damage_scale
 
 # When the cooldown timer runs out, this is called which allows the activation of abilities again
 func _on_timer_timeout() -> void:

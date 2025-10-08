@@ -5,25 +5,20 @@ extends Node2D
 ## Ability stays on for as long as ability button is held or until the slingshot reaches a certain length
 ## Ability then goes on cooldown after button release / disconnect
 
-const cooldown: float = 3.0
+const cooldown: float = 6.0
 const rope_colour: Color = Color(1, 1, 1, 1)
-const local_ray_offset: int = 64
-const min_hook_dist: int = 16
-const yoink_impulse: float = 30
+const min_hook_dist: int = 80 # Takes the player's radius plus a margin and used to prevent grapples from too close
+const yoink_impulse: float = 50
+const moving_threshold: float = 10 # The minimum velocity for velocity based directions
 
 var can_activate: bool = true
 var is_hooked: bool = false
 var current_rope_length: float
+var initial_hook_length: float
+var collider
 var hook_pos: Vector2
-	#Vector2(-1, 0):  get_parent().rays[0],
-	#Vector2(-1, -1): get_parent().rays[1],
-	#Vector2(0, -1):  get_parent().rays[2],
-	#Vector2(1, -1):  get_parent().rays[3],
-	#Vector2(1, 0):   get_parent().rays[4],
-	#Vector2(1, 1):   get_parent().rays[5],
-	#Vector2(0, 1):   get_parent().rays[6],
-	#Vector2(-1, 1):  get_parent().rays[7],
-#}
+var hook_local_pos: Vector2
+var current_hook_pos: Vector2
 
 
 # When the cooldown timer runs out, this is called which allows the activation of abilities again
@@ -59,27 +54,27 @@ func activate(player, player_index):
 
 	# If no input, hook in direction of player's velocity
 	if dir == Vector2.ZERO:
-		if player.linear_velocity.x > 0:
+		if player.linear_velocity.x > moving_threshold:
 			dir.x = 1
-		elif player.linear_velocity.x < 0:
+		elif player.linear_velocity.x < moving_threshold:
 			dir.x = -1
-		elif player.linear_velocity.y > 0:
+		elif player.linear_velocity.y > moving_threshold:
 			dir.y = -1
-		elif player.linear_velocity.y < 0:
+		elif player.linear_velocity.y < moving_threshold:
 			dir.y = 1
 		else:
 			dir = Vector2(1, -1)  # default to top right
-	elif dir.x == 0:
-		if player.linear_velocity.x > 0:
+	elif dir.x == moving_threshold:
+		if player.linear_velocity.x > moving_threshold:
 			dir.x = 1
-		elif player.linear_velocity.x < 0:
+		elif player.linear_velocity.x < moving_threshold:
 			dir.x = -1
 		else:
 			dir.x = 1
-	elif dir.y == 0:
-		if player.linear_velocity.y > 0:
+	elif dir.y == moving_threshold:
+		if player.linear_velocity.y > moving_threshold:
 			dir.y = -1
-		elif player.linear_velocity.y < 0:
+		elif player.linear_velocity.y < moving_threshold:
 			dir.y = 1
 		else:
 			dir.y = -1
@@ -99,10 +94,12 @@ func activate(player, player_index):
 
 	# If the raycast is colliding, set the hook position and rope length
 	if ray.is_colliding():
-		var collider = ray.get_collider()
+		collider = ray.get_collider()
 		if collider is StaticBody2D and not is_hooked:
 			hook_pos = ray.get_collision_point()
-			current_rope_length	= global_position.distance_to(hook_pos)
+			hook_local_pos = collider.to_local(hook_pos)
+			current_rope_length = global_position.distance_to(hook_pos)
+			initial_hook_length = current_rope_length
 			if current_rope_length < min_hook_dist: return # If the hook pos is too close to the player then slingshot will not activate
 			is_hooked = true
 			queue_redraw()
@@ -117,10 +114,20 @@ func _physics_process(delta: float) -> void:
 	
 	var player = get_parent()
 
-	# Accelerates the player towards the the hook point
-	var rope = player.global_position - hook_pos
+	current_hook_pos = collider.to_global(hook_local_pos)
+	var rope = player.global_position - current_hook_pos
 	var rope_normal = rope.normalized()
+	# Accelerates the player towards the the hook point
 	player.apply_central_impulse(yoink_impulse * -rope_normal)
+	
+	# Disconnects the slingshot when the player has travelled 80% of the way there
+	if rope.length() < (initial_hook_length * 0.25) or rope.length() < min_hook_dist:
+		is_hooked = false
+		can_activate = false
+		queue_redraw()
+		# Prevent re-use of the ability for (cooldown) amount of seconds
+		var cooldown_timer = get_tree().create_timer(cooldown)
+		cooldown_timer.timeout.connect(_on_timer_timeout)
 
 
 # Draws a line from the centre of the player to the hook point to visualise the slingshot
@@ -129,4 +136,4 @@ func _draw() -> void:
 	if not is_hooked:
 		return
 	
-	draw_line(Vector2(0, -64), (hook_pos - get_parent().global_position), rope_colour, 10)
+	draw_line(Vector2(0, -64), (current_hook_pos - get_parent().global_position), rope_colour, 10)

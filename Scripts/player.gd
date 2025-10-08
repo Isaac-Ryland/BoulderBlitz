@@ -39,9 +39,10 @@ var jump_cooldown_timer = 0.0
 var selected_abilities = [] # A list of all selected abilities of the player
 var ability_selected_index = 0 # Used for cycling between the individual selected ability
 var controls = {} # The control preset the player has chosen
-var damage_scale = 5 # The amount damage is scaled down by before being applied. Used for balancing
+var damage_scale = 6 # The amount damage is scaled down by before being applied. Used for balancing
 
 @export var player_index = 0
+
 
 # Once the player enters the scene, iterates through the player's abilities and instantiates them so they can be used
 func _ready() -> void:
@@ -74,7 +75,6 @@ func _ready() -> void:
 				add_child(inst)
 				selected_abilities.append(inst)
 
-
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	is_grounded = false # Assume player is not grounded or walled unless told otherwise
 	is_walled = false
@@ -85,7 +85,9 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 		# Other player detection
 		var other = state.get_contact_collider_object(i) # Gets the type of object the player has collided with
 		if other and other is RigidBody2D: # Bunch of checks to confirm that the object is another player
-			_handle_player_collision(other)
+			var my_vel = GameData.player_last_velocity[self.player_index]
+			var other_vel = GameData.player_last_velocity[other.player_index]
+			_handle_player_collision(other, my_vel, other_vel)
 
 		# Ground detection
 		var normal = state.get_contact_local_normal(i)
@@ -103,6 +105,7 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 
 func _physics_process(delta: float) -> void:
 	var direction = 0
+	GameData.player_last_velocity[player_index] = linear_velocity
 
 	# cooldown to prevent multiple jumps in a single frame
 	if jump_cooldown_timer > 0:
@@ -181,7 +184,7 @@ func _physics_process(delta: float) -> void:
 
 # Used to update the player's health after collision
 func apply_dmg(damage: float):
-	GameData.player_health[player_index] -= abs(round(damage))
+	GameData.player_health[player_index] -= abs(damage)
 	if GameData.player_health[player_index] <= 0:
 		GameData.loser = player_index
 		GameData.game_over = true
@@ -189,25 +192,22 @@ func apply_dmg(damage: float):
 	print(GameData.player_health[player_index], " Health left for player %s" % (player_index+1))
 
 
-func _handle_player_collision(other: RigidBody2D):
-	var rel_vel = other.linear_velocity - linear_velocity
+func _handle_player_collision(other: RigidBody2D, my_vel: Vector2, other_vel: Vector2):
+	
+	var rel_vel = other_vel - my_vel
 	var normal = (other.global_position - global_position).normalized()
 	var impact_speed = rel_vel.dot(normal)
 	
 	# If the speed is too small or the players are travelling away during contact, don't apply any damage
 	if impact_speed >= 0 or abs(impact_speed) < damage_threshold:
+		print("Damage too low or negative")
 		return
 	
 	impact_speed = abs(impact_speed)
 	
-	var my_speed = abs(linear_velocity.length())
-	var their_speed = abs(other.linear_velocity.length())
 	var dmg = impact_speed / damage_scale
 	
 	# Only applies damage to the slower player
-	if my_speed > their_speed:
-		print(impact_speed / damage_scale, " damage applied to ", other)
-		other.apply_dmg(dmg)
-	elif my_speed < their_speed:
+	if my_vel.length() < other_vel.length():
 		print(impact_speed / damage_scale, " damage applied to ", self)
 		apply_dmg(dmg)
