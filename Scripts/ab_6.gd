@@ -1,15 +1,16 @@
 extends Node2D
+class_name Ab6
 ## Spike ability
 ##
 ## Amplifies the damage applied to the other player on collision
 ## Ability activates and stays on for a duration when ability button pressed
 
-const cooldown: float = 18.0
-const duration: float = 10.0
-const ability_damage_scale: float = 1.5
+const cooldown: float = 16.0
+const duration: float = 8.0
+const ability_damage_scale: float = 4.5
 
 var can_activate: bool = true
-var default_damage_scale: float = get_parent().damage_scale
+var default_damage_scale: float = 6
 
 # When the cooldown timer runs out, this is called which allows the activation of abilities again
 func _on_timer_timeout() -> void:

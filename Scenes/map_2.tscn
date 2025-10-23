@@ -23,45 +23,58 @@ radius = 200.0
 friction = 0.0
 bounce = 1000.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wy8n8"]
-radius = 20.0
-height = 324.0
-
-[sub_resource type="Animation" id="Animation_3kc4c"]
+[sub_resource type="Animation" id="Animation_uuwls"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
+tracks/0/path = NodePath("..:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [-1.5708]
+"values": [0.0]
 }
 
-[sub_resource type="Animation" id="Animation_wy8n8"]
-resource_name = "Spin"
+[sub_resource type="Animation" id="Animation_wuwv3"]
+resource_name = "SpinLeft"
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
+tracks/0/path = NodePath("..:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-1.5708, 4.71239]
+"values": [0.0, -6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_qmr3o"]
+resource_name = "SpinRight"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l8x2o"]
 _data = {
-&"RESET": SubResource("Animation_3kc4c"),
-&"Spin": SubResource("Animation_wy8n8")
+&"RESET": SubResource("Animation_uuwls"),
+&"SpinLeft": SubResource("Animation_wuwv3"),
+&"SpinRight": SubResource("Animation_qmr3o")
 }
 
 [node name="Map2" type="Node2D"]
@@ -173,37 +186,44 @@ polygon = PackedVector2Array(220, 1180, 168, 1173, 120, 1153, 79, 1121, 47, 1080
 [node name="PlatformsMoving" type="Node" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="PlatformsMoving"]
+position = Vector2(448, 640)
 physics_material_override = SubResource("PhysicsMaterial_wuwv3")
 
-[node name="CentralSpinning" type="CollisionShape2D" parent="PlatformsMoving/StaticBody2D"]
-position = Vector2(1472, 640)
-rotation = -1.5708
-shape = SubResource("CapsuleShape2D_wy8n8")
+[node name="SpinningLeft" type="CollisionPolygon2D" parent="PlatformsMoving/StaticBody2D"]
+position = Vector2(-448, -640)
+polygon = PackedVector2Array(306, 620, 301, 621, 296, 623, 292, 626, 289, 630, 287, 635, 286, 640, 287, 645, 289, 650, 292, 654, 296, 657, 301, 659, 306, 660, 590, 660, 595, 659, 600, 657, 604, 654, 607, 650, 609, 645, 610, 640, 609, 635, 607, 630, 604, 626, 600, 623, 595, 621, 590, 620)
 
-[node name="Polygon2D" type="Polygon2D" parent="PlatformsMoving/StaticBody2D/CentralSpinning"]
-polygon = PackedVector2Array(-3.05176e-05, -162, -5.00003, -161, -10, -159, -14, -156, -17, -152, -19, -147, -20, -142, -20, 142, -19, 147, -17, 152, -14, 156, -10, 159, -5, 161, 0, 162, 5, 161, 10, 159, 14, 156, 17, 152, 19, 147, 20, 142, 20, -142, 19, -147, 17, -152, 14, -156, 9.99997, -159, 4.99997, -161)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PlatformsMoving/StaticBody2D/CentralSpinning"]
-libraries = {
-&"": SubResource("AnimationLibrary_l8x2o")
-}
-autoplay = "Spin"
-speed_scale = 2.0
-
-[node name="CentralSpinning2" type="CollisionShape2D" parent="PlatformsMoving/StaticBody2D"]
+[node name="Polygon2D" type="Polygon2D" parent="PlatformsMoving/StaticBody2D/SpinningLeft"]
 position = Vector2(448, 640)
 rotation = -1.5708
-shape = SubResource("CapsuleShape2D_wy8n8")
-
-[node name="Polygon2D" type="Polygon2D" parent="PlatformsMoving/StaticBody2D/CentralSpinning2"]
 polygon = PackedVector2Array(-3.05176e-05, -162, -5.00003, -161, -10, -159, -14, -156, -17, -152, -19, -147, -20, -142, -20, 142, -19, 147, -17, 152, -14, 156, -10, 159, -5, 161, 0, 162, 5, 161, 10, 159, 14, 156, 17, 152, 19, 147, 20, 142, 20, -142, 19, -147, 17, -152, 14, -156, 9.99997, -159, 4.99997, -161)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PlatformsMoving/StaticBody2D/CentralSpinning2"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlatformsMoving/StaticBody2D/SpinningLeft"]
 libraries = {
 &"": SubResource("AnimationLibrary_l8x2o")
 }
-autoplay = "Spin"
-speed_scale = -2.0
+autoplay = "SpinLeft"
+speed_scale = 2.0
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="PlatformsMoving"]
+position = Vector2(1472, 640)
+physics_material_override = SubResource("PhysicsMaterial_wuwv3")
+
+[node name="SpinningRight" type="CollisionPolygon2D" parent="PlatformsMoving/StaticBody2D2"]
+position = Vector2(-1472, -640)
+polygon = PackedVector2Array(1330, 620, 1325, 621, 1320, 623, 1316, 626, 1313, 630, 1311, 635, 1310, 640, 1311, 645, 1313, 650, 1316, 654, 1320, 657, 1325, 659, 1330, 660, 1614, 660, 1619, 659, 1624, 657, 1628, 654, 1631, 650, 1633, 645, 1634, 640, 1633, 635, 1631, 630, 1628, 626, 1624, 623, 1619, 621, 1614, 620)
+
+[node name="Polygon2D" type="Polygon2D" parent="PlatformsMoving/StaticBody2D2/SpinningRight"]
+position = Vector2(1472, 640)
+rotation = -1.5708
+polygon = PackedVector2Array(-3.05176e-05, -162, -5.00003, -161, -10, -159, -14, -156, -17, -152, -19, -147, -20, -142, -20, 142, -19, 147, -17, 152, -14, 156, -10, 159, -5, 161, 0, 162, 5, 161, 10, 159, 14, 156, 17, 152, 19, 147, 20, 142, 20, -142, 19, -147, 17, -152, 14, -156, 9.99997, -159, 4.99997, -161)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlatformsMoving/StaticBody2D2/SpinningRight"]
+libraries = {
+&"": SubResource("AnimationLibrary_l8x2o")
+}
+autoplay = "SpinRight"
+speed_scale = 2.0
 
 [node name="Booster" parent="." instance=ExtResource("4_uuwls")]
 position = Vector2(58, 827)

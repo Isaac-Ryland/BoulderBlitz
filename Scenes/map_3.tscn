@@ -4,6 +4,21 @@
 [ext_resource type="PackedScene" uid="uid://cg7bxbpkffuo2" path="res://Scenes/player.tscn" id="2_vma17"]
 [ext_resource type="PackedScene" uid="uid://baomiiwxpn8hf" path="res://Scenes/info_overlay.tscn" id="4_xtteh"]
 
+[sub_resource type="Animation" id="Animation_xtteh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="Animation" id="Animation_vma17"]
 resource_name = "spin"
 loop_mode = 1
@@ -20,7 +35,13 @@ tracks/0/keys = {
 "values": [0.0, 6.28319]
 }
 
-[sub_resource type="Animation" id="Animation_xtteh"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_57v0g"]
+_data = {
+&"RESET": SubResource("Animation_xtteh"),
+&"spin": SubResource("Animation_vma17")
+}
+
+[sub_resource type="Animation" id="Animation_4qfuv"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -33,12 +54,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_57v0g"]
-_data = {
-&"RESET": SubResource("Animation_xtteh"),
-&"spin": SubResource("Animation_vma17")
 }
 
 [sub_resource type="Animation" id="Animation_57v0g"]
@@ -55,21 +70,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 6.28319]
-}
-
-[sub_resource type="Animation" id="Animation_4qfuv"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rhy1k"]
@@ -117,14 +117,7 @@ position = Vector2(960, 600)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlatformsMoving/StaticBody2D"]
 build_mode = 1
-polygon = PackedVector2Array(0, -580, -290, -502, -502, -290, -580, 0, -502, 290, -290, 502, 0, 580, 290, 502, 502, 290, 580, 0, 502, -290, 290, -502)
-
-[node name="Polygon2D" type="Polygon2D" parent="PlatformsMoving/StaticBody2D/CollisionPolygon2D"]
-position = Vector2(-960, -600)
-color = Color(0.835934, 0.000553311, 0.835928, 1)
-invert_enabled = true
-invert_border = 1000.0
-polygon = PackedVector2Array(960, 20, 670, 98, 458, 310, 380, 600, 458, 890, 670, 1102, 960, 1180, 1250, 1102, 1462, 890, 1540, 600, 1462, 310, 1250, 98)
+polygon = PackedVector2Array(0, -580, -150, -560, -290, -502, -410, -410, -502, -290, -560, -150, -580, 0, -560, 150, -502, 290, -410, 410, -290, 502, -150, 560, 0, 580, 150, 560, 290, 502, 410, 410, 502, 290, 560, 150, 580, 0, 560, -150, 502, -290, 410, -410, 290, -502, 150, -560)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlatformsMoving/StaticBody2D/CollisionPolygon2D"]
 root_node = NodePath("../..")
@@ -133,6 +126,13 @@ libraries = {
 }
 autoplay = "spin"
 speed_scale = 0.25
+
+[node name="Polygon2D" type="Polygon2D" parent="PlatformsMoving/StaticBody2D/CollisionPolygon2D"]
+position = Vector2(-960, -600)
+color = Color(0.835934, 0.000553311, 0.835928, 1)
+invert_enabled = true
+invert_border = 1000.0
+polygon = PackedVector2Array(960, 20, 810, 40, 670, 98, 550, 190, 458, 310, 400, 450, 380, 600, 400, 750, 458, 890, 550, 1010, 670, 1102, 810, 1160, 960, 1180, 1110, 1160, 1250, 1102, 1370, 1010, 1462, 890, 1520, 750, 1540, 600, 1520, 450, 1462, 310, 1370, 190, 1250, 98, 1110, 40)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="PlatformsMoving/StaticBody2D"]
 polygon = PackedVector2Array(0, -96, -25, -92, -48, -83, -68, -68, -83, -48, -93, -24, -96, 0, -93, 24, -83, 48, -68, 68, -48, 83, -24, 93, 0, 96, 24, 93, 48, 83, 68, 68, 83, 48, 93, 24, 96, 0, 93, -24, 83, -48, 68, -68, 48, -83, 25, -92)

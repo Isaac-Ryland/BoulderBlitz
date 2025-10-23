@@ -1,4 +1,5 @@
 extends Node2D
+class_name Ab1
 ## Dash ability
 ##
 ## Used to apply a force in the held direction, excluding upwards
@@ -35,10 +36,10 @@ func activate(player, player_index):
 		dir.x = -1
 
 	# If no input, dash in direction of player's horizontal velocity
-	if dir == Vector2.ZERO or dir.x == moving_threshold:
+	if dir == Vector2.ZERO or dir.x == 0:
 		if player.linear_velocity.x > moving_threshold:
 			dir.x = 1
-		elif player.linear_velocity.x < moving_threshold:
+		elif player.linear_velocity.x < -moving_threshold:
 			dir.x = -1
 		else:
 			dir.x = 1  # default to right

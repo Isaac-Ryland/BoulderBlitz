@@ -1,4 +1,5 @@
 extends Node2D
+class_name Ab5
 ## Slingshot Ability
 ##
 ## Latches onto the map and accelerates the player towards the latch point
@@ -7,7 +8,7 @@ extends Node2D
 
 const cooldown: float = 6.0
 const rope_colour: Color = Color(1, 1, 1, 1)
-const min_hook_dist: int = 80 # Takes the player's radius plus a margin and used to prevent grapples from too close
+const min_hook_dist: int = 100 # Takes the player's radius plus a margin and used to prevent grapples from too close
 const yoink_impulse: float = 50
 const moving_threshold: float = 10 # The minimum velocity for velocity based directions
 
@@ -56,25 +57,25 @@ func activate(player, player_index):
 	if dir == Vector2.ZERO:
 		if player.linear_velocity.x > moving_threshold:
 			dir.x = 1
-		elif player.linear_velocity.x < moving_threshold:
+		elif player.linear_velocity.x < -moving_threshold:
 			dir.x = -1
 		elif player.linear_velocity.y > moving_threshold:
 			dir.y = -1
-		elif player.linear_velocity.y < moving_threshold:
+		elif player.linear_velocity.y < -moving_threshold:
 			dir.y = 1
 		else:
 			dir = Vector2(1, -1)  # default to top right
 	elif dir.x == moving_threshold:
 		if player.linear_velocity.x > moving_threshold:
 			dir.x = 1
-		elif player.linear_velocity.x < moving_threshold:
+		elif player.linear_velocity.x < -moving_threshold:
 			dir.x = -1
 		else:
 			dir.x = 1
 	elif dir.y == moving_threshold:
 		if player.linear_velocity.y > moving_threshold:
 			dir.y = -1
-		elif player.linear_velocity.y < moving_threshold:
+		elif player.linear_velocity.y < -moving_threshold:
 			dir.y = 1
 		else:
 			dir.y = -1
@@ -120,7 +121,7 @@ func _physics_process(delta: float) -> void:
 	# Accelerates the player towards the the hook point
 	player.apply_central_impulse(yoink_impulse * -rope_normal)
 	
-	# Disconnects the slingshot when the player has travelled 80% of the way there
+	# Disconnects the slingshot when the player has travelled 75% of the way there
 	if rope.length() < (initial_hook_length * 0.25) or rope.length() < min_hook_dist:
 		is_hooked = false
 		can_activate = false

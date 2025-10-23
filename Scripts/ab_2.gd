@@ -1,4 +1,5 @@
 extends Node2D
+class_name Ab2
 ## Jetpack ability
 ## 
 ## Used to apply a force in the held direction, excluding horizontal
@@ -38,7 +39,7 @@ func activate(player, player_index):
 	if dir == Vector2.ZERO or dir.y == moving_threshold:
 		if player.linear_velocity.y > moving_threshold:
 			dir.y = 1
-		elif player.linear_velocity.y < moving_threshold:
+		elif player.linear_velocity.y < -moving_threshold:
 			dir.y = -1
 		else:
 			dir.y = 1  # default to up

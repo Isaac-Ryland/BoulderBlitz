@@ -1,4 +1,5 @@
 extends Node2D
+class_name Ab3
 ## Frictionless ability
 ##
 ## Removes the friction of the player, meaning no deccelaration until the ability runs out
